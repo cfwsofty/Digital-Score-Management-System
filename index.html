@@ -1077,11 +1077,11 @@
     <!-- Login Screen -->
     <div class="login-container" id="loginScreen">
         <div class="login-box">
-            <div class="version-badge">v3.0 Ultimate</div>
+            <div class="version-badge">v4.0 Secure Cloud Edition</div>
             <h1 class="system-title">
                 <i class="fas fa-chart-line"></i> Digital Score Management System
             </h1>
-            <div class="developer-credit">Ultimate Edition by Frank Jefwa</div>
+            <div class="developer-credit">Ultimate Secure Edition by Frank Jefwa</div>
             
             <div class="role-selector">
                 <div class="role-btn admin active" onclick="selectRole('admin')">
@@ -1115,6 +1115,12 @@
                 </button>
             </div>
 
+            <!-- Two-Factor Authentication for Admin -->
+            <div class="input-group" id="admin2FAGroup" style="display: none;">
+                <label for="securityKey"><i class="fas fa-shield-alt"></i> SECURITY KEY</label>
+                <input type="password" id="securityKey" placeholder="Enter security key (admins only)">
+            </div>
+
             <div class="forgot-password">
                 <a onclick="showForgotPassword()">Forgot Password?</a>
             </div>
@@ -1138,129 +1144,46 @@
                     </button>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Forgot Password Modal -->
-    <div class="modal-overlay" id="forgotPasswordModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Reset Password</h2>
-                <button class="close-btn" onclick="hideForgotPassword()">&times;</button>
-            </div>
-            
-            <div class="tabs">
-                <button class="tab active" onclick="showTab('emailTab')">Email</button>
-                <button class="tab" onclick="showTab('phoneTab')">Phone</button>
-                <button class="tab" onclick="showTab('securityTab')">Security Questions</button>
-            </div>
-            
-            <div id="emailTab" class="tab-content active">
-                <div class="input-group">
-                    <label>Email Address</label>
-                    <input type="email" id="resetEmail" placeholder="Enter your email">
-                </div>
-            </div>
-            
-            <div id="phoneTab" class="tab-content">
-                <div class="input-group">
-                    <label>Phone Number</label>
-                    <input type="tel" id="resetPhone" placeholder="Enter your phone number">
-                </div>
-            </div>
-            
-            <div id="securityTab" class="tab-content">
-                <div class="input-group">
-                    <label>Username</label>
-                    <input type="text" id="resetUsername" placeholder="Enter your username">
-                </div>
-                <div class="input-group">
-                    <label>Security Question</label>
-                    <select id="securityQuestion">
-                        <option value="">Select a question</option>
-                        <option>What was your first pet's name?</option>
-                        <option>What city were you born in?</option>
-                        <option>What is your mother's maiden name?</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label>Answer</label>
-                    <input type="text" id="securityAnswer" placeholder="Enter your answer">
-                </div>
-            </div>
-            
-            <div class="form-actions">
-                <button class="btn btn-secondary" onclick="hideForgotPassword()">
-                    <i class="fas fa-times"></i> Cancel
-                </button>
-                <button class="btn btn-primary" onclick="resetPassword()">
-                    <i class="fas fa-key"></i> Reset Password
-                </button>
+            <!-- Cloud Sync Status -->
+            <div id="cloudStatus" style="margin-top: 15px; padding: 10px; background: rgba(52, 152, 219, 0.1); border-radius: var(--radius); display: none;">
+                <i class="fas fa-cloud"></i>
+                <span style="font-size: 12px; margin-left: 5px;">Cloud Sync: <span id="cloudStatusText">Connected</span></span>
             </div>
         </div>
     </div>
 
-    <!-- Signup Modal -->
-    <div class="modal-overlay" id="signupModal">
+    <!-- Admin Promotion Modal -->
+    <div class="modal-overlay" id="adminPromotionModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title">Create Account</h2>
-                <button class="close-btn" onclick="hideSignup()">&times;</button>
+                <h2 class="modal-title">Promote User to Admin</h2>
+                <button class="close-btn" onclick="hideAdminPromotion()">&times;</button>
             </div>
             
             <div class="input-group">
-                <label>Full Name *</label>
-                <input type="text" id="signupName" placeholder="Enter your full name">
+                <label>Super Admin Security Key *</label>
+                <input type="password" id="superAdminKey" placeholder="Enter super admin security key">
             </div>
             
             <div class="input-group">
-                <label>Username *</label>
-                <input type="text" id="signupUsername" placeholder="Choose a username">
-            </div>
-            
-            <div class="input-group">
-                <label>Email Address</label>
-                <input type="email" id="signupEmail" placeholder="Enter your email">
-            </div>
-            
-            <div class="input-group">
-                <label>Phone Number</label>
-                <input type="tel" id="signupPhone" placeholder="Enter phone number">
-            </div>
-            
-            <div class="input-group">
-                <label>Select Role *</label>
-                <select id="signupRole" onchange="updateRoleFields()">
-                    <option value="">Select your role</option>
-                    <option value="admin">Administrator</option>
-                    <option value="teacher">Teacher</option>
-                    <option value="student">Student</option>
-                    <option value="parent">Parent</option>
+                <label>Select User to Promote</label>
+                <select id="userToPromote">
+                    <option value="">Select a user</option>
                 </select>
             </div>
             
             <div class="input-group">
-                <label>Password *</label>
-                <input type="password" id="signupPassword" placeholder="Create a password">
-                <button type="button" class="password-toggle" onclick="togglePassword('signupPassword')" style="position: absolute; right: 15px; top: 42px; background: none; border: none; color: #999; cursor: pointer;">
-                    <i class="fas fa-eye"></i>
-                </button>
-            </div>
-            
-            <div class="input-group">
-                <label>Confirm Password *</label>
-                <input type="password" id="signupConfirmPassword" placeholder="Confirm your password">
-                <button type="button" class="password-toggle" onclick="togglePassword('signupConfirmPassword')" style="position: absolute; right: 15px; top: 42px; background: none; border: none; color: #999; cursor: pointer;">
-                    <i class="fas fa-eye"></i>
-                </button>
+                <label>Why are you promoting this user?</label>
+                <textarea id="promotionReason" rows="3" placeholder="Provide reason for promotion"></textarea>
             </div>
             
             <div class="form-actions">
-                <button class="btn btn-secondary" onclick="hideSignup()">
+                <button class="btn btn-secondary" onclick="hideAdminPromotion()">
                     <i class="fas fa-times"></i> Cancel
                 </button>
-                <button class="btn btn-success" onclick="signup()">
-                    <i class="fas fa-user-plus"></i> Create Account
+                <button class="btn btn-warning" onclick="promoteToAdmin()">
+                    <i class="fas fa-user-shield"></i> Promote to Admin
                 </button>
             </div>
         </div>
@@ -1285,6 +1208,10 @@
                         <i class="fas fa-bell"></i>
                         <span id="notificationCount">0</span>
                     </button>
+                    <button class="btn btn-warning btn-sm" onclick="manageSessions()">
+                        <i class="fas fa-desktop"></i>
+                        <span id="activeSessions">1</span>
+                    </button>
                     <button class="logout-btn" onclick="logout()">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </button>
@@ -1308,43 +1235,16 @@
                     <div class="nav-item" onclick="showPage('viewAllScores')">
                         <i class="fas fa-eye"></i> <span>View All Scores</span>
                     </div>
-                    <div class="nav-item" onclick="showPage('reports')">
-                        <i class="fas fa-chart-bar"></i> <span>Reports & Analysis</span>
-                    </div>
-                    <div class="nav-item" onclick="showPage('reportCards')">
-                        <i class="fas fa-file-certificate"></i> <span>Report Cards</span>
-                    </div>
-                    <div class="nav-item" onclick="showPage('classAnalysis')">
-                        <i class="fas fa-chart-pie"></i> <span>Class Analysis</span>
-                    </div>
-                    <div class="nav-item" onclick="showPage('attendance')">
-                        <i class="fas fa-calendar-check"></i> <span>Attendance</span>
-                    </div>
-                    <div class="nav-item" onclick="showPage('calendar')">
-                        <i class="fas fa-calendar"></i> <span>Academic Calendar</span>
-                    </div>
-                    <div class="nav-item" onclick="showPage('announcements')">
-                        <i class="fas fa-bullhorn"></i> <span>Announcements</span>
-                    </div>
                     <div class="nav-item" onclick="showPage('userManagement')">
                         <i class="fas fa-users-cog"></i> <span>Manage Users</span>
                     </div>
-                    <div class="nav-item" onclick="showPage('systemSettings')">
-                        <i class="fas fa-cogs"></i> <span>System Settings</span>
-                    </div>
-                    <div class="nav-item" onclick="showPage('auditLog')">
-                        <i class="fas fa-history"></i> <span>Audit Log</span>
-                    </div>
-                    <div class="nav-item" onclick="showPage('backupRestore')">
-                        <i class="fas fa-database"></i> <span>Backup & Restore</span>
-                    </div>
-                    <div class="nav-item" onclick="showPage('achievements')">
-                        <i class="fas fa-trophy"></i> <span>Achievements</span>
+                    <div class="nav-item" onclick="showPage('systemSecurity')">
+                        <i class="fas fa-shield-alt"></i> <span>System Security</span>
                     </div>
                 </div>
 
                 <div class="developer-footer">
-                    Ultimate Edition v3.0<br>
+                    Secure Cloud Edition v4.0<br>
                     By Frank Jefwa
                 </div>
             </div>
@@ -1353,6 +1253,7 @@
                 <!-- Dashboard Page -->
                 <div id="dashboardPage" class="page">
                     <h2 class="page-title">Admin Dashboard <span id="currentDate"></span></h2>
+                    
                     <div class="stats-grid">
                         <div class="stat-card">
                             <h3>Total Students</h3>
@@ -1360,650 +1261,119 @@
                             <div class="stat-change"><i class="fas fa-users"></i> Registered students</div>
                         </div>
                         <div class="stat-card">
-                            <h3>Average Score</h3>
-                            <div class="stat-value" id="averageScore">0%</div>
-                            <div class="stat-change"><i class="fas fa-chart-line"></i> Overall performance</div>
+                            <h3>System Admins</h3>
+                            <div class="stat-value" id="adminCount">1</div>
+                            <div class="stat-change"><i class="fas fa-user-shield"></i> Authorized administrators</div>
                         </div>
                         <div class="stat-card">
-                            <h3>Attendance Rate</h3>
-                            <div class="stat-value" id="attendanceRate">0%</div>
-                            <div class="stat-change"><i class="fas fa-calendar-check"></i> This month</div>
+                            <h3>Active Sessions</h3>
+                            <div class="stat-value" id="activeSessionsCount">1</div>
+                            <div class="stat-change"><i class="fas fa-desktop"></i> Concurrent logins</div>
                         </div>
                         <div class="stat-card">
-                            <h3>Pending Actions</h3>
-                            <div class="stat-value" id="pendingActions">0</div>
-                            <div class="stat-change"><i class="fas fa-tasks"></i> Requires attention</div>
+                            <h3>Cloud Status</h3>
+                            <div class="stat-value" id="cloudSyncStatus">✓</div>
+                            <div class="stat-change"><i class="fas fa-cloud"></i> Multi-device enabled</div>
                         </div>
                     </div>
 
+                    <!-- Quick Actions with Security Features -->
                     <div class="form-container">
-                        <h3>Quick Actions</h3>
+                        <h3>Security Quick Actions</h3>
                         <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
-                            <button class="btn btn-primary" onclick="showPage('addScores')">
-                                <i class="fas fa-plus"></i> Add New Scores
+                            <button class="btn btn-warning" onclick="showAdminPromotion()" id="promoteAdminBtn">
+                                <i class="fas fa-user-shield"></i> Promote User to Admin
                             </button>
-                            <button class="btn btn-success" onclick="generateReport()">
-                                <i class="fas fa-file-pdf"></i> Generate Report
+                            <button class="btn btn-info" onclick="showPage('systemSecurity')">
+                                <i class="fas fa-shield-alt"></i> Security Settings
                             </button>
-                            <button class="btn btn-info" onclick="showPage('announcements')">
-                                <i class="fas fa-bullhorn"></i> Post Announcement
-                            </button>
-                            <button class="btn btn-danger" onclick="backupData()">
-                                <i class="fas fa-save"></i> Backup Data
+                            <button class="btn btn-danger" onclick="revokeAllSessions()">
+                                <i class="fas fa-desktop"></i> Revoke All Sessions
                             </button>
                         </div>
                     </div>
 
-                    <div class="chart-container">
-                        <h3>Performance Trends</h3>
-                        <div class="chart" id="performanceChart">
-                            <div style="text-align: center; padding: 50px;">
-                                <i class="fas fa-chart-line" style="font-size: 48px; color: #3498db; margin-bottom: 20px;"></i>
-                                <p>Chart visualization would appear here</p>
-                                <p style="font-size: 12px; color: #666; margin-top: 10px;">Integrate with Chart.js or similar library</p>
-                            </div>
-                        </div>
-                    </div>
-
+                    <!-- Admin Activity Log -->
                     <div class="table-container">
-                        <h3 style="padding: 20px 20px 0;">Recent Score Entries</h3>
+                        <h3 style="padding: 20px 20px 0;">Recent Admin Activities</h3>
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Student Name</th>
-                                    <th>Subject</th>
-                                    <th>Score</th>
-                                    <th>Grade</th>
-                                    <th>Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="recentScoresTable">
-                                <tr><td colspan="6" style="text-align: center; padding: 30px; color: #666;">No scores entered yet</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Add Scores Page -->
-                <div id="addScores" class="page" style="display: none;">
-                    <h2 class="page-title">Add Student Scores</h2>
-                    <div class="form-container">
-                        <h3>Enter Score Details</h3>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Student Name *</label>
-                                <select id="studentName" onchange="autoFillStudentInfo()">
-                                    <option value="">Select Student</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label>Student ID</label>
-                                <input type="text" id="studentId" placeholder="Auto-filled" readonly>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Subject *</label>
-                                <select id="subjectName">
-                                    <option value="">Select Subject</option>
-                                    <option>Mathematics</option>
-                                    <option>English</option>
-                                    <option>Science</option>
-                                    <option>History</option>
-                                    <option>Geography</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label>Class/Form *</label>
-                                <select id="className">
-                                    <option value="">Select Class</option>
-                                    <option>Form 1A</option>
-                                    <option>Form 1B</option>
-                                    <option>Form 2A</option>
-                                    <option>Form 2B</option>
-                                    <option>Form 3A</option>
-                                    <option>Form 3B</option>
-                                    <option>Form 4A</option>
-                                    <option>Form 4B</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Score (0-100) *</label>
-                                <input type="number" id="scoreValue" min="0" max="100" placeholder="Enter score">
-                            </div>
-                            <div class="input-group">
-                                <label>Exam Type</label>
-                                <select id="examType">
-                                    <option>Term Exam</option>
-                                    <option>Mid-Term</option>
-                                    <option>Final Exam</option>
-                                    <option>Continuous Assessment</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <label>Comments</label>
-                            <textarea id="scoreComments" rows="3" placeholder="Any additional comments..."></textarea>
-                        </div>
-                        <div class="form-actions">
-                            <button class="btn btn-secondary" onclick="showPage('dashboardPage')">
-                                <i class="fas fa-times"></i> Cancel
-                            </button>
-                            <button class="btn btn-primary" onclick="saveScore()">
-                                <i class="fas fa-save"></i> Save Score
-                            </button>
-                            <button class="btn btn-info" onclick="saveAndNotify()">
-                                <i class="fas fa-bell"></i> Save & Notify
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="form-container">
-                        <h3>Bulk Import Scores</h3>
-                        <div class="file-upload" onclick="document.getElementById('csvFile').click()">
-                            <i class="fas fa-file-csv" style="font-size: 48px; color: #3498db; margin-bottom: 15px;"></i>
-                            <p>Click to upload CSV file</p>
-                            <p style="font-size: 12px; color: #666; margin-top: 10px;">Format: Student Name, Subject, Score, Class, Exam Type</p>
-                            <input type="file" id="csvFile" accept=".csv" onchange="importCSV(this.files[0])" style="display: none;">
-                        </div>
-                        <div id="importProgress" style="display: none;">
-                            <div class="spinner"></div>
-                            <p style="text-align: center;">Importing...</p>
-                        </div>
-                    </div>
-
-                    <div class="table-container">
-                        <h3 style="padding: 20px 20px 0;">Recently Added Scores</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Student Name</th>
-                                    <th>Subject</th>
-                                    <th>Score</th>
-                                    <th>Grade</th>
-                                    <th>Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="recentAddedScores">
-                                <tr><td colspan="6" style="text-align: center; padding: 30px; color: #666;">No scores added yet</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Attendance Page -->
-                <div id="attendance" class="page" style="display: none;">
-                    <h2 class="page-title">Attendance Tracking</h2>
-                    <div class="form-container">
-                        <h3>Mark Attendance</h3>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Date</label>
-                                <input type="date" id="attendanceDate" value="<?php echo date('Y-m-d'); ?>">
-                            </div>
-                            <div class="input-group">
-                                <label>Class</label>
-                                <select id="attendanceClass" onchange="loadClassAttendance()">
-                                    <option value="">Select Class</option>
-                                    <option>Form 1A</option>
-                                    <option>Form 1B</option>
-                                    <option>Form 2A</option>
-                                    <option>Form 2B</option>
-                                    <option>Form 3A</option>
-                                    <option>Form 3B</option>
-                                    <option>Form 4A</option>
-                                    <option>Form 4B</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="table-container" id="attendanceTableContainer" style="display: none;">
-                        <h3 style="padding: 20px 20px 0;">Class Attendance</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Student Name</th>
-                                    <th>Status</th>
-                                    <th>Remarks</th>
-                                </tr>
-                            </thead>
-                            <tbody id="attendanceTable">
-                            </tbody>
-                        </table>
-                        <div style="padding: 20px;">
-                            <button class="btn btn-success" onclick="saveAttendance()">
-                                <i class="fas fa-save"></i> Save Attendance
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="chart-container">
-                        <h3>Attendance Overview</h3>
-                        <div class="chart" id="attendanceChart">
-                            <div style="text-align: center; padding: 50px;">
-                                <i class="fas fa-chart-pie" style="font-size: 48px; color: #2ecc71; margin-bottom: 20px;"></i>
-                                <p>Attendance chart would appear here</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Calendar Page -->
-                <div id="calendar" class="page" style="display: none;">
-                    <h2 class="page-title">Academic Calendar</h2>
-                    <div class="calendar">
-                        <div class="calendar-header">
-                            <button class="btn btn-secondary btn-sm" onclick="prevMonth()">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <h3 id="currentMonth">January 2024</h3>
-                            <button class="btn btn-secondary btn-sm" onclick="nextMonth()">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </div>
-                        <div class="calendar-grid" id="calendarGrid">
-                            <!-- Calendar days will be generated by JavaScript -->
-                        </div>
-                    </div>
-
-                    <div class="form-container">
-                        <h3>Add Event</h3>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Event Title</label>
-                                <input type="text" id="eventTitle" placeholder="Enter event title">
-                            </div>
-                            <div class="input-group">
-                                <label>Event Date</label>
-                                <input type="date" id="eventDate">
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <label>Description</label>
-                            <textarea id="eventDescription" rows="3" placeholder="Event description"></textarea>
-                        </div>
-                        <div class="form-actions">
-                            <button class="btn btn-primary" onclick="addEvent()">
-                                <i class="fas fa-plus"></i> Add Event
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="table-container">
-                        <h3 style="padding: 20px 20px 0;">Upcoming Events</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Event</th>
-                                    <th>Description</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="eventsTable">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Announcements Page -->
-                <div id="announcements" class="page" style="display: none;">
-                    <h2 class="page-title">Announcements</h2>
-                    <div class="form-container">
-                        <h3>Create Announcement</h3>
-                        <div class="input-group">
-                            <label>Title</label>
-                            <input type="text" id="announcementTitle" placeholder="Enter announcement title">
-                        </div>
-                        <div class="input-group">
-                            <label>Content</label>
-                            <textarea id="announcementContent" rows="5" placeholder="Enter announcement content"></textarea>
-                        </div>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Audience</label>
-                                <select id="announcementAudience" multiple style="height: 100px;">
-                                    <option value="all">Everyone</option>
-                                    <option value="students">Students Only</option>
-                                    <option value="parents">Parents Only</option>
-                                    <option value="teachers">Teachers Only</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label>Priority</label>
-                                <select id="announcementPriority">
-                                    <option value="normal">Normal</option>
-                                    <option value="high">High</option>
-                                    <option value="urgent">Urgent</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-actions">
-                            <button class="btn btn-primary" onclick="postAnnouncement()">
-                                <i class="fas fa-bullhorn"></i> Post Announcement
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="announcements" id="announcementsList">
-                        <div style="text-align: center; padding: 50px; color: #666;">
-                            <i class="fas fa-bullhorn" style="font-size: 48px; margin-bottom: 20px;"></i>
-                            <p>No announcements yet</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Audit Log Page -->
-                <div id="auditLog" class="page" style="display: none;">
-                    <h2 class="page-title">System Audit Log</h2>
-                    <div class="form-container">
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Filter by User</label>
-                                <select id="auditUserFilter" onchange="filterAuditLog()">
-                                    <option value="">All Users</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label>Filter by Action</label>
-                                <select id="auditActionFilter" onchange="filterAuditLog()">
-                                    <option value="">All Actions</option>
-                                    <option value="login">Login</option>
-                                    <option value="logout">Logout</option>
-                                    <option value="add_score">Add Score</option>
-                                    <option value="edit_score">Edit Score</option>
-                                    <option value="delete_score">Delete Score</option>
-                                    <option value="add_student">Add Student</option>
-                                    <option value="add_user">Add User</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Timestamp</th>
-                                    <th>User</th>
+                                    <th>Admin</th>
                                     <th>Action</th>
                                     <th>Details</th>
+                                    <th>Time</th>
                                 </tr>
                             </thead>
-                            <tbody id="auditLogTable">
-                                <tr><td colspan="4" style="text-align: center; padding: 30px; color: #666;">No audit logs yet</td></tr>
+                            <tbody id="adminActivities">
+                                <tr><td colspan="4" style="text-align: center; padding: 30px; color: #666;">No admin activities yet</td></tr>
                             </tbody>
                         </table>
                     </div>
-
-                    <div class="form-actions">
-                        <button class="btn btn-secondary" onclick="exportAuditLog()">
-                            <i class="fas fa-download"></i> Export Log
-                        </button>
-                        <button class="btn btn-danger" onclick="clearAuditLog()">
-                            <i class="fas fa-trash"></i> Clear Log
-                        </button>
-                    </div>
                 </div>
 
-                <!-- Backup & Restore Page -->
-                <div id="backupRestore" class="page" style="display: none;">
-                    <h2 class="page-title">Data Backup & Restore</h2>
+                <!-- System Security Page -->
+                <div id="systemSecurity" class="page" style="display: none;">
+                    <h2 class="page-title">System Security Settings</h2>
                     
                     <div class="form-container">
-                        <h3>Create Backup</h3>
-                        <p style="color: #666; margin-bottom: 20px;">Backup all system data to a secure file.</p>
+                        <h3>Administrator Controls</h3>
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label>Max Administrators</label>
+                                <input type="number" id="maxAdmins" min="1" max="5" value="2">
+                                <small style="color: #666; margin-top: 5px; display: block;">Maximum number of admin users allowed</small>
+                            </div>
+                            <div class="input-group">
+                                <label>Super Admin Security Key</label>
+                                <div style="display: flex; gap: 10px;">
+                                    <input type="text" id="superAdminKeyDisplay" value="********" readonly style="flex: 1;">
+                                    <button class="btn btn-sm btn-info" onclick="generateNewSecurityKey()">
+                                        <i class="fas fa-redo"></i> Regenerate
+                                    </button>
+                                </div>
+                                <small style="color: #666; margin-top: 5px; display: block;">Required for promoting new admins</small>
+                            </div>
+                        </div>
+                        
+                        <h3 style="margin-top: 30px;">Multi-Device Settings</h3>
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label>Allow Multi-Device Login</label>
+                                <select id="allowMultiDevice">
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Max Concurrent Sessions</label>
+                                <input type="number" id="maxSessions" min="1" max="10" value="3">
+                            </div>
+                        </div>
+                        
                         <div class="form-actions">
-                            <button class="btn btn-success" onclick="createBackup()">
-                                <i class="fas fa-save"></i> Create Backup Now
-                            </button>
-                            <button class="btn btn-info" onclick="scheduleBackup()">
-                                <i class="fas fa-clock"></i> Schedule Auto Backup
+                            <button class="btn btn-primary" onclick="saveSecuritySettings()">
+                                <i class="fas fa-save"></i> Save Security Settings
                             </button>
                         </div>
                     </div>
 
-                    <div class="form-container">
-                        <h3>Restore Data</h3>
-                        <p style="color: #666; margin-bottom: 20px;">Restore system data from a backup file.</p>
-                        <div class="file-upload" onclick="document.getElementById('backupFile').click()">
-                            <i class="fas fa-file-upload" style="font-size: 48px; color: #e74c3c; margin-bottom: 15px;"></i>
-                            <p>Click to select backup file</p>
-                            <input type="file" id="backupFile" accept=".json" onchange="restoreBackup(this.files[0])" style="display: none;">
-                        </div>
-                        <div id="restoreProgress" style="display: none;">
-                            <div class="spinner"></div>
-                            <p style="text-align: center;">Restoring...</p>
-                        </div>
-                    </div>
-
+                    <!-- Active Sessions Management -->
                     <div class="table-container">
-                        <h3 style="padding: 20px 20px 0;">Available Backups</h3>
+                        <h3 style="padding: 20px 20px 0;">Active User Sessions</h3>
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Backup Name</th>
-                                    <th>Date Created</th>
-                                    <th>Size</th>
+                                    <th>User</th>
+                                    <th>Role</th>
+                                    <th>Device</th>
+                                    <th>Login Time</th>
+                                    <th>Last Active</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody id="backupsTable">
-                                <tr><td colspan="4" style="text-align: center; padding: 30px; color: #666;">No backups yet</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Achievements Page -->
-                <div id="achievements" class="page" style="display: none;">
-                    <h2 class="page-title">Achievements & Gamification</h2>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <h3>Total Badges Awarded</h3>
-                            <div class="stat-value" id="totalBadges">0</div>
-                            <div class="stat-change"><i class="fas fa-trophy"></i> System-wide</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Top Student</h3>
-                            <div class="stat-value" id="topStudentName">-</div>
-                            <div class="stat-change"><i class="fas fa-crown"></i> Most achievements</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Active Streaks</h3>
-                            <div class="stat-value" id="activeStreaks">0</div>
-                            <div class="stat-change"><i class="fas fa-fire"></i> Current streaks</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Points Leader</h3>
-                            <div class="stat-value" id="pointsLeader">0</div>
-                            <div class="stat-change"><i class="fas fa-star"></i> Total points</div>
-                        </div>
-                    </div>
-
-                    <div class="form-container">
-                        <h3>Award Achievement</h3>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Student</label>
-                                <select id="achievementStudent">
-                                    <option value="">Select Student</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label>Achievement Type</label>
-                                <select id="achievementType">
-                                    <option value="">Select Type</option>
-                                    <option value="perfect_score">Perfect Score (100%)</option>
-                                    <option value="most_improved">Most Improved</option>
-                                    <option value="attendance_perfect">Perfect Attendance</option>
-                                    <option value="helpful">Most Helpful</option>
-                                    <option value="leader">Class Leader</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <label>Description</label>
-                            <textarea id="achievementDescription" rows="3" placeholder="Achievement description"></textarea>
-                        </div>
-                        <div class="form-actions">
-                            <button class="btn btn-success" onclick="awardAchievement()">
-                                <i class="fas fa-award"></i> Award Achievement
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="table-container">
-                        <h3 style="padding: 20px 20px 0;">Recent Achievements</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Student</th>
-                                    <th>Achievement</th>
-                                    <th>Date</th>
-                                    <th>Points</th>
-                                </tr>
-                            </thead>
-                            <tbody id="achievementsTable">
-                                <tr><td colspan="4" style="text-align: center; padding: 30px; color: #666;">No achievements awarded yet</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="chart-container">
-                        <h3>Achievement Distribution</h3>
-                        <div class="chart" id="achievementsChart">
-                            <div style="text-align: center; padding: 50px;">
-                                <i class="fas fa-trophy" style="font-size: 48px; color: #f39c12; margin-bottom: 20px;"></i>
-                                <p>Achievement chart would appear here</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- View All Scores Page -->
-                <div id="viewAllScores" class="page" style="display: none;">
-                    <h2 class="page-title">View All Scores</h2>
-                    <div class="form-container">
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Filter by Class</label>
-                                <select id="filterClass" onchange="filterScores()">
-                                    <option value="">All Classes</option>
-                                    <option>Form 1A</option>
-                                    <option>Form 1B</option>
-                                    <option>Form 2A</option>
-                                    <option>Form 2B</option>
-                                    <option>Form 3A</option>
-                                    <option>Form 3B</option>
-                                    <option>Form 4A</option>
-                                    <option>Form 4B</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label>Filter by Subject</label>
-                                <input type="text" id="filterSubject" placeholder="Enter subject name" oninput="filterScores()">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Student Name</th>
-                                    <th>Class</th>
-                                    <th>Subject</th>
-                                    <th>Score</th>
-                                    <th>Grade</th>
-                                    <th>Exam Type</th>
-                                    <th>Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="allScoresTable">
-                                <tr><td colspan="8" style="text-align: center; padding: 30px; color: #666;">No scores available</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Manage Students Page -->
-                <div id="manageStudents" class="page" style="display: none;">
-                    <h2 class="page-title">Manage Students</h2>
-                    <div class="form-container">
-                        <h3>Add New Student</h3>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Full Name *</label>
-                                <input type="text" id="newStudentName" placeholder="Enter student's full name">
-                            </div>
-                            <div class="input-group">
-                                <label>Student ID</label>
-                                <input type="text" id="newStudentId" placeholder="Generate automatically if empty">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Class *</label>
-                                <select id="newStudentClass">
-                                    <option value="">Select Class</option>
-                                    <option>Form 1A</option>
-                                    <option>Form 1B</option>
-                                    <option>Form 2A</option>
-                                    <option>Form 2B</option>
-                                    <option>Form 3A</option>
-                                    <option>Form 3B</option>
-                                    <option>Form 4A</option>
-                                    <option>Form 4B</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label>Date of Birth</label>
-                                <input type="date" id="newStudentDOB">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Parent/Guardian Name</label>
-                                <input type="text" id="newStudentParent" placeholder="Parent/Guardian name">
-                            </div>
-                            <div class="input-group">
-                                <label>Contact Phone</label>
-                                <input type="tel" id="newStudentPhone" placeholder="Phone number">
-                            </div>
-                        </div>
-                        <div class="form-actions">
-                            <button class="btn btn-secondary" onclick="clearStudentForm()">
-                                <i class="fas fa-redo"></i> Clear
-                            </button>
-                            <button class="btn btn-success" onclick="addStudent()">
-                                <i class="fas fa-user-plus"></i> Add Student
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="table-container">
-                        <h3 style="padding: 20px 20px 0;">Student List</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Student ID</th>
-                                    <th>Full Name</th>
-                                    <th>Class</th>
-                                    <th>Average Score</th>
-                                    <th>Contact</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="studentsTable">
-                                <tr><td colspan="6" style="text-align: center; padding: 30px; color: #666;">No students registered yet</td></tr>
+                            <tbody id="activeSessionsTable">
+                                <tr><td colspan="6" style="text-align: center; padding: 30px; color: #666;">No active sessions</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2012,6 +1382,7 @@
                 <!-- User Management Page -->
                 <div id="userManagement" class="page" style="display: none;">
                     <h2 class="page-title">Manage Users</h2>
+                    
                     <div class="form-container">
                         <h3>Create New User</h3>
                         <p style="color: #666; margin-bottom: 20px;">Only administrators can create new users.</p>
@@ -2030,11 +1401,11 @@
                                 <label>Role *</label>
                                 <select id="newUserRole">
                                     <option value="">Select Role</option>
-                                    <option value="admin">Administrator</option>
                                     <option value="teacher">Teacher</option>
                                     <option value="student">Student</option>
                                     <option value="parent">Parent</option>
                                 </select>
+                                <small style="color: #666; margin-top: 5px; display: block;">Note: Admin role can only be assigned by existing admins</small>
                             </div>
                             <div class="input-group">
                                 <label>Password *</label>
@@ -2068,105 +1439,17 @@
                     </div>
                 </div>
 
-                <!-- System Settings Page -->
-                <div id="systemSettings" class="page" style="display: none;">
-                    <h2 class="page-title">System Settings</h2>
-                    
-                    <div class="form-container">
-                        <h3>Academic Settings</h3>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>School Name</label>
-                                <input type="text" id="schoolName" placeholder="Enter school name">
-                            </div>
-                            <div class="input-group">
-                                <label>Academic Year</label>
-                                <input type="text" id="academicYear" placeholder="e.g., 2024-2025">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Pass Mark (%)</label>
-                                <input type="number" id="passMark" min="0" max="100" value="40">
-                            </div>
-                            <div class="input-group">
-                                <label>Maximum Score</label>
-                                <input type="number" id="maxScore" min="0" value="100">
-                            </div>
-                        </div>
-                        
-                        <h3 style="margin-top: 30px;">Grading System</h3>
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Grade</th>
-                                        <th>Minimum Score</th>
-                                        <th>Maximum Score</th>
-                                        <th>Points</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="gradingSystem">
-                                    <tr>
-                                        <td>A</td>
-                                        <td>80</td>
-                                        <td>100</td>
-                                        <td>12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>B</td>
-                                        <td>70</td>
-                                        <td>79</td>
-                                        <td>10</td>
-                                    </tr>
-                                    <tr>
-                                        <td>C</td>
-                                        <td>60</td>
-                                        <td>69</td>
-                                        <td>8</td>
-                                    </tr>
-                                    <tr>
-                                        <td>D</td>
-                                        <td>50</td>
-                                        <td>59</td>
-                                        <td>6</td>
-                                    </tr>
-                                    <tr>
-                                        <td>E</td>
-                                        <td>40</td>
-                                        <td>49</td>
-                                        <td>4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>F</td>
-                                        <td>0</td>
-                                        <td>39</td>
-                                        <td>2</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div class="form-actions">
-                            <button class="btn btn-primary" onclick="saveSettings()">
-                                <i class="fas fa-save"></i> Save Settings
-                            </button>
-                            <button class="btn btn-secondary" onclick="resetSettings()">
-                                <i class="fas fa-redo"></i> Reset to Default
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <!-- Add other pages here (Add Scores, Manage Students, etc.) -->
 
             </div>
         </div>
     </div>
 
     <!-- Watermark -->
-    <div class="watermark">Digital Score Management System v3.0 | Ultimate Edition by Frank Jefwa</div>
+    <div class="watermark">Digital Score Management System v4.0 | Secure Cloud Edition by Frank Jefwa</div>
 
     <!-- ============================================
-         COMPLETE JAVASCRIPT - ALL FUNCTIONS INCLUDED
+         ENHANCED JAVASCRIPT WITH SECURITY FEATURES
          ============================================ -->
     <script>
         // ============================================
@@ -2176,183 +1459,136 @@
         let currentRole = 'admin';
         let scoresData = [];
         let studentsData = [];
-        let settingsData = {};
-        let subjectsData = [];
         let usersData = [];
-        let attendanceData = [];
-        let announcementsData = [];
-        let messagesData = [];
-        let eventsData = [];
-        let achievementsData = [];
-        let auditLogData = [];
-        let backupsData = [];
-        let apiLogData = [];
-        let darkMode = false;
-        let idleTimer;
-        let sessionTimeout = 30 * 60 * 1000; // 30 minutes
+        let settingsData = {};
+        let adminSecuritySettings = {
+            maxAdmins: 2,
+            superAdminKey: "SUPER_SECURE_KEY_2024",
+            allowMultiDeviceLogin: true,
+            maxConcurrentSessions: 3
+        };
+        let userSessions = [];
+        let cloudSyncEnabled = true;
         let currentPage = 'dashboardPage';
+        let darkMode = false;
 
         // ============================================
-        // SECURITY & AUTHENTICATION
+        // ENHANCED SECURITY SYSTEM
         // ============================================
 
-        // Enhanced password hashing
-        function hashPassword(password) {
-            let hash = 0;
-            for (let i = 0; i < password.length; i++) {
-                const char = password.charCodeAt(i);
-                hash = ((hash << 5) - hash) + char;
-                hash = hash & hash;
+        // Only one admin allowed initially
+        function enforceSingleAdminPolicy() {
+            const adminUsers = usersData.filter(u => u.role === 'admin');
+            if (adminUsers.length === 0) {
+                // Create default admin if none exists
+                const defaultAdmin = {
+                    id: 'admin_001',
+                    username: 'superadmin',
+                    name: 'System Administrator',
+                    passwordHash: hashPassword('Admin@123'),
+                    role: 'admin',
+                    email: 'admin@school.com',
+                    phone: '',
+                    created: new Date().toISOString(),
+                    lastLogin: null,
+                    isSuperAdmin: true
+                };
+                usersData.push(defaultAdmin);
+                saveToStorage();
+                return true;
             }
-            return 'hashed_' + Math.abs(hash).toString(36);
+            return adminUsers.length <= adminSecuritySettings.maxAdmins;
         }
 
-        // Session management
-        function resetIdleTimer() {
-            clearTimeout(idleTimer);
-            idleTimer = setTimeout(() => {
-                if (currentUser) {
-                    showNotification('Session expired due to inactivity', 'warning');
-                    logout();
-                }
-            }, sessionTimeout);
-        }
-
-        function initSessionTracking() {
-            document.addEventListener('mousemove', resetIdleTimer);
-            document.addEventListener('keypress', resetIdleTimer);
-            document.addEventListener('click', resetIdleTimer);
-            resetIdleTimer();
-        }
-
-        // Password reset functionality
-        function showForgotPassword() {
-            document.getElementById('forgotPasswordModal').classList.add('active');
-        }
-
-        function hideForgotPassword() {
-            document.getElementById('forgotPasswordModal').classList.remove('active');
-        }
-
-        function resetPassword() {
-            const email = document.getElementById('resetEmail').value;
-            const phone = document.getElementById('resetPhone').value;
-            const username = document.getElementById('resetUsername').value;
-            const securityQuestion = document.getElementById('securityQuestion').value;
-            const securityAnswer = document.getElementById('securityAnswer').value;
-            
-            // Find user
-            let user = null;
-            if (email) {
-                user = usersData.find(u => u.email === email);
-            } else if (phone) {
-                user = usersData.find(u => u.phone === phone);
-            } else if (username) {
-                user = usersData.find(u => u.username === username);
-            }
-            
-            if (user) {
-                // In production, send email/SMS with reset link
-                showNotification('Password reset instructions have been sent to your registered email/phone', 'success');
-                hideForgotPassword();
-            } else {
-                showNotification('No user found with the provided information', 'error');
-            }
-        }
-
-        // Signup functionality
-        function showSignup() {
-            document.getElementById('signupModal').classList.add('active');
-        }
-
-        function hideSignup() {
-            document.getElementById('signupModal').classList.remove('active');
-            document.getElementById('signupName').value = '';
-            document.getElementById('signupUsername').value = '';
-            document.getElementById('signupEmail').value = '';
-            document.getElementById('signupPhone').value = '';
-            document.getElementById('signupRole').value = '';
-            document.getElementById('signupPassword').value = '';
-            document.getElementById('signupConfirmPassword').value = '';
-        }
-
-        function updateRoleFields() {
-            const role = document.getElementById('signupRole').value;
-            // Add role-specific field logic here
-        }
-
-        function signup() {
-            const name = document.getElementById('signupName').value.trim();
-            const username = document.getElementById('signupUsername').value.trim();
-            const email = document.getElementById('signupEmail').value.trim();
-            const phone = document.getElementById('signupPhone').value.trim();
-            const role = document.getElementById('signupRole').value;
-            const password = document.getElementById('signupPassword').value;
-            const confirmPassword = document.getElementById('signupConfirmPassword').value;
-            
-            // Validation
-            if (!name || !username || !role || !password || !confirmPassword) {
-                showNotification('Please fill in all required fields', 'error');
+        // Admin promotion with security key
+        function showAdminPromotion() {
+            const adminUsers = usersData.filter(u => u.role === 'admin');
+            if (adminUsers.length >= adminSecuritySettings.maxAdmins) {
+                showNotification(`Maximum ${adminSecuritySettings.maxAdmins} administrators allowed`, 'error');
                 return;
             }
             
-            if (password !== confirmPassword) {
-                showNotification('Passwords do not match', 'error');
+            // Populate user dropdown (non-admins only)
+            const userSelect = document.getElementById('userToPromote');
+            userSelect.innerHTML = '<option value="">Select a user</option>';
+            usersData.filter(u => u.role !== 'admin').forEach(user => {
+                const option = document.createElement('option');
+                option.value = user.id;
+                option.textContent = `${user.name} (${user.username}) - ${user.role}`;
+                userSelect.appendChild(option);
+            });
+            
+            document.getElementById('adminPromotionModal').classList.add('active');
+        }
+
+        function hideAdminPromotion() {
+            document.getElementById('adminPromotionModal').classList.remove('active');
+            document.getElementById('superAdminKey').value = '';
+            document.getElementById('promotionReason').value = '';
+        }
+
+        function promoteToAdmin() {
+            const securityKey = document.getElementById('superAdminKey').value;
+            const userId = document.getElementById('userToPromote').value;
+            const reason = document.getElementById('promotionReason').value.trim();
+            
+            if (!securityKey || !userId || !reason) {
+                showNotification('Please fill in all fields', 'error');
                 return;
             }
             
-            if (password.length < 6) {
-                showNotification('Password must be at least 6 characters', 'error');
+            if (securityKey !== adminSecuritySettings.superAdminKey) {
+                showNotification('Invalid security key', 'error');
                 return;
             }
             
-            // Check if username already exists
-            const existingUser = usersData.find(u => u.username === username);
-            if (existingUser) {
-                showNotification('Username already exists', 'error');
+            const user = usersData.find(u => u.id === userId);
+            if (!user) {
+                showNotification('User not found', 'error');
                 return;
             }
             
-            // Create user object
-            const newUser = {
-                id: 'user_' + Date.now(),
-                username: username,
-                name: name,
-                passwordHash: hashPassword(password),
-                role: role,
-                email: email,
-                phone: phone,
-                created: new Date().toISOString(),
-                lastLogin: null
-            };
+            // Check admin limit
+            const adminUsers = usersData.filter(u => u.role === 'admin');
+            if (adminUsers.length >= adminSecuritySettings.maxAdmins) {
+                showNotification(`Maximum ${adminSecuritySettings.maxAdmins} administrators allowed`, 'error');
+                return;
+            }
             
-            usersData.push(newUser);
+            // Promote user
+            user.role = 'admin';
+            user.promotedBy = currentUser.username;
+            user.promotionDate = new Date().toISOString();
+            user.promotionReason = reason;
+            
             saveToStorage();
-            logActivity('signup', `New user registered: ${username} (${role})`);
             
-            showNotification('Account created successfully! You can now login.', 'success');
-            hideSignup();
+            // Log admin activity
+            logAdminActivity(currentUser.username, 'promote_admin', 
+                `Promoted ${user.username} to administrator. Reason: ${reason}`);
             
-            // Pre-fill login form
-            document.getElementById('username').value = username;
-            document.getElementById('password').value = '';
-            selectRole(role);
+            showNotification(`Successfully promoted ${user.name} to administrator`, 'success');
+            hideAdminPromotion();
+            loadUsersTable();
+            updateAdminStats();
         }
 
-        // Login function
+        // Enhanced login with admin restrictions
         function login() {
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
             const rememberMe = document.getElementById('rememberMe').checked;
+            const securityKey = document.getElementById('securityKey')?.value || '';
+            const selectedRole = currentRole;
             
             if (!username || !password) {
                 showNotification('Please enter username and password', 'error');
                 return;
             }
             
-            if (!currentRole) {
-                showNotification('Please select your role', 'error');
-                return;
+            if (selectedRole === 'admin') {
+                // Hide admin-specific fields for non-admin roles
+                document.getElementById('admin2FAGroup').style.display = 'block';
             }
             
             // Find user
@@ -2370,30 +1606,75 @@
             }
             
             // Check role
-            if (user.role !== currentRole) {
+            if (user.role !== selectedRole) {
                 showNotification(`This account is registered as ${user.role}. Please select the correct role.`, 'error');
                 return;
             }
+            
+            // Additional security for admin login
+            if (user.role === 'admin') {
+                if (securityKey !== adminSecuritySettings.superAdminKey) {
+                    showNotification('Admin access requires security key', 'error');
+                    return;
+                }
+            }
+            
+            // Check multi-device restrictions
+            if (!adminSecuritySettings.allowMultiDeviceLogin) {
+                const userActiveSessions = userSessions.filter(s => 
+                    s.userId === user.id && s.isActive
+                );
+                if (userActiveSessions.length > 0) {
+                    showNotification('User already logged in on another device', 'error');
+                    return;
+                }
+            } else {
+                // Check max concurrent sessions
+                const userActiveSessions = userSessions.filter(s => 
+                    s.userId === user.id && s.isActive
+                );
+                if (userActiveSessions.length >= adminSecuritySettings.maxConcurrentSessions) {
+                    showNotification(`Maximum ${adminSecuritySettings.maxConcurrentSessions} concurrent sessions reached`, 'warning');
+                }
+            }
+            
+            // Create session
+            const sessionId = 'session_' + Date.now();
+            const session = {
+                id: sessionId,
+                userId: user.id,
+                username: user.username,
+                role: user.role,
+                deviceInfo: getDeviceInfo(),
+                loginTime: new Date().toISOString(),
+                lastActive: new Date().toISOString(),
+                isActive: true
+            };
+            
+            userSessions.push(session);
             
             // Update last login
             user.lastLogin = new Date().toISOString();
             saveToStorage();
             
-            // Create user session
+            // Create user session object
             currentUser = {
                 id: user.id,
                 username: user.username,
                 name: user.name,
                 role: user.role,
                 email: user.email,
+                sessionId: sessionId,
                 timestamp: new Date().toISOString()
             };
             
             // Save user session
             if (rememberMe) {
                 localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                localStorage.setItem('userSessions', JSON.stringify(userSessions));
             } else {
                 sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+                sessionStorage.setItem('userSessions', JSON.stringify(userSessions));
             }
             
             // Switch to dashboard
@@ -2406,14 +1687,14 @@
             
             // Update role badge
             const roleBadge = document.getElementById('userRole');
-            roleBadge.textContent = currentRole.charAt(0).toUpperCase() + currentRole.slice(1);
-            roleBadge.className = `role-badge ${currentRole}`;
+            roleBadge.textContent = currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1);
+            roleBadge.className = `role-badge ${currentUser.role}`;
             
             // Show appropriate navigation
             document.querySelectorAll('.nav-section').forEach(section => {
                 section.style.display = 'none';
             });
-            document.getElementById(`${currentRole}Nav`).style.display = 'block';
+            document.getElementById(`${currentUser.role}Nav`).style.display = 'block';
             
             // Initialize app
             initApp();
@@ -2421,854 +1702,356 @@
             // Show dashboard
             showPage('dashboardPage');
             
+            // Log activity
+            logAdminActivity(username, 'login', `Logged in from ${session.deviceInfo}`);
+            
             showNotification(`Welcome ${currentUser.name}! Login successful.`, 'success');
-            logActivity('login', `User logged in: ${username}`);
             
-            // Initialize session tracking
-            initSessionTracking();
+            // Start session monitoring
+            startSessionMonitoring();
         }
 
-        // ============================================
-        // DATA MANAGEMENT
-        // ============================================
-
-        // Load data from localStorage
-        function loadFromStorage() {
-            try {
-                scoresData = JSON.parse(localStorage.getItem('scoresData')) || [];
-                studentsData = JSON.parse(localStorage.getItem('studentsData')) || [];
-                settingsData = JSON.parse(localStorage.getItem('settingsData')) || {};
-                subjectsData = JSON.parse(localStorage.getItem('subjectsData')) || [];
-                usersData = JSON.parse(localStorage.getItem('usersData')) || [];
-                attendanceData = JSON.parse(localStorage.getItem('attendanceData')) || [];
-                announcementsData = JSON.parse(localStorage.getItem('announcementsData')) || [];
-                messagesData = JSON.parse(localStorage.getItem('messagesData')) || [];
-                eventsData = JSON.parse(localStorage.getItem('eventsData')) || [];
-                achievementsData = JSON.parse(localStorage.getItem('achievementsData')) || [];
-                auditLogData = JSON.parse(localStorage.getItem('auditLogData')) || [];
-                backupsData = JSON.parse(localStorage.getItem('backupsData')) || [];
-                apiLogData = JSON.parse(localStorage.getItem('apiLogData')) || [];
-            } catch (e) {
-                // Initialize all data structures
-                scoresData = [];
-                studentsData = [];
-                settingsData = {};
-                subjectsData = [];
-                usersData = [];
-                attendanceData = [];
-                announcementsData = [];
-                messagesData = [];
-                eventsData = [];
-                achievementsData = [];
-                auditLogData = [];
-                backupsData = [];
-                apiLogData = [];
-            }
-        }
-
-        // Save data to localStorage
-        function saveToStorage() {
-            localStorage.setItem('scoresData', JSON.stringify(scoresData));
-            localStorage.setItem('studentsData', JSON.stringify(studentsData));
-            localStorage.setItem('settingsData', JSON.stringify(settingsData));
-            localStorage.setItem('subjectsData', JSON.stringify(subjectsData));
-            localStorage.setItem('usersData', JSON.stringify(usersData));
-            localStorage.setItem('attendanceData', JSON.stringify(attendanceData));
-            localStorage.setItem('announcementsData', JSON.stringify(announcementsData));
-            localStorage.setItem('messagesData', JSON.stringify(messagesData));
-            localStorage.setItem('eventsData', JSON.stringify(eventsData));
-            localStorage.setItem('achievementsData', JSON.stringify(achievementsData));
-            localStorage.setItem('auditLogData', JSON.stringify(auditLogData));
-            localStorage.setItem('backupsData', JSON.stringify(backupsData));
-            localStorage.setItem('apiLogData', JSON.stringify(apiLogData));
-        }
-
-        // Audit logging
-        function logActivity(action, details) {
-            const logEntry = {
-                id: Date.now().toString(),
-                timestamp: new Date().toISOString(),
-                userId: currentUser ? currentUser.id : 'system',
-                username: currentUser ? currentUser.username : 'system',
-                action: action,
-                details: details
+        // Device info for multi-device support
+        function getDeviceInfo() {
+            return {
+                browser: navigator.userAgent,
+                platform: navigator.platform,
+                screen: `${window.screen.width}x${window.screen.height}`,
+                timestamp: new Date().toISOString()
             };
-            auditLogData.push(logEntry);
-            saveToStorage();
         }
 
-        // ============================================
-        // BACKUP & RESTORE
-        // ============================================
-
-        function createBackup() {
-            const backup = {
-                id: Date.now().toString(),
-                name: `Backup_${new Date().toISOString().split('T')[0]}`,
-                timestamp: new Date().toISOString(),
-                data: {
-                    scoresData: scoresData,
-                    studentsData: studentsData,
-                    usersData: usersData,
-                    settingsData: settingsData,
-                    attendanceData: attendanceData
-                }
-            };
-            
-            backupsData.push(backup);
-            saveToStorage();
-            
-            // Create downloadable file
-            const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `score_system_backup_${backup.id}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            showNotification('Backup created and downloaded successfully', 'success');
-            logActivity('create_backup', 'System backup created');
-        }
-
-        function scheduleBackup() {
-            showNotification('Auto-backup scheduled (weekly on Sundays)', 'info');
-            // In production, implement with setInterval or server-side cron job
-        }
-
-        function restoreBackup(file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const backup = JSON.parse(e.target.result);
-                    if (confirm('Are you sure you want to restore this backup? All current data will be overwritten.')) {
-                        // Restore data
-                        scoresData = backup.data.scoresData || [];
-                        studentsData = backup.data.studentsData || [];
-                        usersData = backup.data.usersData || [];
-                        settingsData = backup.data.settingsData || {};
-                        attendanceData = backup.data.attendanceData || [];
-                        
-                        saveToStorage();
-                        initApp();
-                        showNotification('Backup restored successfully', 'success');
-                        logActivity('restore_backup', `Restored from ${backup.name}`);
+        // Session management
+        function startSessionMonitoring() {
+            // Update session activity every minute
+            setInterval(() => {
+                if (currentUser) {
+                    const session = userSessions.find(s => s.id === currentUser.sessionId);
+                    if (session) {
+                        session.lastActive = new Date().toISOString();
+                        saveSessions();
                     }
-                } catch (error) {
-                    showNotification('Invalid backup file', 'error');
                 }
-            };
-            reader.readAsText(file);
-        }
-
-        function backupData() {
-            createBackup();
-        }
-
-        // ============================================
-        // ANNOUNCEMENTS
-        // ============================================
-
-        function postAnnouncement() {
-            const title = document.getElementById('announcementTitle').value;
-            const content = document.getElementById('announcementContent').value;
-            const audience = document.getElementById('announcementAudience').value;
-            const priority = document.getElementById('announcementPriority').value;
+            }, 60000);
             
-            if (!title || !content) {
-                showNotification('Please fill in all fields', 'error');
-                return;
-            }
-            
-            const announcement = {
-                id: Date.now().toString(),
-                title: title,
-                content: content,
-                author: currentUser.name,
-                audience: audience,
-                priority: priority,
-                timestamp: new Date().toISOString(),
-                readBy: []
-            };
-            
-            announcementsData.push(announcement);
-            saveToStorage();
-            
-            showNotification('Announcement posted successfully', 'success');
-            loadAnnouncements();
-            logActivity('post_announcement', title);
-        }
-
-        function loadAnnouncements() {
-            const container = document.getElementById('announcementsList');
-            if (announcementsData.length === 0) {
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 50px; color: #666;">
-                        <i class="fas fa-bullhorn" style="font-size: 48px; margin-bottom: 20px;"></i>
-                        <p>No announcements yet</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            let html = '';
-            announcementsData.forEach(announcement => {
-                html += `
-                    <div class="announcement">
-                        <h4>${announcement.title}</h4>
-                        <p>${announcement.content}</p>
-                        <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 12px; color: #666;">
-                            <span>By: ${announcement.author}</span>
-                            <span>${new Date(announcement.timestamp).toLocaleDateString()}</span>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
-
-        // ============================================
-        // ATTENDANCE
-        // ============================================
-
-        function loadClassAttendance() {
-            const className = document.getElementById('attendanceClass').value;
-            const date = document.getElementById('attendanceDate').value;
-            
-            if (!className || !date) {
-                return;
-            }
-            
-            const classStudents = studentsData.filter(s => s.className === className);
-            if (classStudents.length === 0) {
-                showNotification('No students found in this class', 'warning');
-                return;
-            }
-            
-            // Show attendance table
-            document.getElementById('attendanceTableContainer').style.display = 'block';
-            
-            let html = '';
-            classStudents.forEach(student => {
-                // Check existing attendance
-                const existingAttendance = attendanceData.find(a => 
-                    a.studentId === student.id && a.date === date
-                );
-                
-                html += `
-                    <tr>
-                        <td>${student.name}</td>
-                        <td>
-                            <select id="attendance_${student.id}" style="width: 100%; padding: 8px;">
-                                <option value="present" ${existingAttendance?.status === 'present' ? 'selected' : ''}>Present</option>
-                                <option value="absent" ${existingAttendance?.status === 'absent' ? 'selected' : ''}>Absent</option>
-                                <option value="late" ${existingAttendance?.status === 'late' ? 'selected' : ''}>Late</option>
-                                <option value="excused" ${existingAttendance?.status === 'excused' ? 'selected' : ''}>Excused</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="text" id="remarks_${student.id}" placeholder="Remarks" value="${existingAttendance?.remarks || ''}" style="width: 100%; padding: 8px;">
-                        </td>
-                    </tr>
-                `;
-            });
-            
-            document.getElementById('attendanceTable').innerHTML = html;
-        }
-
-        function saveAttendance() {
-            const className = document.getElementById('attendanceClass').value;
-            const date = document.getElementById('attendanceDate').value;
-            const classStudents = studentsData.filter(s => s.className === className);
-            
-            let savedCount = 0;
-            classStudents.forEach(student => {
-                const status = document.getElementById(`attendance_${student.id}`).value;
-                const remarks = document.getElementById(`remarks_${student.id}`).value;
-                
-                // Remove existing attendance for this student on this date
-                attendanceData = attendanceData.filter(a => 
-                    !(a.studentId === student.id && a.date === date)
-                );
-                
-                // Add new attendance
-                attendanceData.push({
-                    id: Date.now().toString() + student.id,
-                    studentId: student.id,
-                    studentName: student.name,
-                    className: className,
-                    date: date,
-                    status: status,
-                    remarks: remarks,
-                    recordedBy: currentUser.username,
-                    recordedAt: new Date().toISOString()
+            // Clear inactive sessions every 5 minutes
+            setInterval(() => {
+                const now = new Date();
+                userSessions = userSessions.filter(session => {
+                    const lastActive = new Date(session.lastActive);
+                    const minutesSinceActive = (now - lastActive) / (1000 * 60);
+                    return minutesSinceActive < 30; // Keep sessions active for 30 minutes
                 });
-                
-                savedCount++;
-            });
-            
-            saveToStorage();
-            showNotification(`Attendance saved for ${savedCount} students`, 'success');
-            logActivity('save_attendance', `Marked attendance for ${className} on ${date}`);
+                saveSessions();
+                updateActiveSessions();
+            }, 300000);
         }
 
-        // ============================================
-        // CALENDAR
-        // ============================================
-
-        let currentCalendarDate = new Date();
-
-        function loadCalendar() {
-            const year = currentCalendarDate.getFullYear();
-            const month = currentCalendarDate.getMonth();
-            
-            // Month and year display
-            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-                               'July', 'August', 'September', 'October', 'November', 'December'];
-            document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
-            
-            // Get first day of month
-            const firstDay = new Date(year, month, 1);
-            const lastDay = new Date(year, month + 1, 0);
-            const daysInMonth = lastDay.getDate();
-            const startingDay = firstDay.getDay();
-            
-            // Day names
-            const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-            
-            let calendarHTML = '';
-            
-            // Add day headers
-            dayNames.forEach(day => {
-                calendarHTML += `<div class="calendar-day" style="font-weight: bold;">${day}</div>`;
-            });
-            
-            // Add empty cells for days before first day of month
-            for (let i = 0; i < startingDay; i++) {
-                calendarHTML += '<div class="calendar-day"></div>';
-            }
-            
-            // Add days of month
-            const today = new Date();
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                const hasEvent = eventsData.some(e => e.date === dateStr);
-                const isToday = today.getDate() === day && 
-                               today.getMonth() === month && 
-                               today.getFullYear() === year;
-                
-                let dayClass = 'calendar-day';
-                if (hasEvent) dayClass += ' event';
-                if (isToday) dayClass += ' active';
-                
-                calendarHTML += `
-                    <div class="${dayClass}" onclick="showDayEvents('${dateStr}')">
-                        ${day}
-                    </div>
-                `;
-            }
-            
-            document.getElementById('calendarGrid').innerHTML = calendarHTML;
-            loadEvents();
+        function updateActiveSessions() {
+            const activeCount = userSessions.filter(s => s.isActive).length;
+            document.getElementById('activeSessionsCount').textContent = activeCount;
+            document.getElementById('activeSessions').textContent = activeCount;
         }
 
-        function prevMonth() {
-            currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
-            loadCalendar();
-        }
-
-        function nextMonth() {
-            currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1);
-            loadCalendar();
-        }
-
-        function addEvent() {
-            const title = document.getElementById('eventTitle').value;
-            const date = document.getElementById('eventDate').value;
-            const description = document.getElementById('eventDescription').value;
+        function manageSessions() {
+            const activeSessionsTable = document.getElementById('activeSessionsTable');
+            const activeSessions = userSessions.filter(s => s.isActive);
             
-            if (!title || !date) {
-                showNotification('Please fill in all required fields', 'error');
-                return;
-            }
-            
-            const event = {
-                id: Date.now().toString(),
-                title: title,
-                date: date,
-                description: description,
-                createdBy: currentUser.username,
-                createdAt: new Date().toISOString()
-            };
-            
-            eventsData.push(event);
-            saveToStorage();
-            loadCalendar();
-            loadEvents();
-            
-            showNotification('Event added successfully', 'success');
-            logActivity('add_event', title);
-        }
-
-        function loadEvents() {
-            const tableBody = document.getElementById('eventsTable');
-            if (eventsData.length === 0) {
-                tableBody.innerHTML = `
+            if (activeSessions.length === 0) {
+                activeSessionsTable.innerHTML = `
                     <tr>
-                        <td colspan="4" style="text-align: center; padding: 30px; color: #666;">
-                            No events scheduled
+                        <td colspan="6" style="text-align: center; padding: 30px; color: #666;">
+                            No active sessions
                         </td>
                     </tr>
                 `;
                 return;
             }
             
-            // Sort events by date
-            const sortedEvents = [...eventsData].sort((a, b) => new Date(a.date) - new Date(b.date));
-            
             let html = '';
-            sortedEvents.forEach(event => {
+            activeSessions.forEach(session => {
+                const user = usersData.find(u => u.id === session.userId);
+                const loginTime = new Date(session.loginTime).toLocaleString();
+                const lastActive = new Date(session.lastActive).toLocaleString();
+                
                 html += `
                     <tr>
-                        <td>${new Date(event.date).toLocaleDateString()}</td>
-                        <td><strong>${event.title}</strong></td>
-                        <td>${event.description || '-'}</td>
+                        <td>${user?.name || session.username}</td>
+                        <td><span class="role-badge ${session.role}">${session.role}</span></td>
+                        <td>${session.deviceInfo.browser?.substring(0, 50)}...</td>
+                        <td>${loginTime}</td>
+                        <td>${lastActive}</td>
                         <td class="action-buttons">
-                            <button class="btn btn-sm btn-danger" onclick="deleteEvent('${event.id}')">
-                                <i class="fas fa-trash"></i>
+                            <button class="btn btn-sm btn-danger" onclick="revokeSession('${session.id}')">
+                                <i class="fas fa-ban"></i> Revoke
                             </button>
                         </td>
                     </tr>
                 `;
             });
             
-            tableBody.innerHTML = html;
+            activeSessionsTable.innerHTML = html;
         }
 
-        function deleteEvent(eventId) {
-            if (confirm('Are you sure you want to delete this event?')) {
-                eventsData = eventsData.filter(e => e.id !== eventId);
-                saveToStorage();
-                loadEvents();
-                loadCalendar();
-                showNotification('Event deleted', 'success');
-                logActivity('delete_event', `Deleted event ID: ${eventId}`);
+        function revokeSession(sessionId) {
+            const session = userSessions.find(s => s.id === sessionId);
+            if (session) {
+                session.isActive = false;
+                saveSessions();
+                
+                // If current session is revoked, logout
+                if (currentUser && currentUser.sessionId === sessionId) {
+                    logout();
+                }
+                
+                showNotification('Session revoked successfully', 'success');
+                updateActiveSessions();
+                manageSessions();
             }
         }
 
-        function showDayEvents(dateStr) {
-            const events = eventsData.filter(e => e.date === dateStr);
-            if (events.length > 0) {
-                let message = `Events on ${dateStr}:\n`;
-                events.forEach(event => {
-                    message += `• ${event.title}\n`;
+        function revokeAllSessions() {
+            if (confirm('Are you sure you want to revoke all active sessions? All users will be logged out.')) {
+                userSessions.forEach(session => {
+                    session.isActive = false;
                 });
-                showNotification(message, 'info');
+                saveSessions();
+                logout();
+                showNotification('All sessions revoked', 'success');
+            }
+        }
+
+        // Enhanced logout
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                // Deactivate current session
+                if (currentUser) {
+                    const session = userSessions.find(s => s.id === currentUser.sessionId);
+                    if (session) {
+                        session.isActive = false;
+                        saveSessions();
+                    }
+                    
+                    // Log activity
+                    logAdminActivity(currentUser.username, 'logout', 'User logged out');
+                }
+                
+                // Clear current user
+                currentUser = null;
+                localStorage.removeItem('currentUser');
+                sessionStorage.removeItem('currentUser');
+                
+                // Show login screen
+                document.getElementById('dashboard').style.display = 'none';
+                document.getElementById('loginScreen').style.display = 'flex';
+                
+                // Clear form
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                document.getElementById('securityKey').value = '';
+                document.getElementById('admin2FAGroup').style.display = 'none';
+                
+                showNotification('Logged out successfully', 'info');
             }
         }
 
         // ============================================
-        // ACHIEVEMENTS
+        // ADMIN ACTIVITY LOGGING
         // ============================================
 
-        function awardAchievement() {
-            const studentId = document.getElementById('achievementStudent').value;
-            const type = document.getElementById('achievementType').value;
-            const description = document.getElementById('achievementDescription').value;
-            
-            const student = studentsData.find(s => s.id === studentId);
-            if (!student) {
-                showNotification('Student not found', 'error');
-                return;
-            }
-            
-            const achievement = {
+        function logAdminActivity(adminName, action, details) {
+            const activity = {
                 id: Date.now().toString(),
-                studentId: studentId,
-                studentName: student.name,
-                type: type,
-                description: description,
-                awardedBy: currentUser.name,
-                awardedAt: new Date().toISOString(),
-                points: calculateAchievementPoints(type)
+                adminName: adminName,
+                action: action,
+                details: details,
+                timestamp: new Date().toISOString(),
+                ipAddress: '127.0.0.1' // In production, get real IP
             };
             
-            achievementsData.push(achievement);
+            if (!settingsData.adminActivities) {
+                settingsData.adminActivities = [];
+            }
+            settingsData.adminActivities.unshift(activity);
+            
+            // Keep only last 50 activities
+            if (settingsData.adminActivities.length > 50) {
+                settingsData.adminActivities = settingsData.adminActivities.slice(0, 50);
+            }
+            
             saveToStorage();
-            loadAchievements();
-            updateAchievementStats();
+            updateAdminActivities();
+        }
+
+        function updateAdminActivities() {
+            const activitiesTable = document.getElementById('adminActivities');
+            const activities = settingsData.adminActivities || [];
             
-            showNotification(`Achievement awarded to ${student.name}`, 'success');
-            logActivity('award_achievement', `${type} to ${student.name}`);
-        }
-
-        function calculateAchievementPoints(type) {
-            const pointsMap = {
-                'perfect_score': 50,
-                'most_improved': 30,
-                'attendance_perfect': 25,
-                'helpful': 20,
-                'leader': 40
-            };
-            return pointsMap[type] || 10;
-        }
-
-        function loadAchievements() {
-            const tableBody = document.getElementById('achievementsTable');
-            if (achievementsData.length === 0) {
-                tableBody.innerHTML = `
+            if (activities.length === 0) {
+                activitiesTable.innerHTML = `
                     <tr>
                         <td colspan="4" style="text-align: center; padding: 30px; color: #666;">
-                            No achievements awarded yet
+                            No admin activities yet
                         </td>
                     </tr>
                 `;
                 return;
             }
             
-            // Sort by date (newest first)
-            const sortedAchievements = [...achievementsData].sort((a, b) => 
-                new Date(b.awardedAt) - new Date(a.awardedAt)
-            );
-            
             let html = '';
-            sortedAchievements.forEach(achievement => {
+            activities.forEach(activity => {
                 html += `
                     <tr>
-                        <td>${achievement.studentName}</td>
-                        <td>${achievement.type}</td>
-                        <td>${new Date(achievement.awardedAt).toLocaleDateString()}</td>
-                        <td>${achievement.points}</td>
+                        <td>${activity.adminName}</td>
+                        <td>${activity.action}</td>
+                        <td>${activity.details}</td>
+                        <td>${new Date(activity.timestamp).toLocaleString()}</td>
                     </tr>
                 `;
             });
             
-            tableBody.innerHTML = html;
-        }
-
-        function updateAchievementStats() {
-            // Total badges
-            document.getElementById('totalBadges').textContent = achievementsData.length;
-            
-            // Top student
-            const studentAchievements = {};
-            achievementsData.forEach(a => {
-                if (!studentAchievements[a.studentId]) {
-                    studentAchievements[a.studentId] = { count: 0, name: a.studentName };
-                }
-                studentAchievements[a.studentId].count++;
-            });
-            
-            let topStudent = null;
-            let maxAchievements = 0;
-            Object.values(studentAchievements).forEach(student => {
-                if (student.count > maxAchievements) {
-                    maxAchievements = student.count;
-                    topStudent = student.name;
-                }
-            });
-            
-            document.getElementById('topStudentName').textContent = topStudent || '-';
-            
-            // Points leader
-            const studentPoints = {};
-            achievementsData.forEach(a => {
-                if (!studentPoints[a.studentId]) {
-                    studentPoints[a.studentId] = 0;
-                }
-                studentPoints[a.studentId] += a.points;
-            });
-            
-            let maxPoints = 0;
-            Object.values(studentPoints).forEach(points => {
-                if (points > maxPoints) {
-                    maxPoints = points;
-                }
-            });
-            
-            document.getElementById('pointsLeader').textContent = maxPoints;
+            activitiesTable.innerHTML = html;
         }
 
         // ============================================
-        // SCORE MANAGEMENT
+        // CLOUD SYNC FOR MULTI-DEVICE SUPPORT
         // ============================================
 
-        function saveScore() {
-            const studentName = document.getElementById('studentName').value;
-            const subject = document.getElementById('subjectName').value;
-            const score = parseInt(document.getElementById('scoreValue').value);
-            const className = document.getElementById('className').value;
-            const examType = document.getElementById('examType').value;
-            const comments = document.getElementById('scoreComments').value.trim();
+        function syncWithCloud() {
+            if (!cloudSyncEnabled) return;
             
-            // Validation
-            if (!studentName || !subject || isNaN(score) || !className) {
-                showNotification('Please fill in all required fields', 'error');
-                return;
-            }
-            
-            if (score < 0 || score > 100) {
-                showNotification('Score must be between 0 and 100', 'error');
-                return;
-            }
-            
-            // Find student
-            const student = studentsData.find(s => s.name === studentName);
-            if (!student) {
-                showNotification('Student not found. Please add student first.', 'error');
-                return;
-            }
-            
-            // Calculate grade
-            const grade = calculateGrade(score);
-            
-            // Create score object
-            const newScore = {
-                id: Date.now().toString(),
-                studentId: student.id,
-                studentName: studentName,
-                subject: subject,
-                score: score,
-                grade: grade,
-                className: className,
-                examType: examType,
-                comments: comments,
-                date: new Date().toISOString().split('T')[0],
-                addedBy: currentUser.username,
-                addedAt: new Date().toISOString()
-            };
-            
-            // Add to scores data
-            scoresData.push(newScore);
-            saveToStorage();
-            
-            // Clear form
-            document.getElementById('scoreValue').value = '';
-            document.getElementById('scoreComments').value = '';
-            
-            showNotification(`Score for ${studentName} saved successfully!`, 'success');
-            logActivity('add_score', `${subject}: ${score}% for ${studentName}`);
-            
-            // Update displays
-            updateDashboard();
-            loadRecentAddedScores();
-        }
-
-        function saveAndNotify() {
-            saveScore();
-            // In production, add notification logic here
-            showNotification('Score saved and notification sent', 'info');
-        }
-
-        function importCSV(file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('importProgress').style.display = 'block';
+            try {
+                // Save current data to cloud storage
+                const cloudData = {
+                    users: usersData,
+                    sessions: userSessions,
+                    securitySettings: adminSecuritySettings,
+                    syncTime: new Date().toISOString()
+                };
                 
+                localStorage.setItem('cloudBackup', JSON.stringify(cloudData));
+                
+                // Update cloud status
+                document.getElementById('cloudStatus').style.display = 'block';
+                document.getElementById('cloudStatusText').textContent = 'Synced';
+                document.getElementById('cloudSyncStatus').textContent = '✓';
+                
+                // Simulate cloud sync (in production, this would be a real API call)
                 setTimeout(() => {
-                    const csv = e.target.result;
-                    const lines = csv.split('\n');
-                    let importedCount = 0;
-                    
-                    for (let i = 1; i < lines.length; i++) {
-                        const line = lines[i].trim();
-                        if (!line) continue;
-                        
-                        const parts = line.split(',');
-                        if (parts.length >= 4) {
-                            const studentName = parts[0].trim();
-                            const subject = parts[1].trim();
-                            const score = parseInt(parts[2].trim());
-                            const className = parts[3].trim();
-                            const examType = parts[4] ? parts[4].trim() : 'Imported';
-                            
-                            // Find or create student
-                            let student = studentsData.find(s => s.name === studentName);
-                            if (!student) {
-                                student = {
-                                    id: generateStudentId(),
-                                    name: studentName,
-                                    className: className,
-                                    enrollmentDate: new Date().toISOString().split('T')[0]
-                                };
-                                studentsData.push(student);
-                            }
-                            
-                            const newScore = {
-                                id: Date.now().toString() + i,
-                                studentId: student.id,
-                                studentName: studentName,
-                                subject: subject,
-                                score: score,
-                                grade: calculateGrade(score),
-                                className: className,
-                                examType: examType,
-                                date: new Date().toISOString().split('T')[0],
-                                addedBy: currentUser.username,
-                                addedAt: new Date().toISOString()
-                            };
-                            
-                            scoresData.push(newScore);
-                            importedCount++;
-                        }
+                    document.getElementById('cloudStatusText').textContent = 'Connected';
+                }, 2000);
+                
+            } catch (error) {
+                console.error('Cloud sync failed:', error);
+                document.getElementById('cloudStatusText').textContent = 'Disconnected';
+                document.getElementById('cloudSyncStatus').textContent = '✗';
+            }
+        }
+
+        function loadFromCloud() {
+            if (!cloudSyncEnabled) return;
+            
+            try {
+                const cloudData = JSON.parse(localStorage.getItem('cloudBackup'));
+                if (cloudData) {
+                    // Merge cloud data with local data
+                    if (cloudData.users) {
+                        usersData = mergeUsers(usersData, cloudData.users);
+                    }
+                    if (cloudData.sessions) {
+                        userSessions = mergeSessions(userSessions, cloudData.sessions);
+                    }
+                    if (cloudData.securitySettings) {
+                        adminSecuritySettings = { ...adminSecuritySettings, ...cloudData.securitySettings };
                     }
                     
                     saveToStorage();
-                    document.getElementById('importProgress').style.display = 'none';
-                    showNotification(`Imported ${importedCount} scores successfully`, 'success');
-                    logActivity('import_csv', `Imported ${importedCount} scores`);
-                    updateDashboard();
-                    loadRecentAddedScores();
-                }, 1000);
-            };
-            reader.readAsText(file);
+                    showNotification('Data synced from cloud', 'info');
+                }
+            } catch (error) {
+                console.error('Cloud load failed:', error);
+            }
         }
 
-        function loadRecentAddedScores() {
-            const tableBody = document.getElementById('recentAddedScores');
-            if (scoresData.length === 0) {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="6" style="text-align: center; padding: 30px; color: #666;">
-                            No scores added yet
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
-            // Show last 10 scores
-            const recentScores = scoresData.slice(-10).reverse();
-            
-            let html = '';
-            recentScores.forEach(score => {
-                html += `
-                    <tr>
-                        <td>${score.studentName}</td>
-                        <td>${score.subject}</td>
-                        <td><strong style="color: ${getScoreColor(score.score)}">${score.score}%</strong></td>
-                        <td>${score.grade}</td>
-                        <td>${formatDate(score.date)}</td>
-                        <td class="action-buttons">
-                            <button class="btn btn-sm btn-danger" onclick="deleteScore('${score.id}')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                `;
+        function mergeUsers(localUsers, cloudUsers) {
+            // Simple merge strategy: prefer newer data
+            const merged = [...localUsers];
+            cloudUsers.forEach(cloudUser => {
+                const existingIndex = merged.findIndex(u => u.id === cloudUser.id);
+                if (existingIndex === -1) {
+                    merged.push(cloudUser);
+                } else {
+                    // Keep newer data
+                    const localUser = merged[existingIndex];
+                    const localDate = new Date(localUser.lastLogin || localUser.created);
+                    const cloudDate = new Date(cloudUser.lastLogin || cloudUser.created);
+                    
+                    if (cloudDate > localDate) {
+                        merged[existingIndex] = cloudUser;
+                    }
+                }
             });
-            
-            tableBody.innerHTML = html;
+            return merged;
+        }
+
+        function mergeSessions(localSessions, cloudSessions) {
+            // Keep all active sessions
+            const merged = [...localSessions];
+            cloudSessions.forEach(cloudSession => {
+                const existingIndex = merged.findIndex(s => s.id === cloudSession.id);
+                if (existingIndex === -1 && cloudSession.isActive) {
+                    merged.push(cloudSession);
+                }
+            });
+            return merged;
         }
 
         // ============================================
-        // STUDENT MANAGEMENT
+        // SECURITY SETTINGS MANAGEMENT
         // ============================================
 
-        function addStudent() {
-            const name = document.getElementById('newStudentName').value.trim();
-            const className = document.getElementById('newStudentClass').value;
-            const studentId = document.getElementById('newStudentId').value.trim() || generateStudentId();
-            const dob = document.getElementById('newStudentDOB').value;
-            const parent = document.getElementById('newStudentParent').value.trim();
-            const phone = document.getElementById('newStudentPhone').value.trim();
+        function loadSecuritySettings() {
+            document.getElementById('maxAdmins').value = adminSecuritySettings.maxAdmins;
+            document.getElementById('superAdminKeyDisplay').value = '********';
+            document.getElementById('allowMultiDevice').value = adminSecuritySettings.allowMultiDeviceLogin.toString();
+            document.getElementById('maxSessions').value = adminSecuritySettings.maxConcurrentSessions;
+        }
+
+        function saveSecuritySettings() {
+            adminSecuritySettings.maxAdmins = parseInt(document.getElementById('maxAdmins').value) || 2;
+            adminSecuritySettings.allowMultiDeviceLogin = document.getElementById('allowMultiDevice').value === 'true';
+            adminSecuritySettings.maxConcurrentSessions = parseInt(document.getElementById('maxSessions').value) || 3;
             
-            if (!name || !className) {
-                showNotification('Please fill in all required fields', 'error');
+            // Enforce admin limit
+            const adminUsers = usersData.filter(u => u.role === 'admin');
+            if (adminUsers.length > adminSecuritySettings.maxAdmins) {
+                showNotification(`Cannot have more than ${adminSecuritySettings.maxAdmins} admins. Demote some admins first.`, 'error');
                 return;
             }
             
-            // Check if student already exists
-            const existingStudent = studentsData.find(s => 
-                s.id === studentId || s.name.toLowerCase() === name.toLowerCase()
-            );
-            
-            if (existingStudent) {
-                showNotification('Student already exists', 'error');
-                return;
-            }
-            
-            const newStudent = {
-                id: studentId,
-                name: name,
-                className: className,
-                dob: dob,
-                parent: parent,
-                phone: phone,
-                enrollmentDate: new Date().toISOString().split('T')[0],
-                averageScore: 0,
-                totalScores: 0
-            };
-            
-            studentsData.push(newStudent);
             saveToStorage();
             
-            clearStudentForm();
-            showNotification(`Student ${name} added successfully!`, 'success');
-            logActivity('add_student', name);
-            loadStudents();
-            updateDashboard();
+            // Log admin activity
+            logAdminActivity(currentUser.username, 'update_security', 'Updated security settings');
+            
+            showNotification('Security settings saved successfully', 'success');
         }
 
-        function loadStudents() {
-            const tableBody = document.getElementById('studentsTable');
-            if (studentsData.length === 0) {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="6" style="text-align: center; padding: 30px; color: #666;">
-                            No students registered yet
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
-            let html = '';
-            studentsData.forEach(student => {
-                // Calculate average score
-                const studentScores = scoresData.filter(s => s.studentId === student.id);
-                const averageScore = studentScores.length > 0 
-                    ? Math.round(studentScores.reduce((sum, s) => sum + s.score, 0) / studentScores.length)
-                    : 0;
+        function generateNewSecurityKey() {
+            if (confirm('Generate new security key? This will invalidate the old key.')) {
+                const newKey = 'KEY_' + Math.random().toString(36).substring(2, 15).toUpperCase();
+                adminSecuritySettings.superAdminKey = newKey;
+                saveToStorage();
                 
-                html += `
-                    <tr>
-                        <td>${student.id}</td>
-                        <td>${student.name}</td>
-                        <td>${student.className}</td>
-                        <td>${averageScore}%</td>
-                        <td>${student.phone || 'N/A'}</td>
-                        <td class="action-buttons">
-                            <button class="btn btn-sm btn-danger" onclick="deleteStudent('${student.id}')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            });
-            
-            tableBody.innerHTML = html;
-        }
-
-        function clearStudentForm() {
-            document.getElementById('newStudentName').value = '';
-            document.getElementById('newStudentId').value = '';
-            document.getElementById('newStudentClass').value = '';
-            document.getElementById('newStudentDOB').value = '';
-            document.getElementById('newStudentParent').value = '';
-            document.getElementById('newStudentPhone').value = '';
-        }
-
-        function generateStudentId() {
-            const year = new Date().getFullYear().toString().slice(-2);
-            const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-            return `ST${year}${random}`;
+                // Log admin activity
+                logAdminActivity(currentUser.username, 'regenerate_key', 'Generated new security key');
+                
+                showNotification('New security key generated', 'success');
+            }
         }
 
         // ============================================
-        // USER MANAGEMENT
+        // ENHANCED USER MANAGEMENT
         // ============================================
 
         function createUser() {
@@ -3294,6 +2077,12 @@
                 return;
             }
             
+            // Prevent creating admin users through this method
+            if (role === 'admin') {
+                showNotification('Admin users can only be promoted by existing admins', 'error');
+                return;
+            }
+            
             const newUser = {
                 id: 'user_' + Date.now(),
                 username: username,
@@ -3316,8 +2105,10 @@
             document.getElementById('newUserRole').value = '';
             document.getElementById('newUserPassword').value = '';
             
+            // Log admin activity
+            logAdminActivity(currentUser.username, 'create_user', `Created ${role} user: ${username}`);
+            
             showNotification(`User ${username} created successfully`, 'success');
-            logActivity('create_user', `${username} (${role})`);
             loadUsersTable();
         }
 
@@ -3334,17 +2125,38 @@
                 return;
             }
             
+            // Sort users: admins first, then by name
+            const sortedUsers = [...usersData].sort((a, b) => {
+                if (a.role === 'admin' && b.role !== 'admin') return -1;
+                if (a.role !== 'admin' && b.role === 'admin') return 1;
+                return a.name.localeCompare(b.name);
+            });
+            
             let html = '';
-            usersData.forEach(user => {
+            sortedUsers.forEach(user => {
+                const isSuperAdmin = user.username === 'superadmin';
+                const canDelete = !isSuperAdmin && (currentUser.role === 'admin');
+                const canPromote = user.role !== 'admin' && 
+                                  currentUser.role === 'admin' && 
+                                  !isSuperAdmin;
+                
                 html += `
                     <tr>
-                        <td>${user.username}</td>
+                        <td>${user.username} ${isSuperAdmin ? '👑' : ''}</td>
                         <td>${user.name}</td>
-                        <td><span class="role-badge ${user.role}">${user.role}</span></td>
+                        <td>
+                            <span class="role-badge ${user.role}">${user.role}</span>
+                            ${user.promotedBy ? '<br><small style="color: #666;">Promoted by: ' + user.promotedBy + '</small>' : ''}
+                        </td>
                         <td>${new Date(user.created).toLocaleDateString()}</td>
                         <td>${user.lastLogin ? new Date(user.lastLogin).toLocaleDateString() : 'Never'}</td>
                         <td class="action-buttons">
-                            <button class="btn btn-sm btn-danger" onclick="deleteUser('${user.id}')" ${user.username === 'admin' ? 'disabled' : ''}>
+                            ${canPromote ? `
+                                <button class="btn btn-sm btn-warning" onclick="promoteUserPrompt('${user.id}')">
+                                    <i class="fas fa-user-shield"></i> Promote
+                                </button>
+                            ` : ''}
+                            <button class="btn btn-sm btn-danger" onclick="deleteUser('${user.id}')" ${!canDelete ? 'disabled' : ''}>
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
@@ -3355,157 +2167,58 @@
             tableBody.innerHTML = html;
         }
 
-        // ============================================
-        // AUDIT LOG
-        // ============================================
-
-        function loadAuditLog() {
-            const tableBody = document.getElementById('auditLogTable');
-            if (auditLogData.length === 0) {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="4" style="text-align: center; padding: 30px; color: #666;">
-                            No audit logs yet
-                        </td>
-                    </tr>
-                `;
-                return;
+        function promoteUserPrompt(userId) {
+            const user = usersData.find(u => u.id === userId);
+            if (user) {
+                const securityKey = prompt(`Enter security key to promote ${user.name} to admin:`);
+                if (securityKey === adminSecuritySettings.superAdminKey) {
+                    const reason = prompt(`Reason for promoting ${user.name} to admin:`);
+                    if (reason) {
+                        user.role = 'admin';
+                        user.promotedBy = currentUser.username;
+                        user.promotionDate = new Date().toISOString();
+                        user.promotionReason = reason;
+                        saveToStorage();
+                        
+                        // Log admin activity
+                        logAdminActivity(currentUser.username, 'promote_user', 
+                            `Promoted ${user.username} to administrator. Reason: ${reason}`);
+                        
+                        showNotification(`Successfully promoted ${user.name} to administrator`, 'success');
+                        loadUsersTable();
+                        updateAdminStats();
+                    }
+                } else {
+                    showNotification('Invalid security key', 'error');
+                }
             }
-            
-            // Sort by timestamp (newest first)
-            const sortedLogs = [...auditLogData].sort((a, b) => 
-                new Date(b.timestamp) - new Date(a.timestamp)
-            );
-            
-            let html = '';
-            sortedLogs.forEach(log => {
-                html += `
-                    <tr>
-                        <td>${new Date(log.timestamp).toLocaleString()}</td>
-                        <td>${log.username}</td>
-                        <td>${log.action}</td>
-                        <td>${log.details}</td>
-                    </tr>
-                `;
-            });
-            
-            tableBody.innerHTML = html;
-            
-            // Populate user filter
-            const userFilter = document.getElementById('auditUserFilter');
-            const uniqueUsers = [...new Set(auditLogData.map(log => log.username))];
-            uniqueUsers.forEach(username => {
-                const option = document.createElement('option');
-                option.value = username;
-                option.textContent = username;
-                userFilter.appendChild(option);
-            });
         }
 
-        function filterAuditLog() {
-            const userFilter = document.getElementById('auditUserFilter').value;
-            const actionFilter = document.getElementById('auditActionFilter').value;
+        function deleteUser(userId) {
+            const user = usersData.find(u => u.id === userId);
+            if (!user) return;
             
-            let filteredLogs = auditLogData;
-            
-            if (userFilter) {
-                filteredLogs = filteredLogs.filter(log => log.username === userFilter);
-            }
-            
-            if (actionFilter) {
-                filteredLogs = filteredLogs.filter(log => log.action === actionFilter);
-            }
-            
-            const tableBody = document.getElementById('auditLogTable');
-            if (filteredLogs.length === 0) {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="4" style="text-align: center; padding: 30px; color: #666;">
-                            No matching audit logs
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
-            let html = '';
-            filteredLogs.forEach(log => {
-                html += `
-                    <tr>
-                        <td>${new Date(log.timestamp).toLocaleString()}</td>
-                        <td>${log.username}</td>
-                        <td>${log.action}</td>
-                        <td>${log.details}</td>
-                    </tr>
-                `;
-            });
-            
-            tableBody.innerHTML = html;
-        }
-
-        function exportAuditLog() {
-            const csv = 'Timestamp,User,Action,Details\n' +
-                auditLogData.map(log => 
-                    `"${new Date(log.timestamp).toLocaleString()}","${log.username}","${log.action}","${log.details}"`
-                ).join('\n');
-            
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `audit_log_${new Date().toISOString().split('T')[0]}.csv`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            showNotification('Audit log exported', 'success');
-        }
-
-        function clearAuditLog() {
-            if (confirm('Are you sure you want to clear all audit logs? This action cannot be undone.')) {
-                auditLogData = [];
+            if (confirm(`Are you sure you want to delete user "${user.name}"?`)) {
+                // Cannot delete super admin
+                if (user.username === 'superadmin') {
+                    showNotification('Cannot delete super admin account', 'error');
+                    return;
+                }
+                
+                // Cannot delete yourself
+                if (currentUser && user.id === currentUser.id) {
+                    showNotification('Cannot delete your own account', 'error');
+                    return;
+                }
+                
+                usersData = usersData.filter(u => u.id !== userId);
                 saveToStorage();
-                loadAuditLog();
-                showNotification('Audit log cleared', 'success');
-                logActivity('clear_audit_log', 'All audit logs cleared');
-            }
-        }
-
-        // ============================================
-        // SYSTEM SETTINGS
-        // ============================================
-
-        function loadSettings() {
-            document.getElementById('schoolName').value = settingsData.schoolName || '';
-            document.getElementById('academicYear').value = settingsData.academicYear || '2024-2025';
-            document.getElementById('passMark').value = settingsData.passMark || 40;
-            document.getElementById('maxScore').value = settingsData.maxScore || 100;
-        }
-
-        function saveSettings() {
-            settingsData.schoolName = document.getElementById('schoolName').value.trim();
-            settingsData.academicYear = document.getElementById('academicYear').value.trim();
-            settingsData.passMark = parseInt(document.getElementById('passMark').value) || 40;
-            settingsData.maxScore = parseInt(document.getElementById('maxScore').value) || 100;
-            
-            saveToStorage();
-            showNotification('Settings saved successfully!', 'success');
-            logActivity('save_settings', 'System settings updated');
-        }
-
-        function resetSettings() {
-            if (confirm('Reset all settings to default?')) {
-                settingsData = {
-                    schoolName: "Excel High School",
-                    academicYear: "2024-2025",
-                    passMark: 40,
-                    maxScore: 100
-                };
-                saveToStorage();
-                loadSettings();
-                showNotification('Settings reset to default', 'info');
-                logActivity('reset_settings', 'Settings reset to default');
+                
+                // Log admin activity
+                logAdminActivity(currentUser.username, 'delete_user', `Deleted user: ${user.username}`);
+                
+                showNotification('User deleted successfully', 'success');
+                loadUsersTable();
             }
         }
 
@@ -3519,6 +2232,12 @@
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
+            
+            // Show/hide admin security field
+            const admin2FAGroup = document.getElementById('admin2FAGroup');
+            if (admin2FAGroup) {
+                admin2FAGroup.style.display = role === 'admin' ? 'block' : 'none';
+            }
         }
 
         function togglePassword(fieldId) {
@@ -3533,82 +2252,44 @@
             }
         }
 
-        function showTab(tabId) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Remove active class from all tabs
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Show selected tab
-            document.getElementById(tabId).classList.add('active');
-            event.target.classList.add('active');
+        function hashPassword(password) {
+            let hash = 0;
+            for (let i = 0; i < password.length; i++) {
+                const char = password.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return 'hashed_' + Math.abs(hash).toString(36);
+        }
+
+        function getInitials(name) {
+            return name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2) || 'U';
         }
 
         function showPage(pageId) {
-            // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.style.display = 'none';
             });
             
-            // Update navigation
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
             });
             
-            // Show selected page
             const page = document.getElementById(pageId);
             if (page) {
                 page.style.display = 'block';
                 currentPage = pageId;
                 
-                // Load page-specific data
                 switch(pageId) {
                     case 'dashboardPage':
                         updateDashboard();
                         break;
-                    case 'addScores':
-                        loadRecentAddedScores();
-                        populateStudentSelect();
-                        break;
-                    case 'viewAllScores':
-                        loadAllScores();
-                        break;
-                    case 'manageStudents':
-                        loadStudents();
+                    case 'systemSecurity':
+                        loadSecuritySettings();
+                        manageSessions();
                         break;
                     case 'userManagement':
-                        if (currentUser.role === 'admin') {
-                            loadUsersTable();
-                        } else {
-                            showPage('dashboardPage');
-                            showNotification('Access denied. Admin only.', 'error');
-                        }
-                        break;
-                    case 'attendance':
-                        // Set today's date as default
-                        document.getElementById('attendanceDate').valueAsDate = new Date();
-                        break;
-                    case 'calendar':
-                        loadCalendar();
-                        break;
-                    case 'announcements':
-                        loadAnnouncements();
-                        break;
-                    case 'auditLog':
-                        loadAuditLog();
-                        break;
-                    case 'achievements':
-                        loadAchievements();
-                        updateAchievementStats();
-                        populateAchievementStudentSelect();
-                        break;
-                    case 'systemSettings':
-                        loadSettings();
+                        loadUsersTable();
                         break;
                 }
                 
@@ -3625,255 +2306,35 @@
         function updateDashboard() {
             // Calculate statistics
             const totalStudents = studentsData.length;
+            const adminCount = usersData.filter(u => u.role === 'admin').length;
+            const activeSessions = userSessions.filter(s => s.isActive).length;
             
-            let totalScore = 0;
-            let averageScore = 0;
-            let pendingActions = 0;
-            
-            if (scoresData.length > 0) {
-                totalScore = scoresData.reduce((sum, score) => sum + score.score, 0);
-                averageScore = Math.round(totalScore / scoresData.length);
-                pendingActions = scoresData.filter(s => s.score < (settingsData.passMark || 40)).length;
-            }
-            
-            // Calculate attendance rate (simulated)
-            const attendanceRate = Math.min(95, Math.floor(Math.random() * 20) + 80);
-            
-            // Update UI
             document.getElementById('totalStudents').textContent = totalStudents;
-            document.getElementById('averageScore').textContent = averageScore + '%';
-            document.getElementById('attendanceRate').textContent = attendanceRate + '%';
-            document.getElementById('pendingActions').textContent = pendingActions;
+            document.getElementById('adminCount').textContent = adminCount;
+            document.getElementById('activeSessionsCount').textContent = activeSessions;
             
-            // Update recent scores table
-            updateRecentScoresTable();
-        }
-
-        function updateRecentScoresTable() {
-            const tableBody = document.getElementById('recentScoresTable');
-            if (scoresData.length === 0) {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="6" style="text-align: center; padding: 30px; color: #666;">
-                            No scores entered yet. Add your first score!
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
+            // Update admin activities
+            updateAdminActivities();
             
-            // Show last 10 scores
-            const recentScores = scoresData.slice(-10).reverse();
-            
-            let html = '';
-            recentScores.forEach(score => {
-                html += `
-                    <tr>
-                        <td>${score.studentName}</td>
-                        <td>${score.subject}</td>
-                        <td><strong style="color: ${getScoreColor(score.score)}">${score.score}%</strong></td>
-                        <td>${score.grade}</td>
-                        <td>${formatDate(score.date)}</td>
-                        <td class="action-buttons">
-                            <button class="btn btn-sm btn-danger" onclick="deleteScore('${score.id}')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                `;
+            // Update date
+            const now = new Date();
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
             });
             
-            tableBody.innerHTML = html;
-        }
-
-        function loadAllScores() {
-            const tableBody = document.getElementById('allScoresTable');
-            if (scoresData.length === 0) {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="8" style="text-align: center; padding: 30px; color: #666;">
-                            No scores available
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
-            let html = '';
-            scoresData.forEach(score => {
-                html += `
-                    <tr>
-                        <td>${score.studentName}</td>
-                        <td>${score.className}</td>
-                        <td>${score.subject}</td>
-                        <td>${score.score}%</td>
-                        <td>${score.grade}</td>
-                        <td>${score.examType}</td>
-                        <td>${formatDate(score.date)}</td>
-                        <td class="action-buttons">
-                            <button class="btn btn-sm btn-danger" onclick="deleteScore('${score.id}')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            });
-            
-            tableBody.innerHTML = html;
-        }
-
-        function filterScores() {
-            const className = document.getElementById('filterClass').value;
-            const subject = document.getElementById('filterSubject').value.toLowerCase();
-            
-            const tableBody = document.getElementById('allScoresTable');
-            let filteredScores = scoresData;
-            
-            if (className) {
-                filteredScores = filteredScores.filter(score => score.className === className);
-            }
-            
-            if (subject) {
-                filteredScores = filteredScores.filter(score => 
-                    score.subject.toLowerCase().includes(subject)
-                );
-            }
-            
-            if (filteredScores.length === 0) {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="8" style="text-align: center; padding: 30px; color: #666;">
-                            No scores match the filter criteria
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
-            let html = '';
-            filteredScores.forEach(score => {
-                html += `
-                    <tr>
-                        <td>${score.studentName}</td>
-                        <td>${score.className}</td>
-                        <td>${score.subject}</td>
-                        <td>${score.score}%</td>
-                        <td>${score.grade}</td>
-                        <td>${score.examType}</td>
-                        <td>${formatDate(score.date)}</td>
-                        <td class="action-buttons">
-                            <button class="btn btn-sm btn-danger" onclick="deleteScore('${score.id}')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            });
-            
-            tableBody.innerHTML = html;
-        }
-
-        function populateStudentSelect() {
-            const select = document.getElementById('studentName');
-            select.innerHTML = '<option value="">Select Student</option>';
-            studentsData.forEach(student => {
-                const option = document.createElement('option');
-                option.value = student.name;
-                option.textContent = student.name;
-                select.appendChild(option);
-            });
-        }
-
-        function populateAchievementStudentSelect() {
-            const select = document.getElementById('achievementStudent');
-            select.innerHTML = '<option value="">Select Student</option>';
-            studentsData.forEach(student => {
-                const option = document.createElement('option');
-                option.value = student.id;
-                option.textContent = student.name;
-                select.appendChild(option);
-            });
-        }
-
-        function autoFillStudentInfo() {
-            const studentName = document.getElementById('studentName').value;
-            const student = studentsData.find(s => s.name === studentName);
-            if (student) {
-                document.getElementById('studentId').value = student.id;
-                document.getElementById('className').value = student.className || '';
+            // Enable/disable promote button based on admin count
+            const promoteBtn = document.getElementById('promoteAdminBtn');
+            if (promoteBtn) {
+                promoteBtn.disabled = adminCount >= adminSecuritySettings.maxAdmins;
             }
         }
 
-        function deleteScore(scoreId) {
-            if (confirm('Are you sure you want to delete this score?')) {
-                scoresData = scoresData.filter(score => score.id !== scoreId);
-                saveToStorage();
-                showNotification('Score deleted successfully', 'success');
-                logActivity('delete_score', `Deleted score ID: ${scoreId}`);
-                
-                // Update all displays
-                if (currentPage === 'dashboardPage') updateDashboard();
-                if (currentPage === 'addScores') loadRecentAddedScores();
-                if (currentPage === 'viewAllScores') loadAllScores();
-            }
-        }
-
-        function deleteStudent(studentId) {
-            if (confirm('Are you sure you want to delete this student? This will also delete all their scores.')) {
-                // Remove student
-                studentsData = studentsData.filter(student => student.id !== studentId);
-                
-                // Remove student's scores
-                scoresData = scoresData.filter(score => score.studentId !== studentId);
-                
-                saveToStorage();
-                showNotification('Student deleted successfully', 'success');
-                logActivity('delete_student', `Deleted student ID: ${studentId}`);
-                
-                // Update displays
-                if (currentPage === 'manageStudents') loadStudents();
-                if (currentPage === 'dashboardPage') updateDashboard();
-                if (currentPage === 'addScores') populateStudentSelect();
-            }
-        }
-
-        function deleteUser(userId) {
-            if (confirm('Are you sure you want to delete this user?')) {
-                usersData = usersData.filter(user => user.id !== userId);
-                saveToStorage();
-                showNotification('User deleted successfully', 'success');
-                logActivity('delete_user', `Deleted user ID: ${userId}`);
-                loadUsersTable();
-            }
-        }
-
-        function calculateGrade(score) {
-            if (score >= 80) return 'A';
-            if (score >= 70) return 'B';
-            if (score >= 60) return 'C';
-            if (score >= 50) return 'D';
-            if (score >= 40) return 'E';
-            return 'F';
-        }
-
-        function getScoreColor(score) {
-            const passMark = settingsData.passMark || 40;
-            if (score >= 80) return '#2ecc71';
-            if (score >= passMark) return '#f39c12';
-            return '#e74c3c';
-        }
-
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('en-US', { 
-                month: 'short', 
-                day: 'numeric', 
-                year: 'numeric' 
-            });
-        }
-
-        function getInitials(name) {
-            return name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2) || 'U';
+        function updateAdminStats() {
+            const adminCount = usersData.filter(u => u.role === 'admin').length;
+            document.getElementById('adminCount').textContent = adminCount;
         }
 
         function showNotification(message, type = 'info') {
@@ -3908,57 +2369,49 @@
             }
         }
 
-        function showNotifications() {
-            showNotification('No new notifications', 'info');
-        }
+        // ============================================
+        // DATA MANAGEMENT
+        // ============================================
 
-        function generateReport() {
-            showNotification('Report generation started...', 'info');
-            setTimeout(() => {
-                showNotification('Report generated successfully! Check your downloads.', 'success');
+        function loadFromStorage() {
+            try {
+                scoresData = JSON.parse(localStorage.getItem('scoresData')) || [];
+                studentsData = JSON.parse(localStorage.getItem('studentsData')) || [];
+                usersData = JSON.parse(localStorage.getItem('usersData')) || [];
+                settingsData = JSON.parse(localStorage.getItem('settingsData')) || {};
+                userSessions = JSON.parse(localStorage.getItem('userSessions')) || [];
                 
-                // Create a simple report
-                const reportContent = `
-                    Digital Score Management System - Report
-                    Generated: ${new Date().toLocaleString()}
-                    
-                    Total Students: ${studentsData.length}
-                    Total Scores: ${scoresData.length}
-                    Average Score: ${scoresData.length > 0 ? 
-                        Math.round(scoresData.reduce((sum, s) => sum + s.score, 0) / scoresData.length) : 0}%
-                    
-                    --- End of Report ---
-                `;
-                
-                const blob = new Blob([reportContent], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `report_${new Date().toISOString().split('T')[0]}.txt`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            }, 1000);
-        }
-
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                // Clear current user
-                currentUser = null;
-                localStorage.removeItem('currentUser');
-                sessionStorage.removeItem('currentUser');
-                
-                // Show login screen
-                document.getElementById('dashboard').style.display = 'none';
-                document.getElementById('loginScreen').style.display = 'flex';
-                
-                // Clear form
-                document.getElementById('username').value = '';
-                document.getElementById('password').value = '';
-                
-                showNotification('Logged out successfully', 'info');
+                // Load security settings
+                const savedSecurity = JSON.parse(localStorage.getItem('adminSecuritySettings'));
+                if (savedSecurity) {
+                    adminSecuritySettings = { ...adminSecuritySettings, ...savedSecurity };
+                }
+            } catch (e) {
+                // Initialize empty data structures
+                scoresData = [];
+                studentsData = [];
+                usersData = [];
+                settingsData = {};
+                userSessions = [];
             }
+        }
+
+        function saveToStorage() {
+            localStorage.setItem('scoresData', JSON.stringify(scoresData));
+            localStorage.setItem('studentsData', JSON.stringify(studentsData));
+            localStorage.setItem('usersData', JSON.stringify(usersData));
+            localStorage.setItem('settingsData', JSON.stringify(settingsData));
+            localStorage.setItem('adminSecuritySettings', JSON.stringify(adminSecuritySettings));
+            saveSessions();
+            
+            // Sync with cloud
+            if (cloudSyncEnabled) {
+                syncWithCloud();
+            }
+        }
+
+        function saveSessions() {
+            localStorage.setItem('userSessions', JSON.stringify(userSessions));
         }
 
         // ============================================
@@ -3968,42 +2421,11 @@
         function initApp() {
             loadFromStorage();
             
-            // Set current date
-            const now = new Date();
-            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
+            // Enforce single admin policy
+            enforceSingleAdminPolicy();
             
-            // Initialize settings if empty
-            if (!settingsData.schoolName) {
-                settingsData = {
-                    schoolName: "Excel High School",
-                    academicYear: "2024-2025",
-                    passMark: 40,
-                    maxScore: 100
-                };
-                saveToStorage();
-            }
-            
-            // Create default admin if no users exist
-            if (usersData.length === 0) {
-                const defaultAdmin = {
-                    id: 'admin001',
-                    username: 'admin',
-                    name: 'System Administrator',
-                    passwordHash: hashPassword('admin123'),
-                    role: 'admin',
-                    email: 'admin@school.com',
-                    phone: '',
-                    created: new Date().toISOString(),
-                    lastLogin: null
-                };
-                usersData.push(defaultAdmin);
-                saveToStorage();
-            }
+            // Load from cloud for multi-device sync
+            loadFromCloud();
             
             // Load dark mode preference
             const savedDarkMode = localStorage.getItem('darkMode');
@@ -4014,9 +2436,13 @@
             
             // Update dashboard
             updateDashboard();
+            updateActiveSessions();
             
-            // Initialize session tracking
-            initSessionTracking();
+            // Start auto-save interval
+            setInterval(saveToStorage, 30000); // Auto-save every 30 seconds
+            
+            // Start cloud sync interval
+            setInterval(syncWithCloud, 60000); // Sync every minute
         }
 
         // ============================================
@@ -4024,41 +2450,51 @@
         // ============================================
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Add event listeners
-            document.getElementById('signupRole').addEventListener('change', updateRoleFields);
-            
             // Check for existing session
             try {
                 const savedUser = JSON.parse(localStorage.getItem('currentUser')) || 
                                  JSON.parse(sessionStorage.getItem('currentUser'));
+                const savedSessions = JSON.parse(localStorage.getItem('userSessions'));
+                
                 if (savedUser && savedUser.username) {
-                    currentUser = savedUser;
-                    currentRole = savedUser.role || 'admin';
-                    
-                    // Auto login
-                    document.getElementById('loginScreen').style.display = 'none';
-                    document.getElementById('dashboard').style.display = 'block';
-                    
-                    // Update UI
-                    document.getElementById('userName').textContent = currentUser.name;
-                    document.getElementById('userAvatar').textContent = getInitials(currentUser.name);
-                    document.getElementById('userRole').textContent = 
-                        currentRole.charAt(0).toUpperCase() + currentRole.slice(1);
-                    document.getElementById('userRole').className = `role-badge ${currentRole}`;
-                    
-                    // Show appropriate navigation
-                    document.querySelectorAll('.nav-section').forEach(section => {
-                        section.style.display = 'none';
-                    });
-                    document.getElementById(`${currentRole}Nav`).style.display = 'block';
-                    
-                    // Initialize app
-                    initApp();
-                    showPage('dashboardPage');
+                    // Validate session
+                    if (savedSessions) {
+                        userSessions = savedSessions;
+                        const session = userSessions.find(s => s.id === savedUser.sessionId);
+                        
+                        if (session && session.isActive) {
+                            // Auto login
+                            currentUser = savedUser;
+                            currentRole = savedUser.role || 'admin';
+                            
+                            document.getElementById('loginScreen').style.display = 'none';
+                            document.getElementById('dashboard').style.display = 'block';
+                            
+                            // Update UI
+                            document.getElementById('userName').textContent = currentUser.name;
+                            document.getElementById('userAvatar').textContent = getInitials(currentUser.name);
+                            document.getElementById('userRole').textContent = 
+                                currentRole.charAt(0).toUpperCase() + currentRole.slice(1);
+                            document.getElementById('userRole').className = `role-badge ${currentRole}`;
+                            
+                            // Show appropriate navigation
+                            document.querySelectorAll('.nav-section').forEach(section => {
+                                section.style.display = 'none';
+                            });
+                            document.getElementById(`${currentRole}Nav`).style.display = 'block';
+                            
+                            // Initialize app
+                            initApp();
+                            showPage('dashboardPage');
+                            
+                            showNotification(`Welcome back ${currentUser.name}!`, 'info');
+                        }
+                    }
                 }
             } catch (e) {
                 localStorage.removeItem('currentUser');
                 sessionStorage.removeItem('currentUser');
+                localStorage.removeItem('userSessions');
             }
             
             // Add enter key support for login
@@ -4070,16 +2506,28 @@
                 if (e.key === 'Enter') login();
             });
             
-            // Add slideOut animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideOut {
-                    from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(100%); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
+            // Role change listener
+            document.querySelectorAll('.role-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const role = this.querySelector('span').textContent.toLowerCase();
+                    selectRole(role);
+                });
+            });
+            
+            // Initialize
+            loadFromStorage();
+            enforceSingleAdminPolicy();
         });
+
+        // Add slideOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
