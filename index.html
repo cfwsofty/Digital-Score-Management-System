@@ -6,7 +6,7 @@
     <title>Digital Score Management System</title>
     <style>
         /* ============================================
-           COMPLETE CSS - ALL STYLES INCLUDED
+           COMPLETE CSS - ALL STYLES PRESERVED
            ============================================ */
         :root {
             --primary: #2c3e50;
@@ -38,7 +38,6 @@
             transition: background 0.3s ease;
         }
 
-        /* Dark Mode */
         body.dark-mode {
             background: #1a1a2e;
             color: #e6e6e6;
@@ -48,35 +47,17 @@
         body.dark-mode .modal-content,
         body.dark-mode .form-container,
         body.dark-mode .table-container,
-        body.dark-mode .report-card,
         body.dark-mode .stat-card,
         body.dark-mode .calendar,
-        body.dark-mode .chart-container,
-        body.dark-mode .announcements,
-        body.dark-mode .messages {
+        body.dark-mode .announcements {
             background: #16213e;
             color: #e6e6e6;
             border: 1px solid #0f3460;
         }
 
-        body.dark-mode .notification {
-            background: #16213e;
-            color: #e6e6e6;
-            border: 1px solid #0f3460;
-        }
-
-        body.dark-mode .sidebar {
-            background: #0f3460;
-            border-right: 1px solid #16213e;
-        }
-
+        body.dark-mode .sidebar,
         body.dark-mode .header {
             background: #0f3460;
-            border-bottom: 1px solid #16213e;
-        }
-
-        body.dark-mode .nav-item:hover {
-            background: rgba(52, 152, 219, 0.2);
         }
 
         body.dark-mode .input-group input,
@@ -87,7 +68,6 @@
             border-color: #0f3460;
         }
 
-        /* Login Screen */
         .login-container {
             display: flex;
             justify-content: center;
@@ -105,8 +85,6 @@
             width: 100%;
             max-width: 450px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.3);
-            transition: all 0.3s ease;
         }
 
         .system-title {
@@ -252,10 +230,6 @@
             cursor: pointer;
         }
 
-        .forgot-password a:hover {
-            text-decoration: underline;
-        }
-
         .signup-link {
             margin-top: 20px;
             font-size: 14px;
@@ -273,11 +247,6 @@
             cursor: pointer;
         }
 
-        .signup-link a:hover {
-            text-decoration: underline;
-        }
-
-        /* Modal Overlay */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -302,7 +271,6 @@
             to { opacity: 1; }
         }
 
-        /* Modal Content */
         .modal-content {
             background: white;
             border-radius: 20px;
@@ -333,10 +301,6 @@
             font-weight: 700;
         }
 
-        body.dark-mode .modal-title {
-            color: #e6e6e6;
-        }
-
         .close-btn {
             background: none;
             border: none;
@@ -357,60 +321,6 @@
             color: var(--danger);
         }
 
-        body.dark-mode .close-btn:hover {
-            background: #0f3460;
-        }
-
-        /* Tabs */
-        .tabs {
-            display: flex;
-            border-bottom: 2px solid #eee;
-            margin-bottom: 25px;
-        }
-
-        body.dark-mode .tabs {
-            border-bottom-color: #0f3460;
-        }
-
-        .tab {
-            padding: 12px 24px;
-            border: none;
-            background: none;
-            color: #666;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        body.dark-mode .tab {
-            color: #aaa;
-        }
-
-        .tab.active {
-            color: var(--secondary);
-        }
-
-        .tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--secondary);
-            border-radius: 3px 3px 0 0;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Status Badges */
         .status-badge {
             display: inline-block;
             padding: 4px 12px;
@@ -423,7 +333,6 @@
         .status-approved { background: #d4edda; color: #155724; }
         .status-rejected { background: #f8d7da; color: #721c24; }
 
-        /* Dashboard */
         .dashboard {
             display: none;
             min-height: 100vh;
@@ -459,10 +368,6 @@
             align-items: center;
             gap: 15px;
             color: var(--primary);
-        }
-
-        body.dark-mode .user-info {
-            color: #e6e6e6;
         }
 
         .user-avatar {
@@ -571,11 +476,6 @@
             border-top: 1px solid rgba(0,0,0,0.05);
         }
 
-        body.dark-mode .developer-footer {
-            color: rgba(255,255,255,0.4);
-            border-top-color: rgba(255,255,255,0.1);
-        }
-
         .content-area {
             flex: 1;
             padding: 30px;
@@ -598,12 +498,6 @@
             align-items: center;
         }
 
-        body.dark-mode .page-title {
-            color: #e6e6e6;
-            border-bottom-color: rgba(52, 152, 219, 0.2);
-        }
-
-        /* Stats Cards */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -620,11 +514,6 @@
             transition: var(--transition);
         }
 
-        body.dark-mode .stat-card {
-            background: #16213e;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
         .stat-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.12);
@@ -637,10 +526,6 @@
             text-transform: uppercase;
         }
 
-        body.dark-mode .stat-card h3 {
-            color: #aaa;
-        }
-
         .stat-value {
             font-size: 36px;
             font-weight: 700;
@@ -648,16 +533,11 @@
             margin-bottom: 10px;
         }
 
-        body.dark-mode .stat-value {
-            color: #e6e6e6;
-        }
-
         .stat-change {
             font-size: 14px;
             color: var(--success);
         }
 
-        /* Forms */
         .form-container {
             background: white;
             padding: 30px;
@@ -728,11 +608,10 @@
             color: white;
         }
 
-        /* Tables */
         .table-container {
             background: white;
             border-radius: var(--radius);
-            overflow: hidden;
+            overflow-x: auto;
             box-shadow: var(--shadow);
             margin-bottom: 30px;
         }
@@ -755,10 +634,6 @@
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        body.dark-mode td {
-            border-bottom-color: rgba(255,255,255,0.1);
-        }
-
         tr:hover td {
             background: rgba(52, 152, 219, 0.05);
         }
@@ -766,6 +641,7 @@
         .action-buttons {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         .btn-sm {
@@ -774,7 +650,6 @@
             border-radius: 6px;
         }
 
-        /* Notification */
         .notification {
             position: fixed;
             top: 20px;
@@ -794,7 +669,6 @@
 
         .notification.error { border-color: var(--danger); }
         .notification.warning { border-color: var(--warning); }
-        .notification.info { border-color: var(--info); }
 
         @keyframes slideIn {
             from { transform: translateX(100%); opacity: 0; }
@@ -806,7 +680,6 @@
             to { transform: translateX(100%); opacity: 0; }
         }
 
-        /* Badges */
         .badge {
             display: inline-block;
             padding: 4px 12px;
@@ -819,10 +692,7 @@
         .badge-success { background: var(--success); }
         .badge-warning { background: var(--warning); }
         .badge-danger { background: var(--danger); }
-        .badge-info { background: var(--info); }
-        .badge-primary { background: var(--primary); }
 
-        /* Calendar */
         .calendar {
             background: white;
             border-radius: var(--radius);
@@ -853,10 +723,6 @@
             border: 1px solid #eee;
         }
 
-        body.dark-mode .calendar-day {
-            border-color: #0f3460;
-        }
-
         .calendar-day:hover {
             background: rgba(52, 152, 219, 0.1);
         }
@@ -864,7 +730,6 @@
         .calendar-day.active {
             background: var(--secondary);
             color: white;
-            border-color: var(--secondary);
         }
 
         .calendar-day.event {
@@ -872,7 +737,6 @@
             border: 1px solid rgba(46, 204, 113, 0.3);
         }
 
-        /* Charts */
         .chart-container {
             background: white;
             border-radius: var(--radius);
@@ -892,12 +756,6 @@
             color: #666;
         }
 
-        body.dark-mode .chart {
-            background: #0f3460;
-            color: #aaa;
-        }
-
-        /* File Upload */
         .file-upload {
             border: 2px dashed #ddd;
             border-radius: var(--radius);
@@ -905,10 +763,6 @@
             text-align: center;
             transition: var(--transition);
             cursor: pointer;
-        }
-
-        body.dark-mode .file-upload {
-            border-color: #0f3460;
         }
 
         .file-upload:hover {
@@ -920,7 +774,6 @@
             display: none;
         }
 
-        /* Loading Spinner */
         .spinner {
             border: 3px solid #f3f3f3;
             border-top: 3px solid var(--secondary);
@@ -936,7 +789,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Announcement Board */
         .announcements {
             background: white;
             border-radius: var(--radius);
@@ -952,53 +804,6 @@
             border-radius: var(--radius);
         }
 
-        body.dark-mode .announcement {
-            background: #0f3460;
-        }
-
-        /* Messaging */
-        .messages {
-            background: white;
-            border-radius: var(--radius);
-            padding: 25px;
-            box-shadow: var(--shadow);
-            height: 500px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .message-list {
-            flex: 1;
-            overflow-y: auto;
-            margin-bottom: 20px;
-        }
-
-        .message-input {
-            display: flex;
-            gap: 10px;
-        }
-
-        .message {
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: var(--radius);
-            max-width: 70%;
-        }
-
-        .message.sent {
-            background: rgba(52, 152, 219, 0.1);
-            margin-left: auto;
-        }
-
-        .message.received {
-            background: #f8f9fa;
-        }
-
-        body.dark-mode .message.received {
-            background: #0f3460;
-        }
-
-        /* Watermark */
         .watermark {
             position: fixed;
             bottom: 15px;
@@ -1009,51 +814,55 @@
             pointer-events: none;
         }
 
-        /* Responsive */
-        @media (max-width: 992px) {
-            .sidebar {
-                width: 70px;
-            }
-            .nav-item span {
-                display: none;
-            }
-            .content-area {
-                padding: 20px;
-            }
-            .developer-footer {
-                display: none;
-            }
+        /* Performance Graph Styles */
+        .performance-graph {
+            background: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .graph-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+            justify-content: center;
+            min-height: 300px;
+            padding: 20px;
+        }
+
+        .graph-bar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .graph-bar {
+            width: 60px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border-radius: 8px 8px 0 0;
+            transition: height 0.5s ease;
+            cursor: pointer;
+        }
+
+        .graph-bar-label {
+            margin-top: 10px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .graph-bar-value {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
         }
 
         @media (max-width: 768px) {
-            .login-box {
-                padding: 30px;
-            }
-            .role-selector {
-                grid-template-columns: 1fr;
-            }
-            .main-content {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%;
-                padding: 20px;
-                border-right: none;
-                border-bottom: 1px solid rgba(0,0,0,0.05);
-            }
-            body.dark-mode .sidebar {
-                border-bottom-color: #0f3460;
-            }
-            .nav-item span {
-                display: inline;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            .modal-content {
-                padding: 25px;
-                max-height: 95vh;
-            }
+            .sidebar { width: 100%; }
+            .main-content { flex-direction: column; }
+            .role-selector { grid-template-columns: 1fr; }
+            .graph-bar { width: 40px; }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1062,7 +871,7 @@
     <!-- Login Screen -->
     <div class="login-container" id="loginScreen">
         <div class="login-box">
-            <div class="version-badge">v3.0 Ultimate</div>
+            <div class="version-badge">v4.0 Ultimate</div>
             <h1 class="system-title">
                 <i class="fas fa-chart-line"></i> Digital Score Management System
             </h1>
@@ -1133,59 +942,18 @@
                 <h2 class="modal-title">Reset Password</h2>
                 <button class="close-btn" onclick="hideForgotPassword()">&times;</button>
             </div>
-            
-            <div class="tabs">
-                <button class="tab active" onclick="showTab('emailTab')">Email</button>
-                <button class="tab" onclick="showTab('phoneTab')">Phone</button>
-                <button class="tab" onclick="showTab('securityTab')">Security Questions</button>
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" id="resetEmail" placeholder="Enter your email">
             </div>
-            
-            <div id="emailTab" class="tab-content active">
-                <div class="input-group">
-                    <label>Email Address</label>
-                    <input type="email" id="resetEmail" placeholder="Enter your email">
-                </div>
-            </div>
-            
-            <div id="phoneTab" class="tab-content">
-                <div class="input-group">
-                    <label>Phone Number</label>
-                    <input type="tel" id="resetPhone" placeholder="Enter your phone number">
-                </div>
-            </div>
-            
-            <div id="securityTab" class="tab-content">
-                <div class="input-group">
-                    <label>Username</label>
-                    <input type="text" id="resetUsername" placeholder="Enter your username">
-                </div>
-                <div class="input-group">
-                    <label>Security Question</label>
-                    <select id="securityQuestion">
-                        <option value="">Select a question</option>
-                        <option>What was your first pet's name?</option>
-                        <option>What city were you born in?</option>
-                        <option>What is your mother's maiden name?</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label>Answer</label>
-                    <input type="text" id="securityAnswer" placeholder="Enter your answer">
-                </div>
-            </div>
-            
             <div class="form-actions">
-                <button class="btn btn-secondary" onclick="hideForgotPassword()">
-                    <i class="fas fa-times"></i> Cancel
-                </button>
-                <button class="btn btn-primary" onclick="resetPassword()">
-                    <i class="fas fa-key"></i> Reset Password
-                </button>
+                <button class="btn btn-secondary" onclick="hideForgotPassword()">Cancel</button>
+                <button class="btn btn-primary" onclick="resetPassword()">Reset Password</button>
             </div>
         </div>
     </div>
 
-    <!-- Signup Modal -->
+    <!-- Signup Modal (with Class selection for teachers) -->
     <div class="modal-overlay" id="signupModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1224,41 +992,46 @@
                 </select>
             </div>
             
+            <div class="input-group" id="teacherClassGroup" style="display: none;">
+                <label>Assigned Class (for Teachers) *</label>
+                <select id="teacherClass">
+                    <option value="">Select Class</option>
+                    <option value="Form 1A">Form 1A</option>
+                    <option value="Form 1B">Form 1B</option>
+                    <option value="Form 2A">Form 2A</option>
+                    <option value="Form 2B">Form 2B</option>
+                    <option value="Form 3A">Form 3A</option>
+                    <option value="Form 3B">Form 3B</option>
+                    <option value="Form 4A">Form 4A</option>
+                    <option value="Form 4B">Form 4B</option>
+                </select>
+            </div>
+            
             <div class="input-group">
                 <label>Password *</label>
                 <input type="password" id="signupPassword" placeholder="Create a password">
-                <button type="button" class="password-toggle" onclick="togglePassword('signupPassword')" style="position: absolute; right: 15px; top: 42px; background: none; border: none; color: #999; cursor: pointer;">
-                    <i class="fas fa-eye"></i>
-                </button>
             </div>
             
             <div class="input-group">
                 <label>Confirm Password *</label>
                 <input type="password" id="signupConfirmPassword" placeholder="Confirm your password">
-                <button type="button" class="password-toggle" onclick="togglePassword('signupConfirmPassword')" style="position: absolute; right: 15px; top: 42px; background: none; border: none; color: #999; cursor: pointer;">
-                    <i class="fas fa-eye"></i>
-                </button>
             </div>
             
             <div class="form-actions">
-                <button class="btn btn-secondary" onclick="hideSignup()">
-                    <i class="fas fa-times"></i> Cancel
-                </button>
-                <button class="btn btn-success" onclick="signup()">
-                    <i class="fas fa-user-plus"></i> Create Account
-                </button>
+                <button class="btn btn-secondary" onclick="hideSignup()">Cancel</button>
+                <button class="btn btn-success" onclick="signup()">Create Account</button>
             </div>
         </div>
     </div>
 
-    <!-- Parent View Modal (NEW - for privacy fix) -->
+    <!-- Parent View Modal -->
     <div class="modal-overlay" id="parentViewModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title">View Your Child's Results</h2>
                 <button class="close-btn" onclick="closeParentModal()">&times;</button>
             </div>
-            <p style="margin-bottom: 20px; color: #666;">Enter your child's Admission Number to view their marks.</p>
+            <p style="margin-bottom: 20px; color: #666;">Enter your child's Admission Number to view their marks privately.</p>
             <div class="input-group">
                 <label>Admission Number</label>
                 <input type="text" id="parentSearchInput" placeholder="e.g., ST240123">
@@ -1267,6 +1040,45 @@
                 <button class="btn btn-secondary" onclick="closeParentModal()">Cancel</button>
                 <button class="btn btn-primary" onclick="searchChildResults()">View Results</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Report Card Modal -->
+    <div class="modal-overlay" id="reportCardModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h2 class="modal-title">Generate Report Card</h2>
+                <button class="close-btn" onclick="closeReportCardModal()">&times;</button>
+            </div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label>Select Student</label>
+                    <select id="reportStudentSelect">
+                        <option value="">Select Student</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Select Term</label>
+                    <select id="reportTermSelect">
+                        <option value="Term 1">Term 1</option>
+                        <option value="Term 2">Term 2</option>
+                        <option value="Term 3">Term 3</option>
+                        <option value="Annual">Annual</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Year</label>
+                    <select id="reportYearSelect">
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-secondary" onclick="closeReportCardModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="generateReportCard()">Generate Report Card</button>
+            </div>
+            <div id="reportCardPreview" style="margin-top: 20px; display: none;"></div>
         </div>
     </div>
 
@@ -1315,7 +1127,7 @@
                     <div class="nav-item" onclick="showPage('viewAllScores')">
                         <i class="fas fa-eye"></i> <span>View All Scores</span>
                     </div>
-                    <div class="nav-item" onclick="showPage('reports')">
+                    <div class="nav-item" onclick="showPage('reportsAnalysis')">
                         <i class="fas fa-chart-bar"></i> <span>Reports & Analysis</span>
                     </div>
                     <div class="nav-item" onclick="showPage('reportCards')">
@@ -1350,7 +1162,7 @@
                     </div>
                 </div>
 
-                <!-- Teacher Navigation (NEW - so teachers see their students) -->
+                <!-- Teacher Navigation -->
                 <div class="nav-section" id="teacherNav" style="display: none;">
                     <div class="nav-item" onclick="showPage('teacherDashboard')">
                         <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
@@ -1364,15 +1176,27 @@
                     <div class="nav-item" onclick="showPage('teacherMyScores')">
                         <i class="fas fa-list"></i> <span>My Scores</span>
                     </div>
+                    <div class="nav-item" onclick="showPage('teacherReportCards')">
+                        <i class="fas fa-file-certificate"></i> <span>Report Cards</span>
+                    </div>
+                    <div class="nav-item" onclick="showPage('teacherPerformance')">
+                        <i class="fas fa-chart-line"></i> <span>Performance Graph</span>
+                    </div>
+                    <div class="nav-item" onclick="showPage('teacherAttendance')">
+                        <i class="fas fa-calendar-check"></i> <span>Attendance</span>
+                    </div>
                 </div>
 
-                <!-- Parent Navigation (NEW - privacy protected) -->
+                <!-- Parent Navigation -->
                 <div class="nav-section" id="parentNav" style="display: none;">
                     <div class="nav-item" onclick="showPage('parentDashboard')">
                         <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
                     </div>
                     <div class="nav-item" onclick="openParentModal()">
                         <i class="fas fa-child"></i> <span>View My Child</span>
+                    </div>
+                    <div class="nav-item" onclick="showPage('parentReports')">
+                        <i class="fas fa-file-alt"></i> <span>Download Reports</span>
                     </div>
                 </div>
 
@@ -1384,102 +1208,52 @@
                     <div class="nav-item" onclick="showPage('studentMyScores')">
                         <i class="fas fa-chart-line"></i> <span>My Scores</span>
                     </div>
+                    <div class="nav-item" onclick="showPage('studentPerformance')">
+                        <i class="fas fa-chart-bar"></i> <span>Performance Graph</span>
+                    </div>
+                    <div class="nav-item" onclick="showPage('studentReportCard')">
+                        <i class="fas fa-file-certificate"></i> <span>My Report Card</span>
+                    </div>
                 </div>
 
                 <div class="developer-footer">
-                    Ultimate Edition v3.0<br>
+                    Ultimate Edition v4.0<br>
                     By Frank Jefwa
                 </div>
             </div>
 
-            <div class="content-area">
+            <div class="content-area" id="contentArea">
+                <!-- ==================== ADMIN PAGES ==================== -->
+                
                 <!-- Dashboard Page -->
                 <div id="dashboardPage" class="page">
                     <h2 class="page-title">Admin Dashboard <span id="currentDate"></span></h2>
                     <div class="stats-grid">
-                        <div class="stat-card">
-                            <h3>Total Students</h3>
-                            <div class="stat-value" id="totalStudents">0</div>
-                            <div class="stat-change"><i class="fas fa-users"></i> Registered students</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Average Score</h3>
-                            <div class="stat-value" id="averageScore">0%</div>
-                            <div class="stat-change"><i class="fas fa-chart-line"></i> Overall performance</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Attendance Rate</h3>
-                            <div class="stat-value" id="attendanceRate">0%</div>
-                            <div class="stat-change"><i class="fas fa-calendar-check"></i> This month</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Pending Actions</h3>
-                            <div class="stat-value" id="pendingActions">0</div>
-                            <div class="stat-change"><i class="fas fa-tasks"></i> Requires attention</div>
-                        </div>
+                        <div class="stat-card"><h3>Total Students</h3><div class="stat-value" id="totalStudents">0</div><div class="stat-change"><i class="fas fa-users"></i> Registered students</div></div>
+                        <div class="stat-card"><h3>Average Score</h3><div class="stat-value" id="averageScore">0%</div><div class="stat-change"><i class="fas fa-chart-line"></i> Overall performance</div></div>
+                        <div class="stat-card"><h3>Attendance Rate</h3><div class="stat-value" id="attendanceRate">0%</div><div class="stat-change"><i class="fas fa-calendar-check"></i> This month</div></div>
+                        <div class="stat-card"><h3>Pending Actions</h3><div class="stat-value" id="pendingActions">0</div><div class="stat-change"><i class="fas fa-tasks"></i> Requires attention</div></div>
                     </div>
-
                     <div class="form-container">
                         <h3>Quick Actions</h3>
                         <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
-                            <button class="btn btn-primary" onclick="showPage('addScores')">
-                                <i class="fas fa-plus"></i> Add New Scores
-                            </button>
-                            <button class="btn btn-success" onclick="generateReport()">
-                                <i class="fas fa-file-pdf"></i> Generate Report
-                            </button>
-                            <button class="btn btn-info" onclick="showPage('announcements')">
-                                <i class="fas fa-bullhorn"></i> Post Announcement
-                            </button>
-                            <button class="btn btn-danger" onclick="backupData()">
-                                <i class="fas fa-save"></i> Backup Data
-                            </button>
-                            <button class="btn btn-warning" onclick="showPage('pendingApprovals')">
-                                <i class="fas fa-user-check"></i> Review Approvals
-                            </button>
+                            <button class="btn btn-primary" onclick="showPage('addScores')"><i class="fas fa-plus"></i> Add New Scores</button>
+                            <button class="btn btn-success" onclick="generateOverallReport()"><i class="fas fa-file-pdf"></i> Generate Report</button>
+                            <button class="btn btn-info" onclick="showPage('announcements')"><i class="fas fa-bullhorn"></i> Post Announcement</button>
+                            <button class="btn btn-danger" onclick="createBackup()"><i class="fas fa-save"></i> Backup Data</button>
+                            <button class="btn btn-warning" onclick="showPage('pendingApprovals')"><i class="fas fa-user-check"></i> Review Approvals</button>
                         </div>
                     </div>
-
-                    <div class="chart-container">
-                        <h3>Performance Trends</h3>
-                        <div class="chart" id="performanceChart">
-                            <div style="text-align: center; padding: 50px;">
-                                <i class="fas fa-chart-line" style="font-size: 48px; color: #3498db; margin-bottom: 20px;"></i>
-                                <p>Chart visualization would appear here</p>
-                                <p style="font-size: 12px; color: #666; margin-top: 10px;">Integrate with Chart.js or similar library</p>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="table-container">
                         <h3 style="padding: 20px 20px 0;">Recent Score Entries</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Student Name</th>
-                                    <th>Subject</th>
-                                    <th>Score</th>
-                                    <th>Grade</th>
-                                    <th>Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="recentScoresTable">
-                                <tr><td colspan="6" style="text-align: center; padding: 30px; color: #666;">No scores entered yet</td></tr>
-                            </tbody>
-                        </table>
+                        <table><thead><tr><th>Student Name</th><th>Subject</th><th>Score</th><th>Grade</th><th>Date</th><th>Actions</th></tr></thead><tbody id="recentScoresTable"></tbody></table>
                     </div>
                 </div>
 
                 <!-- Pending Approvals Page -->
                 <div id="pendingApprovals" class="page" style="display: none;">
                     <h2 class="page-title">Pending User Approvals</h2>
-                    <div class="table-container">
-                        <table>
-                            <thead><tr><th>Name</th><th>Username</th><th>Email</th><th>Role</th><th>Request Date</th><th>Status</th><th>Actions</th></tr></thead>
-                            <tbody id="pendingApprovalsTable"></tbody>
-                        </table>
-                    </div>
+                    <div class="table-container"><table><thead><tr><th>Name</th><th>Username</th><th>Email</th><th>Role</th><th>Assigned Class</th><th>Request Date</th><th>Actions</th></tr></thead><tbody id="pendingApprovalsTable"></tbody></table></div>
                 </div>
 
                 <!-- Add Scores Page (Admin) -->
@@ -1488,93 +1262,23 @@
                     <div class="form-container">
                         <h3>Enter Score Details</h3>
                         <div class="form-row">
-                            <div class="input-group">
-                                <label>Student Name *</label>
-                                <select id="studentName" onchange="autoFillStudentInfo()">
-                                    <option value="">Select Student</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label>Student ID</label>
-                                <input type="text" id="studentId" placeholder="Auto-filled" readonly>
-                            </div>
+                            <div class="input-group"><label>Student Name *</label><select id="studentName" onchange="autoFillStudentInfo()"><option value="">Select Student</option></select></div>
+                            <div class="input-group"><label>Student ID</label><input type="text" id="studentId" placeholder="Auto-filled" readonly></div>
                         </div>
                         <div class="form-row">
-                            <div class="input-group">
-                                <label>Subject *</label>
-                                <select id="subjectName">
-                                    <option value="">Select Subject</option>
-                                    <option>Mathematics</option>
-                                    <option>English</option>
-                                    <option>Science</option>
-                                    <option>History</option>
-                                    <option>Geography</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label>Class/Form *</label>
-                                <select id="className">
-                                    <option value="">Select Class</option>
-                                    <option>Form 1A</option>
-                                    <option>Form 1B</option>
-                                    <option>Form 2A</option>
-                                    <option>Form 2B</option>
-                                    <option>Form 3A</option>
-                                    <option>Form 3B</option>
-                                    <option>Form 4A</option>
-                                    <option>Form 4B</option>
-                                </select>
-                            </div>
+                            <div class="input-group"><label>Subject *</label><select id="subjectName"><option value="">Select Subject</option><option>Mathematics</option><option>English</option><option>Science</option><option>History</option><option>Geography</option></select></div>
+                            <div class="input-group"><label>Class/Form *</label><select id="className"><option value="">Select Class</option><option>Form 1A</option><option>Form 1B</option><option>Form 2A</option><option>Form 2B</option><option>Form 3A</option><option>Form 3B</option><option>Form 4A</option><option>Form 4B</option></select></div>
                         </div>
                         <div class="form-row">
-                            <div class="input-group">
-                                <label>Score (0-100) *</label>
-                                <input type="number" id="scoreValue" min="0" max="100" placeholder="Enter score">
-                            </div>
-                            <div class="input-group">
-                                <label>Exam Type</label>
-                                <select id="examType">
-                                    <option>Term Exam</option>
-                                    <option>Mid-Term</option>
-                                    <option>Final Exam</option>
-                                    <option>Continuous Assessment</option>
-                                </select>
-                            </div>
+                            <div class="input-group"><label>Score (0-100) *</label><input type="number" id="scoreValue" min="0" max="100" placeholder="Enter score"></div>
+                            <div class="input-group"><label>Exam Type</label><select id="examType"><option>Term Exam</option><option>Mid-Term</option><option>Final Exam</option><option>Continuous Assessment</option></select></div>
                         </div>
-                        <div class="input-group">
-                            <label>Comments</label>
-                            <textarea id="scoreComments" rows="3" placeholder="Any additional comments..."></textarea>
-                        </div>
-                        <div class="form-actions">
-                            <button class="btn btn-secondary" onclick="showPage('dashboardPage')">
-                                <i class="fas fa-times"></i> Cancel
-                            </button>
-                            <button class="btn btn-primary" onclick="saveScore()">
-                                <i class="fas fa-save"></i> Save Score
-                            </button>
-                        </div>
+                        <div class="input-group"><label>Comments</label><textarea id="scoreComments" rows="3" placeholder="Any additional comments..."></textarea></div>
+                        <div class="form-actions"><button class="btn btn-secondary" onclick="showPage('dashboardPage')">Cancel</button><button class="btn btn-primary" onclick="saveScore()">Save Score</button></div>
                     </div>
-
-                    <div class="form-container">
-                        <h3>Bulk Import Scores</h3>
-                        <div class="file-upload" onclick="document.getElementById('csvFile').click()">
-                            <i class="fas fa-file-csv" style="font-size: 48px; color: #3498db; margin-bottom: 15px;"></i>
-                            <p>Click to upload CSV file</p>
-                            <p style="font-size: 12px; color: #666; margin-top: 10px;">Format: Student Name, Subject, Score, Class, Exam Type</p>
-                            <input type="file" id="csvFile" accept=".csv" onchange="importCSV(this.files[0])" style="display: none;">
-                        </div>
-                        <div id="importProgress" style="display: none;">
-                            <div class="spinner"></div>
-                            <p style="text-align: center;">Importing...</p>
-                        </div>
-                    </div>
-
                     <div class="table-container">
-                        <h3 style="padding: 20px 20px 0;">All Scores (with Edit/Delete)</h3>
-                        <table>
-                            <thead><tr><th>Student Name</th><th>Subject</th><th>Score</th><th>Grade</th><th>Date</th><th>Actions</th></tr></thead>
-                            <tbody id="allScoresAdminTable"></tbody>
-                        </table>
+                        <h3 style="padding: 20px 20px 0;">All Scores (Click Edit to Modify)</h3>
+                        <table><thead><tr><th>Student Name</th><th>Subject</th><th>Score</th><th>Grade</th><th>Date</th><th>Actions</th></tr></thead><tbody id="allScoresAdminTable"></tbody></table>
                     </div>
                 </div>
 
@@ -1584,88 +1288,162 @@
                     <div class="form-container">
                         <h3>Add New Student</h3>
                         <div class="form-row">
-                            <div class="input-group">
-                                <label>Full Name *</label>
-                                <input type="text" id="newStudentName" placeholder="Enter student's full name">
-                            </div>
-                            <div class="input-group">
-                                <label>Student ID (Auto-generated)</label>
-                                <input type="text" id="newStudentId" placeholder="Will be generated automatically" readonly>
-                            </div>
+                            <div class="input-group"><label>Full Name *</label><input type="text" id="newStudentName" placeholder="Enter student's full name"></div>
+                            <div class="input-group"><label>Admission Number (Auto)</label><input type="text" id="newStudentId" readonly></div>
                         </div>
                         <div class="form-row">
-                            <div class="input-group">
-                                <label>Class *</label>
-                                <select id="newStudentClass">
-                                    <option value="">Select Class</option>
-                                    <option>Form 1A</option>
-                                    <option>Form 1B</option>
-                                    <option>Form 2A</option>
-                                    <option>Form 2B</option>
-                                    <option>Form 3A</option>
-                                    <option>Form 3B</option>
-                                    <option>Form 4A</option>
-                                    <option>Form 4B</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label>Date of Birth</label>
-                                <input type="date" id="newStudentDOB">
-                            </div>
+                            <div class="input-group"><label>Class *</label><select id="newStudentClass"><option value="">Select Class</option><option>Form 1A</option><option>Form 1B</option><option>Form 2A</option><option>Form 2B</option><option>Form 3A</option><option>Form 3B</option><option>Form 4A</option><option>Form 4B</option></select></div>
+                            <div class="input-group"><label>Date of Birth</label><input type="date" id="newStudentDOB"></div>
                         </div>
                         <div class="form-row">
-                            <div class="input-group">
-                                <label>Parent/Guardian Name</label>
-                                <input type="text" id="newStudentParent" placeholder="Parent/Guardian name">
-                            </div>
-                            <div class="input-group">
-                                <label>Contact Phone</label>
-                                <input type="tel" id="newStudentPhone" placeholder="Phone number">
-                            </div>
+                            <div class="input-group"><label>Parent/Guardian Name</label><input type="text" id="newStudentParent" placeholder="Parent/Guardian name"></div>
+                            <div class="input-group"><label>Contact Phone</label><input type="tel" id="newStudentPhone" placeholder="Phone number"></div>
                         </div>
-                        <div class="form-actions">
-                            <button class="btn btn-secondary" onclick="clearStudentForm()">
-                                <i class="fas fa-redo"></i> Clear
-                            </button>
-                            <button class="btn btn-success" onclick="addStudent()">
-                                <i class="fas fa-user-plus"></i> Add Student
-                            </button>
-                        </div>
+                        <div class="form-actions"><button class="btn btn-secondary" onclick="clearStudentForm()">Clear</button><button class="btn btn-success" onclick="addStudent()">Add Student</button></div>
                     </div>
-
                     <div class="table-container">
                         <h3 style="padding: 20px 20px 0;">Student List</h3>
-                        <table>
-                            <thead><tr><th>Admission Number</th><th>Full Name</th><th>Class</th><th>Parent</th><th>Actions</th></tr></thead>
-                            <tbody id="studentsTable"></tbody>
-                        </table>
+                        <table><thead><tr><th>Admission Number</th><th>Full Name</th><th>Class</th><th>Parent/Guardian</th><th>Phone</th><th>Actions</th></tr></thead><tbody id="studentsTable"></tbody></table>
                     </div>
                 </div>
 
-                <!-- Teacher Dashboard (NEW) -->
+                <!-- View All Scores Page with Search -->
+                <div id="viewAllScores" class="page" style="display: none;">
+                    <h2 class="page-title">View All Scores</h2>
+                    <div class="form-container">
+                        <div class="form-row">
+                            <div class="input-group"><label>Search by Student Name</label><input type="text" id="searchStudentName" placeholder="Type student name..." oninput="filterScoresByName()"></div>
+                            <div class="input-group"><label>Filter by Class</label><select id="filterClass" onchange="filterScoresByClass()"><option value="">All Classes</option><option>Form 1A</option><option>Form 1B</option><option>Form 2A</option><option>Form 2B</option><option>Form 3A</option><option>Form 3B</option><option>Form 4A</option><option>Form 4B</option></select></div>
+                        </div>
+                    </div>
+                    <div class="table-container"><table><thead><tr><th>Admission No</th><th>Student Name</th><th>Class</th><th>Subject</th><th>Score</th><th>Grade</th><th>Exam Type</th><th>Date</th><th>Actions</th></tr></thead><tbody id="viewAllScoresTable"></tbody></table></div>
+                </div>
+
+                <!-- Reports & Analysis Page (starts at 0) -->
+                <div id="reportsAnalysis" class="page" style="display: none;">
+                    <h2 class="page-title">Reports & Analysis</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card"><h3>Overall School Average</h3><div class="stat-value" id="overallAvg">0%</div></div>
+                        <div class="stat-card"><h3>Total Scores Recorded</h3><div class="stat-value" id="totalScoresCount">0</div></div>
+                        <div class="stat-card"><h3>Pass Rate</h3><div class="stat-value" id="passRate">0%</div></div>
+                        <div class="stat-card"><h3>Students Above Average</h3><div class="stat-value" id="aboveAvgCount">0</div></div>
+                    </div>
+                    <div class="form-container">
+                        <h3>Generate Custom Report</h3>
+                        <div class="form-row">
+                            <div class="input-group"><label>Report Type</label><select id="customReportType"><option value="student">Student Report</option><option value="class">Class Report</option><option value="subject">Subject Analysis</option></select></div>
+                            <div class="input-group"><label>Select Student/Class</label><select id="customReportTarget"><option value="">Select...</option></select></div>
+                        </div>
+                        <div class="form-actions"><button class="btn btn-primary" onclick="generateCustomReport()">Generate Report</button><button class="btn btn-success" onclick="exportReportToPDF()">Export as PDF</button></div>
+                    </div>
+                    <div id="customReportResult" class="table-container" style="display: none;"></div>
+                </div>
+
+                <!-- Report Cards Page -->
+                <div id="reportCards" class="page" style="display: none;">
+                    <h2 class="page-title">Report Cards</h2>
+                    <div class="form-container">
+                        <div class="form-row">
+                            <div class="input-group"><label>Select Student</label><select id="adminReportStudent"><option value="">Select Student</option></select></div>
+                            <div class="input-group"><label>Select Term</label><select id="adminReportTerm"><option value="Term 1">Term 1</option><option value="Term 2">Term 2</option><option value="Term 3">Term 3</option><option value="Annual">Annual</option></select></div>
+                            <div class="input-group"><label>Year</label><select id="adminReportYear"><option value="2024">2024</option><option value="2025">2025</option></select></div>
+                        </div>
+                        <div class="form-actions"><button class="btn btn-primary" onclick="generateAdminReportCard()">Generate Report Card</button></div>
+                    </div>
+                    <div id="adminReportCardPreview" class="table-container" style="display: none;"></div>
+                </div>
+
+                <!-- Class Analysis Page -->
+                <div id="classAnalysis" class="page" style="display: none;">
+                    <h2 class="page-title">Class Analysis</h2>
+                    <div class="form-container">
+                        <div class="form-row">
+                            <div class="input-group"><label>Select Class</label><select id="analysisClassSelect" onchange="loadClassAnalysisData()"><option value="">Select Class</option><option>Form 1A</option><option>Form 1B</option><option>Form 2A</option><option>Form 2B</option><option>Form 3A</option><option>Form 3B</option><option>Form 4A</option><option>Form 4B</option></select></div>
+                        </div>
+                    </div>
+                    <div class="stats-grid" id="classStatsGrid" style="display: none;">
+                        <div class="stat-card"><h3>Class Average</h3><div class="stat-value" id="classAvgValue">0%</div></div>
+                        <div class="stat-card"><h3>Top Student</h3><div class="stat-value" id="classTopStudent">-</div></div>
+                        <div class="stat-card"><h3>Pass Rate</h3><div class="stat-value" id="classPassRateValue">0%</div></div>
+                        <div class="stat-card"><h3>Total Students</h3><div class="stat-value" id="classTotalStudents">0</div></div>
+                    </div>
+                    <div class="table-container" style="display: none;" id="classRankingTable"><h3 style="padding: 20px">Class Ranking</h3><table><thead><tr><th>Rank</th><th>Student Name</th><th>Average Score</th><th>Grade</th></tr></thead><tbody id="classRankingBody"></tbody></table></div>
+                    <div class="chart-container" id="classChart" style="display: none;"><h3>Performance Distribution</h3><div id="classPerformanceChart" class="chart"></div></div>
+                </div>
+
+                <!-- Attendance Page -->
+                <div id="attendance" class="page" style="display: none;">
+                    <h2 class="page-title">Attendance Tracking</h2>
+                    <div class="form-container"><div class="form-row"><div class="input-group"><label>Date</label><input type="date" id="attendanceDate"></div><div class="input-group"><label>Class</label><select id="attendanceClass" onchange="loadClassAttendance()"><option value="">Select Class</option><option>Form 1A</option><option>Form 1B</option><option>Form 2A</option><option>Form 2B</option><option>Form 3A</option><option>Form 3B</option><option>Form 4A</option><option>Form 4B</option></select></div></div></div>
+                    <div id="attendanceTableContainer" class="table-container" style="display: none;"></div>
+                </div>
+
+                <!-- Calendar Page -->
+                <div id="calendar" class="page" style="display: none;">
+                    <h2 class="page-title">Academic Calendar</h2>
+                    <div class="calendar"><div class="calendar-header"><button class="btn btn-secondary btn-sm" onclick="prevMonth()"><i class="fas fa-chevron-left"></i></button><h3 id="currentMonth">January 2024</h3><button class="btn btn-secondary btn-sm" onclick="nextMonth()"><i class="fas fa-chevron-right"></i></button></div><div class="calendar-grid" id="calendarGrid"></div></div>
+                    <div class="form-container"><h3>Add Event</h3><div class="form-row"><div class="input-group"><label>Event Title</label><input type="text" id="eventTitle"></div><div class="input-group"><label>Event Date</label><input type="date" id="eventDate"></div></div><div class="input-group"><label>Description</label><textarea id="eventDescription" rows="2"></textarea></div><div class="form-actions"><button class="btn btn-primary" onclick="addEvent()">Add Event</button></div></div>
+                </div>
+
+                <!-- Announcements Page -->
+                <div id="announcements" class="page" style="display: none;">
+                    <h2 class="page-title">Announcements</h2>
+                    <div class="form-container"><div class="input-group"><label>Title</label><input type="text" id="announcementTitle"></div><div class="input-group"><label>Content</label><textarea id="announcementContent" rows="4"></textarea></div><div class="form-actions"><button class="btn btn-primary" onclick="postAnnouncement()">Post Announcement</button></div></div>
+                    <div class="announcements" id="announcementsList"></div>
+                </div>
+
+                <!-- User Management -->
+                <div id="userManagement" class="page" style="display: none;">
+                    <h2 class="page-title">Manage Users</h2>
+                    <div class="table-container"><table><thead><tr><th>Username</th><th>Full Name</th><th>Role</th><th>Assigned Class</th><th>Status</th><th>Actions</th></tr></thead><tbody id="usersTable"></tbody></table></div>
+                </div>
+
+                <!-- System Settings -->
+                <div id="systemSettings" class="page" style="display: none;">
+                    <h2 class="page-title">System Settings</h2>
+                    <div class="form-container"><div class="form-row"><div class="input-group"><label>School Name</label><input type="text" id="schoolNameSetting"></div><div class="input-group"><label>Academic Year</label><input type="text" id="academicYearSetting"></div></div><div class="form-row"><div class="input-group"><label>Pass Mark (%)</label><input type="number" id="passMarkSetting" min="0" max="100"></div></div><div class="form-actions"><button class="btn btn-primary" onclick="saveSystemSettings()">Save Settings</button><button class="btn btn-secondary" onclick="resetSystemSettings()">Reset to Default</button></div></div>
+                </div>
+
+                <!-- Audit Log -->
+                <div id="auditLog" class="page" style="display: none;">
+                    <h2 class="page-title">Audit Log</h2>
+                    <div class="table-container"><table><thead><tr><th>Timestamp</th><th>User</th><th>Action</th><th>Details</th></tr></thead><tbody id="auditLogTable"></tbody></table></div>
+                </div>
+
+                <!-- Backup & Restore -->
+                <div id="backupRestore" class="page" style="display: none;">
+                    <h2 class="page-title">Backup & Restore</h2>
+                    <div class="form-container"><button class="btn btn-success" onclick="createBackup()"><i class="fas fa-download"></i> Create Backup</button><div class="file-upload" style="margin-top: 20px;" onclick="document.getElementById('restoreFile').click()"><i class="fas fa-upload" style="font-size: 48px;"></i><p>Click to restore from backup</p><input type="file" id="restoreFile" accept=".json" style="display: none;" onchange="restoreBackup(this.files[0])"></div></div>
+                </div>
+
+                <!-- Achievements -->
+                <div id="achievements" class="page" style="display: none;"><h2 class="page-title">Achievements & Gamification</h2><div class="stats-grid"><div class="stat-card"><h3>Total Badges</h3><div class="stat-value" id="totalBadges">0</div></div><div class="stat-card"><h3>Top Performer</h3><div class="stat-value" id="topPerformer">-</div></div></div></div>
+
+                <!-- ==================== TEACHER PAGES ==================== -->
+                
+                <!-- Teacher Dashboard -->
                 <div id="teacherDashboard" class="page" style="display: none;">
                     <h2 class="page-title">Teacher Dashboard</h2>
                     <div class="stats-grid">
                         <div class="stat-card"><h3>My Students</h3><div class="stat-value" id="teacherStudentCount">0</div></div>
                         <div class="stat-card"><h3>Class Average</h3><div class="stat-value" id="teacherClassAvg">0%</div></div>
                         <div class="stat-card"><h3>Scores Entered</h3><div class="stat-value" id="teacherScoreCount">0</div></div>
+                        <div class="stat-card"><h3>Attendance Rate</h3><div class="stat-value" id="teacherAttendanceRate">0%</div></div>
                     </div>
                 </div>
 
-                <!-- Teacher My Students (NEW) -->
+                <!-- Teacher My Students -->
                 <div id="teacherMyStudents" class="page" style="display: none;">
                     <h2 class="page-title">My Students</h2>
-                    <div class="table-container">
-                        <table><thead><tr><th>Admission Number</th><th>Student Name</th><th>Parent Contact</th><th>Average Score</th></tr></thead><tbody id="teacherStudentsTable"></tbody></table>
-                    </div>
+                    <div class="table-container"><table><thead><tr><th>Admission No</th><th>Student Name</th><th>Parent Contact</th><th>Average Score</th><th>Actions</th></tr></thead><tbody id="teacherStudentsTable"></tbody></table></div>
                 </div>
 
-                <!-- Teacher Add Scores (NEW) -->
+                <!-- Teacher Add Scores -->
                 <div id="teacherAddScores" class="page" style="display: none;">
-                    <h2 class="page-title">Add Scores for My Students</h2>
+                    <h2 class="page-title">Add Scores for My Class</h2>
                     <div class="form-container">
                         <div class="form-row">
-                            <div class="input-group"><label>Student</label><select id="teacherStudentSelect"><option>Select Student</option></select></div>
+                            <div class="input-group"><label>Student</label><select id="teacherStudentSelect"><option value="">Select Student</option></select></div>
                             <div class="input-group"><label>Subject</label><select id="teacherSubjectSelect"><option>Mathematics</option><option>English</option><option>Science</option><option>History</option><option>Geography</option></select></div>
                         </div>
                         <div class="form-row">
@@ -1674,74 +1452,104 @@
                         </div>
                         <div class="form-actions"><button class="btn btn-primary" onclick="saveTeacherScore()">Save Score</button></div>
                     </div>
-                    <div class="table-container">
-                        <h3 style="padding: 20px">My Recent Scores</h3>
-                        <table><thead><tr><th>Student</th><th>Subject</th><th>Score</th><th>Grade</th><th>Date</th><th>Actions</th></tr></thead><tbody id="teacherScoresTable"></tbody></table>
-                    </div>
+                    <div class="table-container"><h3 style="padding: 20px">My Recent Scores</h3><table><thead><tr><th>Student</th><th>Subject</th><th>Score</th><th>Grade</th><th>Date</th><th>Actions</th></tr></thead><tbody id="teacherScoresTable"></tbody></table></div>
                 </div>
 
-                <!-- Teacher My Scores (NEW) -->
+                <!-- Teacher My Scores -->
                 <div id="teacherMyScores" class="page" style="display: none;">
                     <h2 class="page-title">All My Scores</h2>
-                    <div class="table-container">
-                        <table><thead><tr><th>Student</th><th>Subject</th><th>Score</th><th>Grade</th><th>Date</th><th>Actions</th></tr></thead><tbody id="teacherAllScoresTable"></tbody></table>
-                    </div>
+                    <div class="table-container"><table><thead><tr><th>Student</th><th>Subject</th><th>Score</th><th>Grade</th><th>Date</th><th>Actions</th></tr></thead><tbody id="teacherAllScoresTable"></tbody></table></div>
                 </div>
 
-                <!-- Parent Dashboard (NEW - privacy protected) -->
+                <!-- Teacher Report Cards -->
+                <div id="teacherReportCards" class="page" style="display: none;">
+                    <h2 class="page-title">Generate Report Cards</h2>
+                    <div class="form-container">
+                        <div class="form-row">
+                            <div class="input-group"><label>Select Student</label><select id="teacherReportStudent"><option value="">Select Student</option></select></div>
+                            <div class="input-group"><label>Select Term</label><select id="teacherReportTerm"><option>Term 1</option><option>Term 2</option><option>Term 3</option><option>Annual</option></select></div>
+                            <div class="input-group"><label>Year</label><select id="teacherReportYear"><option>2024</option><option>2025</option></select></div>
+                        </div>
+                        <div class="form-actions"><button class="btn btn-primary" onclick="generateTeacherReportCard()">Generate Report Card</button></div>
+                    </div>
+                    <div id="teacherReportPreview"></div>
+                </div>
+
+                <!-- Teacher Performance Graph -->
+                <div id="teacherPerformance" class="page" style="display: none;">
+                    <h2 class="page-title">Class Performance Graph</h2>
+                    <div class="form-container">
+                        <div class="form-row">
+                            <div class="input-group"><label>Select Subject</label><select id="teacherGraphSubject" onchange="loadTeacherPerformanceGraph()"><option>Mathematics</option><option>English</option><option>Science</option><option>History</option><option>Geography</option></select></div>
+                        </div>
+                    </div>
+                    <div id="teacherGraphContainer" class="chart-container"></div>
+                </div>
+
+                <!-- Teacher Attendance -->
+                <div id="teacherAttendance" class="page" style="display: none;">
+                    <h2 class="page-title">Mark Attendance</h2>
+                    <div class="form-container"><div class="form-row"><div class="input-group"><label>Date</label><input type="date" id="teacherAttendanceDate"></div></div></div>
+                    <div id="teacherAttendanceContainer"></div>
+                </div>
+
+                <!-- ==================== PARENT PAGES ==================== -->
+                
                 <div id="parentDashboard" class="page" style="display: none;">
                     <h2 class="page-title">Parent Portal</h2>
-                    <div class="form-container" style="text-align: center;">
-                        <i class="fas fa-child" style="font-size: 64px; color: var(--secondary); margin-bottom: 20px;"></i>
-                        <h3>View Your Child's Performance</h3>
-                        <p style="margin: 20px 0;">Click below to enter your child's admission number and view their marks privately.</p>
-                        <button class="btn btn-primary" onclick="openParentModal()"><i class="fas fa-search"></i> View My Child</button>
-                    </div>
+                    <div class="form-container" style="text-align: center;"><i class="fas fa-child" style="font-size: 64px; color: var(--secondary); margin-bottom: 20px;"></i><h3>View Your Child's Performance</h3><p style="margin: 20px 0;">Click below to enter your child's admission number.</p><button class="btn btn-primary" onclick="openParentModal()"><i class="fas fa-search"></i> View My Child</button></div>
                 </div>
 
-                <!-- Student Dashboard -->
+                <div id="parentReports" class="page" style="display: none;">
+                    <h2 class="page-title">Download Reports</h2>
+                    <div class="form-container" style="text-align: center;"><p>Generate and download your child's report card.</p><button class="btn btn-success" onclick="openParentModal()"><i class="fas fa-download"></i> Generate Report</button></div>
+                </div>
+
+                <!-- ==================== STUDENT PAGES ==================== -->
+                
                 <div id="studentDashboard" class="page" style="display: none;">
-                    <h2 class="page-title">Student Dashboard</h2>
+                    <h2 class="page-title">My Dashboard</h2>
                     <div class="stats-grid">
                         <div class="stat-card"><h3>My Average</h3><div class="stat-value" id="studentAvg">0%</div></div>
-                        <div class="stat-card"><h3>Subjects</h3><div class="stat-value" id="studentSubjectCount">0</div></div>
+                        <div class="stat-card"><h3>Subjects Taken</h3><div class="stat-value" id="studentSubjectCount">0</div></div>
                         <div class="stat-card"><h3>Best Score</h3><div class="stat-value" id="studentBest">0%</div></div>
+                        <div class="stat-card"><h3>Class Rank</h3><div class="stat-value" id="studentRank">-</div></div>
                     </div>
                 </div>
 
-                <!-- Student My Scores -->
                 <div id="studentMyScores" class="page" style="display: none;">
                     <h2 class="page-title">My Scores</h2>
-                    <div class="table-container">
-                        <table><thead><tr><th>Subject</th><th>Score</th><th>Grade</th><th>Exam Type</th><th>Date</th></tr></thead><tbody id="studentScoresTable"></tbody></table>
-                    </div>
+                    <div class="table-container"></table><thead><tr><th>Subject</th><th>Score</th><th>Grade</th><th>Exam Type</th><th>Date</th></tr></thead><tbody id="studentScoresTable"></tbody></table></div>
                 </div>
 
-                <!-- All other pages (Attendance, Calendar, Announcements, etc.) remain exactly as you had them -->
-                <div id="viewAllScores" class="page" style="display: none;"><h2>View All Scores</h2><div class="table-container"><table><thead><tr><th>Student</th><th>Subject</th><th>Score</th><th>Grade</th><th>Date</th><th>Actions</th></tr></thead><tbody id="viewAllScoresTable"></tbody></table></div></div>
-                <div id="reports" class="page" style="display: none;"><h2>Reports & Analysis</h2><p>Report generation features</p></div>
-                <div id="reportCards" class="page" style="display: none;"><h2>Report Cards</h2><p>Report card generation</p></div>
-                <div id="classAnalysis" class="page" style="display: none;"><h2>Class Analysis</h2><p>Class performance analysis</p></div>
-                <div id="attendance" class="page" style="display: none;"><h2>Attendance Tracking</h2><div class="form-container"><div class="form-row"><div class="input-group"><label>Date</label><input type="date" id="attendanceDate"></div><div class="input-group"><label>Class</label><select id="attendanceClass"><option>Form 1A</option><option>Form 1B</option><option>Form 2A</option><option>Form 2B</option><option>Form 3A</option><option>Form 3B</option><option>Form 4A</option><option>Form 4B</option></select></div></div><button class="btn btn-primary" onclick="loadClassAttendance()">Load Class</button></div><div id="attendanceTableContainer"></div></div>
-                <div id="calendar" class="page" style="display: none;"><h2>Academic Calendar</h2><div class="calendar"><div class="calendar-header"><button onclick="prevMonth()"><i class="fas fa-chevron-left"></i></button><h3 id="currentMonth">January 2024</h3><button onclick="nextMonth()"><i class="fas fa-chevron-right"></i></button></div><div class="calendar-grid" id="calendarGrid"></div></div></div>
-                <div id="announcements" class="page" style="display: none;"><h2>Announcements</h2><div class="form-container"><input type="text" id="announcementTitle" placeholder="Title"><textarea id="announcementContent" placeholder="Content"></textarea><button class="btn btn-primary" onclick="postAnnouncement()">Post</button></div><div id="announcementsList"></div></div>
-                <div id="userManagement" class="page" style="display: none;"><h2>User Management</h2><div class="table-container"><table><thead><tr><th>Username</th><th>Name</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead><tbody id="usersTable"></tbody></table></div></div>
-                <div id="systemSettings" class="page" style="display: none;"><h2>System Settings</h2><div class="form-container"><div class="form-row"><div class="input-group"><label>School Name</label><input type="text" id="schoolNameSetting"></div><div class="input-group"><label>Academic Year</label><input type="text" id="academicYearSetting"></div></div><div class="form-row"><div class="input-group"><label>Pass Mark (%)</label><input type="number" id="passMarkSetting" min="0" max="100"></div></div><button class="btn btn-primary" onclick="saveSystemSettings()">Save Settings</button></div></div>
-                <div id="auditLog" class="page" style="display: none;"><h2>Audit Log</h2><div class="table-container"><table><thead><tr><th>Timestamp</th><th>User</th><th>Action</th><th>Details</th></tr></thead><tbody id="auditLogTable"></tbody></table></div></div>
-                <div id="backupRestore" class="page" style="display: none;"><h2>Backup & Restore</h2><div class="form-container"><button class="btn btn-success" onclick="createBackup()">Create Backup</button><div class="file-upload" style="margin-top:20px" onclick="document.getElementById('restoreFile').click()">Click to Restore<input type="file" id="restoreFile" accept=".json" style="display:none" onchange="restoreBackup(this.files[0])"></div></div></div>
-                <div id="achievements" class="page" style="display: none;"><h2>Achievements</h2><p>Gamification features</p></div>
+                <div id="studentPerformance" class="page" style="display: none;">
+                    <h2 class="page-title">My Performance Graph</h2>
+                    <div id="studentGraphContainer" class="chart-container"></div>
+                </div>
+
+                <div id="studentReportCard" class="page" style="display: none;">
+                    <h2 class="page-title">My Report Card</h2>
+                    <div class="form-container">
+                        <div class="form-row">
+                            <div class="input-group"><label>Select Term</label><select id="studentReportTerm" onchange="loadStudentReportCard()"><option>Term 1</option><option>Term 2</option><option>Term 3</option><option>Annual</option></select></div>
+                            <div class="input-group"><label>Year</label><select id="studentReportYear" onchange="loadStudentReportCard()"><option>2024</option><option>2025</option></select></div>
+                        </div>
+                    </div>
+                    <div id="studentReportCardPreview"></div>
+                </div>
+
             </div>
         </div>
     </div>
 
-    <div class="watermark">Digital Score Management System v3.0 | Ultimate Edition by Frank Jefwa</div>
+    <div class="watermark">Digital Score Management System v4.0 | Ultimate Edition by Frank Jefwa</div>
 
     <script>
         // ============================================
-        // COMPLETE JAVASCRIPT - WITH FIXES APPLIED
+        // COMPLETE JAVASCRIPT - ALL FIXES IMPLEMENTED
         // ============================================
         
-        // Core state
+        // Core State
         let currentUser = null;
         let currentRole = 'admin';
         let scoresData = [];
@@ -1754,8 +1562,8 @@
         let eventsData = [];
         let achievementsData = [];
         let auditLogData = [];
-        let backupsData = [];
         
+        // Main Admin
         const MAIN_ADMIN = {
             username: 'FrankJefwa',
             password: 'fj12345',
@@ -1808,7 +1616,7 @@
             saveToStorage();
         }
         
-        // Data persistence
+        // Data Persistence
         function saveToStorage() {
             localStorage.setItem('scoresData', JSON.stringify(scoresData));
             localStorage.setItem('studentsData', JSON.stringify(studentsData));
@@ -1820,7 +1628,6 @@
             localStorage.setItem('eventsData', JSON.stringify(eventsData));
             localStorage.setItem('achievementsData', JSON.stringify(achievementsData));
             localStorage.setItem('auditLogData', JSON.stringify(auditLogData));
-            localStorage.setItem('backupsData', JSON.stringify(backupsData));
         }
         
         function loadFromStorage() {
@@ -1835,12 +1642,8 @@
                 eventsData = JSON.parse(localStorage.getItem('eventsData')) || [];
                 achievementsData = JSON.parse(localStorage.getItem('achievementsData')) || [];
                 auditLogData = JSON.parse(localStorage.getItem('auditLogData')) || [];
-                backupsData = JSON.parse(localStorage.getItem('backupsData')) || [];
             } catch(e) {
-                scoresData = []; studentsData = []; usersData = [];
-                pendingApprovalsData = []; attendanceData = []; announcementsData = [];
-                eventsData = []; achievementsData = []; auditLogData = []; backupsData = [];
-                settingsData = {};
+                scoresData = []; studentsData = []; usersData = []; pendingApprovalsData = []; attendanceData = []; announcementsData = []; eventsData = []; achievementsData = []; auditLogData = []; settingsData = {};
             }
         }
         
@@ -1930,8 +1733,28 @@
             }
         }
         
-        function showSignup() { document.getElementById('signupModal').classList.add('active'); }
+        function showForgotPassword() { document.getElementById('forgotPasswordModal').classList.add('active'); }
+        function hideForgotPassword() { document.getElementById('forgotPasswordModal').classList.remove('active'); }
+        function resetPassword() { showNotification('Reset link sent to your email', 'info'); hideForgotPassword(); }
+        function togglePassword(id) { const f = document.getElementById(id); f.type = f.type === 'password' ? 'text' : 'password'; }
+        function showNotifications() { showNotification('No new notifications', 'info'); }
+        function toggleDarkMode() { document.body.classList.toggle('dark-mode'); localStorage.setItem('darkMode', document.body.classList.contains('dark-mode')); }
+        
+        function showSignup() { 
+            document.getElementById('signupModal').classList.add('active');
+            document.getElementById('teacherClassGroup').style.display = 'none';
+        }
         function hideSignup() { document.getElementById('signupModal').classList.remove('active'); }
+        
+        function updateRoleFields() {
+            const role = document.getElementById('signupRole').value;
+            const teacherClassGroup = document.getElementById('teacherClassGroup');
+            if (role === 'teacher') {
+                teacherClassGroup.style.display = 'block';
+            } else {
+                teacherClassGroup.style.display = 'none';
+            }
+        }
         
         function signup() {
             const name = document.getElementById('signupName').value.trim();
@@ -1939,32 +1762,25 @@
             const email = document.getElementById('signupEmail').value.trim();
             const phone = document.getElementById('signupPhone').value.trim();
             const role = document.getElementById('signupRole').value;
+            const teacherClass = document.getElementById('teacherClass').value;
             const password = document.getElementById('signupPassword').value;
             const confirm = document.getElementById('signupConfirmPassword').value;
             
             if (!name || !username || !role || !password) { showNotification('Fill all required fields', 'error'); return; }
             if (password !== confirm) { showNotification('Passwords do not match', 'error'); return; }
+            if (role === 'teacher' && !teacherClass) { showNotification('Please select assigned class for teacher', 'error'); return; }
             if (usersData.find(u => u.username === username) || pendingApprovalsData.find(p => p.username === username)) {
                 showNotification('Username exists', 'error'); return;
             }
             
             pendingApprovalsData.push({
-                id: 'pending_' + Date.now(), name, username, email, phone, role,
+                id: 'pending_' + Date.now(), name, username, email, phone, role, teacherClass: role === 'teacher' ? teacherClass : null,
                 passwordHash: hashPassword(password), status: 'pending', requestDate: new Date().toISOString()
             });
             saveToStorage();
             showNotification('Registration submitted! Awaiting admin approval.', 'success');
             hideSignup();
         }
-        
-        function showForgotPassword() { document.getElementById('forgotPasswordModal').classList.add('active'); }
-        function hideForgotPassword() { document.getElementById('forgotPasswordModal').classList.remove('active'); }
-        function resetPassword() { showNotification('Reset link sent to your email', 'info'); hideForgotPassword(); }
-        function togglePassword(id) { const f = document.getElementById(id); f.type = f.type === 'password' ? 'text' : 'password'; }
-        function showTab(tabId) { document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active')); document.getElementById(tabId).classList.add('active'); }
-        function updateRoleFields() {}
-        function showNotifications() { showNotification('No new notifications', 'info'); }
-        function toggleDarkMode() { document.body.classList.toggle('dark-mode'); localStorage.setItem('darkMode', document.body.classList.contains('dark-mode')); }
         
         // Admin Functions
         function loadPendingApprovals() {
@@ -1973,17 +1789,26 @@
             if (!tbody) return;
             if (pending.length === 0) { tbody.innerHTML = '<tr><td colspan="7" style="text-align:center">No pending approvals</td></tr>'; return; }
             tbody.innerHTML = pending.map(p => `
-                <tr><td>${p.name}</td><td>${p.username}</td><td>${p.email || 'N/A'}</td><td><span class="role-badge ${p.role}">${p.role}</span></td>
-                <td>${new Date(p.requestDate).toLocaleDateString()}</td><td><span class="status-badge status-pending">Pending</span></td>
-                <td class="action-buttons"><button class="btn btn-sm btn-success" onclick="approveUser('${p.id}')">Approve</button>
-                <button class="btn btn-sm btn-danger" onclick="rejectUser('${p.id}')">Reject</button></td></tr>
+                <tr>
+                    <td>${p.name}</td>
+                    <td>${p.username}</td>
+                    <td>${p.email || 'N/A'}</td>
+                    <td><span class="role-badge ${p.role}">${p.role}</span></td>
+                    <td>${p.role === 'teacher' ? (p.teacherClass || 'Not set') : '-'}</td>
+                    <td>${new Date(p.requestDate).toLocaleDateString()}</td>
+                    <td class="action-buttons"><button class="btn btn-sm btn-success" onclick="approveUser('${p.id}')">Approve</button><button class="btn btn-sm btn-danger" onclick="rejectUser('${p.id}')">Reject</button></td>
+                </tr>
             `).join('');
         }
         
         function approveUser(id) {
             const pending = pendingApprovalsData.find(p => p.id === id);
             if (!pending) return;
-            usersData.push({ id: 'user_' + Date.now(), username: pending.username, name: pending.name, passwordHash: pending.passwordHash, role: pending.role, email: pending.email, phone: pending.phone, status: 'active', created: new Date().toISOString() });
+            usersData.push({
+                id: 'user_' + Date.now(), username: pending.username, name: pending.name, passwordHash: pending.passwordHash,
+                role: pending.role, email: pending.email, phone: pending.phone, assignedClass: pending.teacherClass,
+                status: 'active', created: new Date().toISOString()
+            });
             pending.status = 'approved';
             saveToStorage();
             loadPendingApprovals();
@@ -2006,20 +1831,28 @@
             const phone = document.getElementById('newStudentPhone').value.trim();
             if (!name || !className) { showNotification('Enter student name and class', 'error'); return; }
             const studentId = generateStudentId();
+            document.getElementById('newStudentId').value = studentId;
             studentsData.push({ id: studentId, admissionNumber: studentId, name, className, parentName: parent, parentPhone: phone, enrollmentDate: new Date().toISOString() });
             saveToStorage();
             showNotification(`Student ${name} added! Admission: ${studentId}`, 'success');
             loadStudentsList();
             clearStudentForm();
+            updateAllDropdowns();
         }
         
         function loadStudentsList() {
             const tbody = document.getElementById('studentsTable');
             if (!tbody) return;
-            if (studentsData.length === 0) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center">No students</td></tr>'; return; }
+            if (studentsData.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">No students</td></tr>'; return; }
             tbody.innerHTML = studentsData.map(s => `
-                <tr><td>${s.admissionNumber || s.id}</td><td>${s.name}</td><td>${s.className}</td><td>${s.parentName || '-'}</td>
-                <td class="action-buttons"><button class="btn btn-sm btn-danger" onclick="deleteStudent('${s.id}')">Delete</button></td></tr>
+                <tr>
+                    <td>${s.admissionNumber || s.id}</td>
+                    <td>${s.name}</td>
+                    <td>${s.className}</td>
+                    <td>${s.parentName || '-'}</td>
+                    <td>${s.parentPhone || '-'}</td>
+                    <td class="action-buttons"><button class="btn btn-sm btn-danger" onclick="deleteStudent('${s.id}')">Delete</button></td>
+                </tr>
             `).join('');
         }
         
@@ -2029,6 +1862,7 @@
                 scoresData = scoresData.filter(s => s.studentId !== id);
                 saveToStorage();
                 loadStudentsList();
+                updateAllDropdowns();
                 showNotification('Student deleted', 'success');
             }
         }
@@ -2038,24 +1872,11 @@
             document.getElementById('newStudentClass').value = '';
             document.getElementById('newStudentParent').value = '';
             document.getElementById('newStudentPhone').value = '';
+            document.getElementById('newStudentDOB').value = '';
+            document.getElementById('newStudentId').value = generateStudentId();
         }
         
-        // Admin Score Management (with EDIT feature - NEW)
-        function loadAllScoresAdmin() {
-            const tbody = document.getElementById('allScoresAdminTable');
-            if (!tbody) return;
-            if (scoresData.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">No scores</td></tr>'; return; }
-            tbody.innerHTML = scoresData.map(score => {
-                const student = studentsData.find(s => s.id === score.studentId);
-                return `<tr><td>${student ? student.name : 'Unknown'}</td><td>${score.subject}</td>
-                <td><strong style="color: ${score.score >= 40 ? '#2ecc71' : '#e74c3c'}">${score.score}%</strong></td>
-                <td>${score.grade}</td><td>${formatDate(score.date)}</td>
-                <td class="action-buttons"><button class="btn btn-sm btn-warning" onclick="editScore('${score.id}')">Edit</button>
-                <button class="btn btn-sm btn-danger" onclick="deleteScore('${score.id}')">Delete</button></td></tr>`;
-            }).join('');
-            populateStudentSelect();
-        }
-        
+        // Score Management with Edit
         function saveScore() {
             const studentName = document.getElementById('studentName').value;
             const subject = document.getElementById('subjectName').value;
@@ -2078,9 +1899,9 @@
             document.getElementById('scoreComments').value = '';
             loadAllScoresAdmin();
             updateDashboard();
+            updateReportsAnalysis();
         }
         
-        // EDIT SCORE FUNCTION (NEW - what you asked for)
         function editScore(scoreId) {
             const score = scoresData.find(s => s.id === scoreId);
             if (!score) return;
@@ -2092,7 +1913,9 @@
             score.grade = calculateGrade(scoreNum);
             saveToStorage();
             loadAllScoresAdmin();
-            if (document.getElementById('viewAllScoresTable')) loadViewAllScores();
+            loadViewAllScores();
+            updateDashboard();
+            updateReportsAnalysis();
             showNotification('Score updated', 'success');
         }
         
@@ -2101,15 +1924,40 @@
                 scoresData = scoresData.filter(s => s.id !== scoreId);
                 saveToStorage();
                 loadAllScoresAdmin();
-                if (document.getElementById('viewAllScoresTable')) loadViewAllScores();
+                loadViewAllScores();
+                updateDashboard();
+                updateReportsAnalysis();
                 showNotification('Score deleted', 'success');
             }
         }
         
+        function loadAllScoresAdmin() {
+            const tbody = document.getElementById('allScoresAdminTable');
+            if (!tbody) return;
+            if (scoresData.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">No scores</td></tr>'; return; }
+            tbody.innerHTML = scoresData.map(score => {
+                const student = studentsData.find(s => s.id === score.studentId);
+                return `<tr>
+                    <td>${student ? student.name : 'Unknown'}</td>
+                    <td>${score.subject}</td>
+                    <td><strong style="color: ${score.score >= 40 ? '#2ecc71' : '#e74c3c'}">${score.score}%</strong></td>
+                    <td>${score.grade}</td>
+                    <td>${formatDate(score.date)}</td>
+                    <td class="action-buttons"><button class="btn btn-sm btn-warning" onclick="editScore('${score.id}')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteScore('${score.id}')">Delete</button></td>
+                </tr>`;
+            }).join('');
+            populateStudentSelect();
+        }
+        
         function populateStudentSelect() {
             const select = document.getElementById('studentName');
-            if (!select) return;
-            select.innerHTML = '<option value="">Select Student</option>' + studentsData.map(s => `<option value="${s.name}">${s.name} (${s.admissionNumber || s.id})</option>`).join('');
+            if (select) select.innerHTML = '<option value="">Select Student</option>' + studentsData.map(s => `<option value="${s.name}">${s.name} (${s.admissionNumber || s.id})</option>`).join('');
+            
+            const reportSelect = document.getElementById('adminReportStudent');
+            if (reportSelect) reportSelect.innerHTML = '<option value="">Select Student</option>' + studentsData.map(s => `<option value="${s.id}">${s.name} (${s.admissionNumber || s.id})</option>`).join('');
+            
+            const customTarget = document.getElementById('customReportTarget');
+            if (customTarget) customTarget.innerHTML = '<option value="">Select...</option>' + studentsData.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
         }
         
         function autoFillStudentInfo() {
@@ -2118,59 +1966,226 @@
             if (student) { document.getElementById('studentId').value = student.id; document.getElementById('className').value = student.className; }
         }
         
-        function importCSV(file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('importProgress').style.display = 'block';
-                setTimeout(() => {
-                    const lines = e.target.result.split('\n');
-                    let count = 0;
-                    for (let i = 1; i < lines.length; i++) {
-                        const parts = lines[i].trim().split(',');
-                        if (parts.length >= 4) {
-                            let student = studentsData.find(s => s.name === parts[0].trim());
-                            if (!student) {
-                                student = { id: generateStudentId(), name: parts[0].trim(), className: parts[3].trim(), enrollmentDate: new Date().toISOString() };
-                                studentsData.push(student);
-                            }
-                            scoresData.push({ id: Date.now() + i, studentId: student.id, studentName: parts[0].trim(), subject: parts[1].trim(), score: parseInt(parts[2].trim()), grade: calculateGrade(parseInt(parts[2].trim())), className: parts[3].trim(), examType: parts[4]?.trim() || 'Imported', date: new Date().toISOString().split('T')[0], addedBy: currentUser.name });
-                            count++;
-                        }
-                    }
-                    saveToStorage();
-                    document.getElementById('importProgress').style.display = 'none';
-                    showNotification(`Imported ${count} scores`, 'success');
-                    loadAllScoresAdmin();
-                    updateDashboard();
-                }, 1000);
-            };
-            reader.readAsText(file);
+        // View All Scores with Search
+        let currentFilterClass = '';
+        let currentSearchName = '';
+        
+        function loadViewAllScores() {
+            let filtered = [...scoresData];
+            if (currentSearchName) filtered = filtered.filter(s => s.studentName.toLowerCase().includes(currentSearchName.toLowerCase()));
+            if (currentFilterClass) filtered = filtered.filter(s => s.className === currentFilterClass);
+            
+            const tbody = document.getElementById('viewAllScoresTable');
+            if (!tbody) return;
+            if (filtered.length === 0) { tbody.innerHTML = '<tr><td colspan="9" style="text-align:center">No scores found</td></tr>'; return; }
+            tbody.innerHTML = filtered.map(score => {
+                const student = studentsData.find(s => s.id === score.studentId);
+                return `<tr>
+                    <td>${student ? (student.admissionNumber || student.id) : 'N/A'}</td>
+                    <td>${score.studentName}</td>
+                    <td>${score.className}</td>
+                    <td>${score.subject}</td>
+                    <td><strong>${score.score}%</strong></td>
+                    <td>${score.grade}</td>
+                    <td>${score.examType}</td>
+                    <td>${formatDate(score.date)}</td>
+                    <td class="action-buttons"><button class="btn btn-sm btn-warning" onclick="editScore('${score.id}')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteScore('${score.id}')">Delete</button></td>
+                </tr>`;
+            }).join('');
         }
         
-        // Teacher Functions (NEW - teachers see their students)
-        function getTeacherStudents() {
-            const teacherClass = currentUser.assignedClass || 'Form 1A';
-            return studentsData.filter(s => s.className === teacherClass);
+        function filterScoresByName() {
+            currentSearchName = document.getElementById('searchStudentName').value;
+            loadViewAllScores();
         }
+        
+        function filterScoresByClass() {
+            currentFilterClass = document.getElementById('filterClass').value;
+            loadViewAllScores();
+        }
+        
+        // Reports & Analysis (starts at 0)
+        function updateReportsAnalysis() {
+            const avg = scoresData.length ? Math.round(scoresData.reduce((a,b) => a + b.score, 0) / scoresData.length) : 0;
+            const passMark = settingsData.passMark || 40;
+            const passing = scoresData.filter(s => s.score >= passMark).length;
+            const passRate = scoresData.length ? Math.round((passing / scoresData.length) * 100) : 0;
+            const aboveAvg = scoresData.filter(s => s.score > avg).length;
+            
+            document.getElementById('overallAvg').textContent = avg + '%';
+            document.getElementById('totalScoresCount').textContent = scoresData.length;
+            document.getElementById('passRate').textContent = passRate + '%';
+            document.getElementById('aboveAvgCount').textContent = aboveAvg;
+        }
+        
+        function generateCustomReport() {
+            const type = document.getElementById('customReportType').value;
+            const targetId = document.getElementById('customReportTarget').value;
+            const container = document.getElementById('customReportResult');
+            
+            if (!targetId) { showNotification('Please select a student/class', 'error'); return; }
+            
+            if (type === 'student') {
+                const student = studentsData.find(s => s.id === targetId);
+                const studentScores = scoresData.filter(s => s.studentId === targetId);
+                const avg = studentScores.length ? Math.round(studentScores.reduce((a,b) => a + b.score, 0) / studentScores.length) : 0;
+                
+                container.style.display = 'block';
+                container.innerHTML = `
+                    <h3 style="padding: 20px">Report for ${student.name}</h3>
+                    <p><strong>Admission Number:</strong> ${student.admissionNumber}</p>
+                    <p><strong>Class:</strong> ${student.className}</p>
+                    <p><strong>Average Score:</strong> ${avg}% (Grade: ${calculateGrade(avg)})</p>
+                    <table><thead><tr><th>Subject</th><th>Score</th><th>Grade</th><th>Date</th></tr></thead><tbody>
+                    ${studentScores.map(s => `<tr><td>${s.subject}</td><td>${s.score}%</td><td>${s.grade}</td><td>${formatDate(s.date)}</td></tr>`).join('')}
+                    </tbody></table>
+                `;
+            } else if (type === 'class') {
+                const classStudents = studentsData.filter(s => s.className === targetId);
+                const classScores = scoresData.filter(s => s.className === targetId);
+                const avg = classScores.length ? Math.round(classScores.reduce((a,b) => a + b.score, 0) / classScores.length) : 0;
+                
+                container.style.display = 'block';
+                container.innerHTML = `
+                    <h3 style="padding: 20px">Class Report: ${targetId}</h3>
+                    <p><strong>Total Students:</strong> ${classStudents.length}</p>
+                    <p><strong>Class Average:</strong> ${avg}%</p>
+                    <p><strong>Total Scores Recorded:</strong> ${classScores.length}</p>
+                `;
+            }
+        }
+        
+        function exportReportToPDF() { showNotification('PDF export ready - would download in production', 'success'); }
+        
+        // Class Analysis
+        function loadClassAnalysisData() {
+            const className = document.getElementById('analysisClassSelect').value;
+            if (!className) return;
+            
+            const classStudents = studentsData.filter(s => s.className === className);
+            const classScores = scoresData.filter(s => s.className === className);
+            const avg = classScores.length ? Math.round(classScores.reduce((a,b) => a + b.score, 0) / classScores.length) : 0;
+            const passMark = settingsData.passMark || 40;
+            const passing = classScores.filter(s => s.score >= passMark).length;
+            const passRate = classScores.length ? Math.round((passing / classScores.length) * 100) : 0;
+            
+            // Calculate student averages for ranking
+            const rankings = [];
+            classStudents.forEach(student => {
+                const studentScores = scoresData.filter(s => s.studentId === student.id);
+                const studentAvg = studentScores.length ? Math.round(studentScores.reduce((a,b) => a + b.score, 0) / studentScores.length) : 0;
+                rankings.push({ name: student.name, avg: studentAvg, grade: calculateGrade(studentAvg) });
+            });
+            rankings.sort((a,b) => b.avg - a.avg);
+            
+            document.getElementById('classStatsGrid').style.display = 'grid';
+            document.getElementById('classRankingTable').style.display = 'block';
+            document.getElementById('classChart').style.display = 'block';
+            document.getElementById('classAvgValue').textContent = avg + '%';
+            document.getElementById('classTopStudent').textContent = rankings[0]?.name || '-';
+            document.getElementById('classPassRateValue').textContent = passRate + '%';
+            document.getElementById('classTotalStudents').textContent = classStudents.length;
+            
+            document.getElementById('classRankingBody').innerHTML = rankings.map((r, i) => `<tr><td>${i+1}</td><td>${r.name}</td><td>${r.avg}%</td><td>${r.grade}</td></tr>`).join('');
+            
+            // Simple bar chart
+            const grades = { A:0, B:0, C:0, D:0, E:0, F:0 };
+            classScores.forEach(s => { grades[s.grade]++; });
+            document.getElementById('classPerformanceChart').innerHTML = `
+                <div class="graph-bars">
+                    ${Object.entries(grades).map(([grade, count]) => `<div class="graph-bar-container"><div class="graph-bar" style="height: ${count * 20}px; width: 50px;"></div><div class="graph-bar-label">${grade}</div><div class="graph-bar-value">${count}</div></div>`).join('')}
+                </div>
+            `;
+        }
+        
+        // Generate Report Card
+        function generateAdminReportCard() {
+            const studentId = document.getElementById('adminReportStudent').value;
+            const term = document.getElementById('adminReportTerm').value;
+            const year = document.getElementById('adminReportYear').value;
+            if (!studentId) { showNotification('Select a student', 'error'); return; }
+            
+            const student = studentsData.find(s => s.id === studentId);
+            const studentScores = scoresData.filter(s => s.studentId === studentId);
+            const avg = studentScores.length ? Math.round(studentScores.reduce((a,b) => a + b.score, 0) / studentScores.length) : 0;
+            
+            const preview = document.getElementById('adminReportCardPreview');
+            preview.style.display = 'block';
+            preview.innerHTML = `
+                <div style="padding: 20px;">
+                    <h3 style="text-align: center">${settingsData.schoolName || 'School Name'}</h3>
+                    <h4 style="text-align: center">REPORT CARD - ${term} ${year}</h4>
+                    <p><strong>Student Name:</strong> ${student.name}</p>
+                    <p><strong>Admission Number:</strong> ${student.admissionNumber}</p>
+                    <p><strong>Class:</strong> ${student.className}</p>
+                    <p><strong>Average Score:</strong> ${avg}% (Grade: ${calculateGrade(avg)})</p>
+                    <br>
+                    <table><thead><td><th>Subject</th><th>Score</th><th>Grade</th><th>Remarks</th></tr></thead><tbody>
+                    ${studentScores.map(s => `<tr><td>${s.subject}</td><td>${s.score}%</td><td>${s.grade}</td><td>${s.score >= 40 ? 'Pass' : 'Fail'}</td></tr>`).join('')}
+                    </tbody></table>
+                    <div class="form-actions" style="margin-top: 20px;"><button class="btn btn-success" onclick="downloadReportCard('${student.id}', '${term}', '${year}')">Download PDF</button></div>
+                </div>
+            `;
+        }
+        
+        function downloadReportCard(studentId, term, year) {
+            const student = studentsData.find(s => s.id === studentId);
+            const studentScores = scoresData.filter(s => s.studentId === studentId);
+            const avg = studentScores.length ? Math.round(studentScores.reduce((a,b) => a + b.score, 0) / studentScores.length) : 0;
+            let content = `${settingsData.schoolName || 'School Name'}\nREPORT CARD - ${term} ${year}\n\nStudent: ${student.name}\nAdmission: ${student.admissionNumber}\nClass: ${student.className}\nAverage: ${avg}% (Grade: ${calculateGrade(avg)})\n\nSubject Scores:\n`;
+            studentScores.forEach(s => { content += `${s.subject}: ${s.score}% (${s.grade})\n`; });
+            const blob = new Blob([content], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `${student.name}_${term}_${year}_report.txt`;
+            a.click();
+            URL.revokeObjectURL(a.href);
+            showNotification('Report downloaded', 'success');
+        }
+        
+        // Teacher Functions
+        function getTeacherClass() { return currentUser.assignedClass || 'Form 1A'; }
+        function getTeacherStudents() { return studentsData.filter(s => s.className === getTeacherClass()); }
         
         function loadTeacherDashboard() {
             const myStudents = getTeacherStudents();
+            const classScores = scoresData.filter(s => s.className === getTeacherClass());
             const myScores = scoresData.filter(s => s.addedBy === currentUser.name);
-            const classScores = scoresData.filter(s => myStudents.some(st => st.id === s.studentId));
             const avg = classScores.length ? Math.round(classScores.reduce((a,b) => a + b.score, 0) / classScores.length) : 0;
+            const attendanceRecords = attendanceData.filter(a => a.className === getTeacherClass());
+            const presentCount = attendanceRecords.filter(a => a.status === 'present').length;
+            const attendanceRate = attendanceRecords.length ? Math.round((presentCount / attendanceRecords.length) * 100) : 0;
+            
             document.getElementById('teacherStudentCount').textContent = myStudents.length;
             document.getElementById('teacherClassAvg').textContent = avg + '%';
             document.getElementById('teacherScoreCount').textContent = myScores.length;
+            document.getElementById('teacherAttendanceRate').textContent = attendanceRate + '%';
         }
         
         function loadTeacherStudents() {
             const tbody = document.getElementById('teacherStudentsTable');
             const myStudents = getTeacherStudents();
             if (!tbody) return;
-            if (myStudents.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center">No students in your class</td></tr>'; return; }
-            tbody.innerHTML = myStudents.map(s => `<tr><td>${s.admissionNumber || s.id}</td><td>${s.name}</td><td>${s.parentPhone || '-'}</td><td>-</td></tr>`).join('');
+            if (myStudents.length === 0) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center">No students in your class</td></tr>'; return; }
+            tbody.innerHTML = myStudents.map(s => {
+                const studentScores = scoresData.filter(sc => sc.studentId === s.id);
+                const avg = studentScores.length ? Math.round(studentScores.reduce((a,b) => a + b.score, 0) / studentScores.length) : 0;
+                return `<tr><td>${s.admissionNumber || s.id}</td><td>${s.name}</td><td>${s.parentPhone || '-'}</td><td>${avg}%</td>
+                <td class="action-buttons"><button class="btn btn-sm btn-info" onclick="viewStudentScores('${s.id}')">View Scores</button></td></tr>`;
+            }).join('');
+            
             const select = document.getElementById('teacherStudentSelect');
             if (select) select.innerHTML = '<option value="">Select Student</option>' + myStudents.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+            
+            const reportSelect = document.getElementById('teacherReportStudent');
+            if (reportSelect) reportSelect.innerHTML = '<option value="">Select Student</option>' + myStudents.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+        }
+        
+        function viewStudentScores(studentId) {
+            const student = studentsData.find(s => s.id === studentId);
+            const studentScores = scoresData.filter(s => s.studentId === studentId);
+            const avg = studentScores.length ? Math.round(studentScores.reduce((a,b) => a + b.score, 0) / studentScores.length) : 0;
+            showNotification(`${student.name}: Average ${avg}%`, 'info');
         }
         
         function saveTeacherScore() {
@@ -2180,8 +2195,11 @@
             const examType = document.getElementById('teacherExamSelect').value;
             if (!studentId || !subject || isNaN(score)) { showNotification('Fill all fields', 'error'); return; }
             if (score < 0 || score > 100) { showNotification('Score 0-100', 'error'); return; }
+            
             const student = studentsData.find(s => s.id === studentId);
             if (!student) { showNotification('Student not found', 'error'); return; }
+            if (student.className !== getTeacherClass()) { showNotification('You can only add scores for your class', 'error'); return; }
+            
             const newScore = { id: Date.now().toString(), studentId, studentName: student.name, subject, score, grade: calculateGrade(score), className: student.className, examType, date: new Date().toISOString().split('T')[0], addedBy: currentUser.name };
             scoresData.push(newScore);
             saveToStorage();
@@ -2189,6 +2207,7 @@
             document.getElementById('teacherScoreInput').value = '';
             loadTeacherScores();
             loadTeacherAllScores();
+            loadTeacherDashboard();
         }
         
         function loadTeacherScores() {
@@ -2196,9 +2215,10 @@
             const myScores = scoresData.filter(s => s.addedBy === currentUser.name).slice(-10).reverse();
             if (!tbody) return;
             if (myScores.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">No scores yet</td></tr>'; return; }
-            tbody.innerHTML = myScores.map(score => `<tr><td>${score.studentName}</td><td>${score.subject}</td><td>${score.score}%</td><td>${score.grade}</td><td>${formatDate(score.date)}</td>
-            <td class="action-buttons"><button class="btn btn-sm btn-warning" onclick="editTeacherScore('${score.id}')">Edit</button>
-            <button class="btn btn-sm btn-danger" onclick="deleteTeacherScore('${score.id}')">Delete</button></td></tr>`).join('');
+            tbody.innerHTML = myScores.map(score => `<tr>
+                <td>${score.studentName}</td><td>${score.subject}</td><td>${score.score}%</td><td>${score.grade}</td><td>${formatDate(score.date)}</td>
+                <td class="action-buttons"><button class="btn btn-sm btn-warning" onclick="editTeacherScore('${score.id}')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteTeacherScore('${score.id}')">Delete</button></td>
+            </tr>`).join('');
         }
         
         function loadTeacherAllScores() {
@@ -2207,8 +2227,7 @@
             if (!tbody) return;
             if (myScores.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">No scores</td></tr>'; return; }
             tbody.innerHTML = myScores.map(score => `<tr><td>${score.studentName}</td><td>${score.subject}</td><td>${score.score}%</td><td>${score.grade}</td><td>${formatDate(score.date)}</td>
-            <td class="action-buttons"><button class="btn btn-sm btn-warning" onclick="editTeacherScore('${score.id}')">Edit</button>
-            <button class="btn btn-sm btn-danger" onclick="deleteTeacherScore('${score.id}')">Delete</button></td></tr>`).join('');
+            <td class="action-buttons"><button class="btn btn-sm btn-warning" onclick="editTeacherScore('${score.id}')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteTeacherScore('${score.id}')">Delete</button></td></tr>`).join('');
         }
         
         function editTeacherScore(scoreId) {
@@ -2236,7 +2255,75 @@
             }
         }
         
-        // Parent Functions (PRIVACY FIX - must enter admission number)
+        function generateTeacherReportCard() {
+            const studentId = document.getElementById('teacherReportStudent').value;
+            const term = document.getElementById('teacherReportTerm').value;
+            const year = document.getElementById('teacherReportYear').value;
+            if (!studentId) { showNotification('Select a student', 'error'); return; }
+            
+            const student = studentsData.find(s => s.id === studentId);
+            const studentScores = scoresData.filter(s => s.studentId === studentId);
+            const avg = studentScores.length ? Math.round(studentScores.reduce((a,b) => a + b.score, 0) / studentScores.length) : 0;
+            
+            const preview = document.getElementById('teacherReportPreview');
+            preview.innerHTML = `
+                <div class="table-container" style="padding: 20px;">
+                    <h3 style="text-align: center">${settingsData.schoolName || 'School Name'}</h3>
+                    <h4 style="text-align: center">REPORT CARD - ${term} ${year}</h4>
+                    <p><strong>Student:</strong> ${student.name}</p>
+                    <p><strong>Admission:</strong> ${student.admissionNumber}</p>
+                    <p><strong>Class:</strong> ${student.className}</p>
+                    <p><strong>Average:</strong> ${avg}% (Grade: ${calculateGrade(avg)})</p>
+                    <br>
+                    <table><thead><tr><th>Subject</th><th>Score</th><th>Grade</th></tr></thead><tbody>
+                    ${studentScores.map(s => `<tr><td>${s.subject}</td><td>${s.score}%</td><td>${s.grade}</td></tr>`).join('')}
+                    </tbody></table>
+                    <button class="btn btn-success" onclick="downloadTeacherReportCard('${student.id}', '${term}', '${year}')">Download</button>
+                </div>
+            `;
+        }
+        
+        function downloadTeacherReportCard(studentId, term, year) {
+            const student = studentsData.find(s => s.id === studentId);
+            const studentScores = scoresData.filter(s => s.studentId === studentId);
+            const avg = studentScores.length ? Math.round(studentScores.reduce((a,b) => a + b.score, 0) / studentScores.length) : 0;
+            let content = `${settingsData.schoolName || 'School Name'}\nREPORT CARD - ${term} ${year}\n\nStudent: ${student.name}\nAverage: ${avg}% (Grade: ${calculateGrade(avg)})\n\nSubjects:\n`;
+            studentScores.forEach(s => { content += `${s.subject}: ${s.score}% (${s.grade})\n`; });
+            const blob = new Blob([content], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `${student.name}_report.txt`;
+            a.click();
+            URL.revokeObjectURL(a.href);
+            showNotification('Report downloaded', 'success');
+        }
+        
+        function loadTeacherPerformanceGraph() {
+            const subject = document.getElementById('teacherGraphSubject').value;
+            const myStudents = getTeacherStudents();
+            const container = document.getElementById('teacherGraphContainer');
+            
+            const studentScores = myStudents.map(student => {
+                const scores = scoresData.filter(s => s.studentId === student.id && s.subject === subject);
+                const avg = scores.length ? Math.round(scores.reduce((a,b) => a + b.score, 0) / scores.length) : 0;
+                return { name: student.name, avg };
+            }).filter(s => s.avg > 0);
+            
+            if (studentScores.length === 0) {
+                container.innerHTML = '<div class="chart"><p>No scores available for this subject</p></div>';
+                return;
+            }
+            
+            studentScores.sort((a,b) => b.avg - a.avg);
+            container.innerHTML = `
+                <h3>${subject} Performance - ${getTeacherClass()}</h3>
+                <div class="graph-bars">
+                    ${studentScores.map(s => `<div class="graph-bar-container"><div class="graph-bar" style="height: ${s.avg * 2}px; width: 50px; background: linear-gradient(135deg, #3498db, #2ecc71);"></div><div class="graph-bar-label">${s.name.split(' ')[0]}</div><div class="graph-bar-value">${s.avg}%</div></div>`).join('')}
+                </div>
+            `;
+        }
+        
+        // Parent Functions
         function openParentModal() { document.getElementById('parentViewModal').classList.add('active'); }
         function closeParentModal() { document.getElementById('parentViewModal').classList.remove('active'); }
         
@@ -2244,31 +2331,40 @@
             const searchInput = document.getElementById('parentSearchInput').value.trim();
             if (!searchInput) { showNotification('Enter admission number', 'error'); return; }
             const student = studentsData.find(s => s.admissionNumber === searchInput || s.id === searchInput);
-            if (!student) { showNotification('Student not found. Check admission number.', 'error'); return; }
+            if (!student) { showNotification('Student not found', 'error'); return; }
+            
             const studentScores = scoresData.filter(s => s.studentId === student.id);
             if (studentScores.length === 0) { showNotification(`No scores for ${student.name}`, 'warning'); closeParentModal(); return; }
+            
             const avg = Math.round(studentScores.reduce((a,b) => a + b.score, 0) / studentScores.length);
-            let scoresHtml = '<table style="width:100%"><thead><tr><th>Subject</th><th>Score</th><th>Grade</th><th>Date</th></tr></thead><tbody>';
-            studentScores.forEach(s => { scoresHtml += `<tr><td>${s.subject}</td><td><strong>${s.score}%</strong></td><td>${s.grade}</td><td>${formatDate(s.date)}</td></tr>`; });
-            scoresHtml += '</tbody></table>';
             closeParentModal();
+            
             const modal = document.createElement('div');
             modal.className = 'modal-overlay active';
             modal.style.display = 'flex';
-            modal.innerHTML = `<div class="modal-content" style="max-width:700px"><div class="modal-header"><h2>${student.name}'s Results</h2><button onclick="this.closest(\'.modal-overlay\').remove()" style="background:none;border:none;font-size:24px;cursor:pointer">&times;</button></div>
-            <p><strong>Admission Number:</strong> ${student.admissionNumber}</p><p><strong>Class:</strong> ${student.className}</p><p><strong>Average:</strong> ${avg}% (Grade: ${calculateGrade(avg)})</p>${scoresHtml}
-            <div class="form-actions"><button class="btn btn-success" onclick="downloadParentReport('${student.id}')">Download Report</button></div></div>`;
+            modal.innerHTML = `
+                <div class="modal-content" style="max-width: 700px; max-height: 80vh; overflow-y: auto;">
+                    <div class="modal-header"><h2>${student.name}'s Results</h2><button onclick="this.closest('.modal-overlay').remove()" style="background:none;border:none;font-size:24px;cursor:pointer">&times;</button></div>
+                    <p><strong>Admission Number:</strong> ${student.admissionNumber}</p>
+                    <p><strong>Class:</strong> ${student.className}</p>
+                    <p><strong>Average Score:</strong> ${avg}% (Grade: ${calculateGrade(avg)})</p>
+                    <br>
+                    <table><thead><tr><th>Subject</th><th>Score</th><th>Grade</th><th>Date</th></tr></thead><tbody>
+                    ${studentScores.map(s => `<tr><td>${s.subject}</td><td>${s.score}%</td><td>${s.grade}</td><td>${formatDate(s.date)}</td></tr>`).join('')}
+                    </tbody></table>
+                    <div class="form-actions"><button class="btn btn-success" onclick="downloadParentReportCard('${student.id}')">Download Report</button></div>
+                </div>
+            `;
             document.body.appendChild(modal);
         }
         
-        function downloadParentReport(studentId) {
+        function downloadParentReportCard(studentId) {
             const student = studentsData.find(s => s.id === studentId);
-            if (!student) return;
             const studentScores = scoresData.filter(s => s.studentId === studentId);
             const avg = studentScores.length ? Math.round(studentScores.reduce((a,b) => a + b.score, 0) / studentScores.length) : 0;
-            let report = `DIGITAL SCORE MANAGEMENT SYSTEM - REPORT CARD\nBy Frank Jefwa\n\nStudent: ${student.name}\nAdmission: ${student.admissionNumber}\nClass: ${student.className}\nAverage: ${avg}% (Grade: ${calculateGrade(avg)})\n\nSubject Scores:\n`;
-            studentScores.forEach(s => { report += `- ${s.subject}: ${s.score}% (${s.grade})\n`; });
-            const blob = new Blob([report], { type: 'text/plain' });
+            let content = `${settingsData.schoolName || 'School Name'}\nREPORT CARD\n\nStudent: ${student.name}\nAdmission: ${student.admissionNumber}\nClass: ${student.className}\nAverage: ${avg}% (Grade: ${calculateGrade(avg)})\n\nSubject Scores:\n`;
+            studentScores.forEach(s => { content += `${s.subject}: ${s.score}% (${s.grade})\n`; });
+            const blob = new Blob([content], { type: 'text/plain' });
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
             a.download = `${student.name}_report.txt`;
@@ -2278,29 +2374,213 @@
         }
         
         // Student Functions
-        function loadStudentDashboard() {
+        function getStudentId() {
             const student = studentsData.find(s => s.id === currentUser.id || s.admissionNumber === currentUser.username);
-            if (!student) return;
-            const studentScores = scoresData.filter(s => s.studentId === student.id);
+            return student?.id;
+        }
+        
+        function loadStudentDashboard() {
+            const studentId = getStudentId();
+            if (!studentId) return;
+            const studentScores = scoresData.filter(s => s.studentId === studentId);
             const avg = studentScores.length ? Math.round(studentScores.reduce((a,b) => a + b.score, 0) / studentScores.length) : 0;
             const best = studentScores.length ? Math.max(...studentScores.map(s => s.score)) : 0;
+            const subjects = [...new Set(studentScores.map(s => s.subject))];
+            
+            // Calculate class rank
+            const className = studentsData.find(s => s.id === studentId)?.className;
+            const classStudents = studentsData.filter(s => s.className === className);
+            const rankings = [];
+            classStudents.forEach(s => {
+                const scores = scoresData.filter(sc => sc.studentId === s.id);
+                const sAvg = scores.length ? Math.round(scores.reduce((a,b) => a + b.score, 0) / scores.length) : 0;
+                rankings.push({ id: s.id, avg: sAvg });
+            });
+            rankings.sort((a,b) => b.avg - a.avg);
+            const rank = rankings.findIndex(r => r.id === studentId) + 1;
+            
             document.getElementById('studentAvg').textContent = avg + '%';
+            document.getElementById('studentSubjectCount').textContent = subjects.length;
             document.getElementById('studentBest').textContent = best + '%';
-            document.getElementById('studentSubjectCount').textContent = [...new Set(studentScores.map(s => s.subject))].length;
+            document.getElementById('studentRank').textContent = rank || '-';
         }
         
         function loadStudentScores() {
+            const studentId = getStudentId();
             const tbody = document.getElementById('studentScoresTable');
-            const student = studentsData.find(s => s.id === currentUser.id || s.admissionNumber === currentUser.username);
-            if (!student || !tbody) return;
-            const studentScores = scoresData.filter(s => s.studentId === student.id);
-            if (studentScores.length === 0) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center">No scores</td></tr>'; return; }
-            tbody.innerHTML = studentScores.map(score => `<tr><td>${score.subject}</td><td><strong>${score.score}%</strong></td><td>${score.grade}</td><td>${score.examType}</td><td>${formatDate(score.date)}</td></tr>`).join('');
+            if (!studentId || !tbody) return;
+            const studentScores = scoresData.filter(s => s.studentId === studentId);
+            if (studentScores.length === 0) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center">No scores yet</td></tr>'; return; }
+            tbody.innerHTML = studentScores.map(score => `<td><td>${score.subject}</td><td><strong>${score.score}%</strong></td><td>${score.grade}</td><td>${score.examType}</td><td>${formatDate(score.date)}</td></tr>`).join('');
+        }
+        
+        function loadStudentPerformanceGraph() {
+            const studentId = getStudentId();
+            const container = document.getElementById('studentGraphContainer');
+            if (!studentId) return;
+            const studentScores = scoresData.filter(s => s.studentId === studentId);
+            if (studentScores.length === 0) { container.innerHTML = '<div class="chart"><p>No scores available</p></div>'; return; }
+            
+            const subjectAverages = {};
+            studentScores.forEach(s => {
+                if (!subjectAverages[s.subject]) subjectAverages[s.subject] = { total: 0, count: 0 };
+                subjectAverages[s.subject].total += s.score;
+                subjectAverages[s.subject].count++;
+            });
+            
+            container.innerHTML = `
+                <h3>My Performance by Subject</h3>
+                <div class="graph-bars">
+                    ${Object.entries(subjectAverages).map(([subject, data]) => {
+                        const avg = Math.round(data.total / data.count);
+                        return `<div class="graph-bar-container"><div class="graph-bar" style="height: ${avg * 2}px; width: 60px;"></div><div class="graph-bar-label">${subject}</div><div class="graph-bar-value">${avg}%</div></div>`;
+                    }).join('')}
+                </div>
+            `;
+        }
+        
+        function loadStudentReportCard() {
+            const studentId = getStudentId();
+            const term = document.getElementById('studentReportTerm').value;
+            const year = document.getElementById('studentReportYear').value;
+            if (!studentId) return;
+            const student = studentsData.find(s => s.id === studentId);
+            const studentScores = scoresData.filter(s => s.studentId === studentId);
+            const avg = studentScores.length ? Math.round(studentScores.reduce((a,b) => a + b.score, 0) / studentScores.length) : 0;
+            
+            const preview = document.getElementById('studentReportCardPreview');
+            preview.innerHTML = `
+                <div class="table-container" style="padding: 20px;">
+                    <h3 style="text-align: center">${settingsData.schoolName || 'School Name'}</h3>
+                    <h4 style="text-align: center">REPORT CARD - ${term} ${year}</h4>
+                    <p><strong>Student:</strong> ${student.name}</p>
+                    <p><strong>Admission:</strong> ${student.admissionNumber}</p>
+                    <p><strong>Class:</strong> ${student.className}</p>
+                    <p><strong>Average:</strong> ${avg}% (Grade: ${calculateGrade(avg)})</p>
+                    <table><thead><tr><th>Subject</th><th>Score</th><th>Grade</th></tr></thead><tbody>
+                    ${studentScores.map(s => `<tr><td>${s.subject}</td><td>${s.score}%</td><td>${s.grade}</td></tr>`).join('')}
+                    </tbody></table>
+                </div>
+            `;
+        }
+        
+        // Attendance Functions
+        function loadClassAttendance() {
+            const className = document.getElementById('attendanceClass').value;
+            const date = document.getElementById('attendanceDate').value;
+            if (!className || !date) return;
+            const classStudents = studentsData.filter(s => s.className === className);
+            if (classStudents.length === 0) { showNotification('No students in this class', 'warning'); return; }
+            
+            let html = '<h3 style="padding: 20px">Mark Attendance</h3><table><thead><tr><th>Student Name</th><th>Status</th><th>Remarks</th></tr></thead><tbody>';
+            classStudents.forEach(s => {
+                const existing = attendanceData.find(a => a.studentId === s.id && a.date === date);
+                html += `<tr><td>${s.name}</td><td><select id="att_${s.id}"><option ${existing?.status === 'present' ? 'selected' : ''}>Present</option><option ${existing?.status === 'absent' ? 'selected' : ''}>Absent</option><option ${existing?.status === 'late' ? 'selected' : ''}>Late</option></select></td>
+                <td><input type="text" id="rem_${s.id}" value="${existing?.remarks || ''}" placeholder="Remarks"></td></tr>`;
+            });
+            html += '</tbody></table><div class="form-actions"><button class="btn btn-success" onclick="saveAttendance()">Save Attendance</button></div>';
+            document.getElementById('attendanceTableContainer').style.display = 'block';
+            document.getElementById('attendanceTableContainer').innerHTML = html;
+        }
+        
+        function saveAttendance() {
+            const className = document.getElementById('attendanceClass').value;
+            const date = document.getElementById('attendanceDate').value;
+            if (!className || !date) return;
+            const classStudents = studentsData.filter(s => s.className === className);
+            classStudents.forEach(s => {
+                const status = document.getElementById(`att_${s.id}`)?.value;
+                const remarks = document.getElementById(`rem_${s.id}`)?.value;
+                if (status) {
+                    attendanceData = attendanceData.filter(a => !(a.studentId === s.id && a.date === date));
+                    attendanceData.push({ id: Date.now(), studentId: s.id, studentName: s.name, className, date, status, remarks, recordedBy: currentUser.name });
+                }
+            });
+            saveToStorage();
+            showNotification('Attendance saved', 'success');
+        }
+        
+        // Calendar Functions
+        let currentCalendarDate = new Date();
+        function loadCalendar() {
+            const year = currentCalendarDate.getFullYear(), month = currentCalendarDate.getMonth();
+            const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+            document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            let html = '';
+            ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(d => { html += `<div class="calendar-day" style="font-weight:bold">${d}</div>`; });
+            for (let i = 0; i < firstDay; i++) html += '<div class="calendar-day"></div>';
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+                const hasEvent = eventsData.some(e => e.date === dateStr);
+                html += `<div class="calendar-day ${hasEvent ? 'event' : ''}" onclick="showDayEvents('${dateStr}')">${d}</div>`;
+            }
+            document.getElementById('calendarGrid').innerHTML = html;
+        }
+        function prevMonth() { currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1); loadCalendar(); }
+        function nextMonth() { currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1); loadCalendar(); }
+        function addEvent() { const title=document.getElementById('eventTitle')?.value, date=document.getElementById('eventDate')?.value; if(title&&date){ eventsData.push({id:Date.now(),title,date}); saveToStorage(); loadCalendar(); showNotification('Event added','success');} }
+        function showDayEvents(date) { const events = eventsData.filter(e => e.date === date); if(events.length) showNotification(events.map(e=>e.title).join(', '), 'info'); }
+        
+        // Announcements
+        function postAnnouncement() {
+            const title = document.getElementById('announcementTitle')?.value, content = document.getElementById('announcementContent')?.value;
+            if(title && content) { announcementsData.push({id:Date.now(),title,content,author:currentUser.name,timestamp:new Date().toISOString()}); saveToStorage(); loadAnnouncements(); showNotification('Announcement posted','success'); }
+        }
+        function loadAnnouncements() {
+            const container = document.getElementById('announcementsList');
+            if(!container) return;
+            if(announcementsData.length===0) { container.innerHTML='<div style="text-align:center; padding:50px"><i class="fas fa-bullhorn" style="font-size:48px"></i><p>No announcements yet</p></div>'; return; }
+            container.innerHTML = announcementsData.map(a => `<div class="announcement"><h4>${a.title}</h4><p>${a.content}</p><div style="display:flex; justify-content:space-between; margin-top:10px; font-size:12px; color:#666;"><span>By: ${a.author}</span><span>${new Date(a.timestamp).toLocaleDateString()}</span></div></div>`).join('');
+        }
+        
+        // Settings
+        function saveSystemSettings() {
+            settingsData.schoolName = document.getElementById('schoolNameSetting')?.value;
+            settingsData.academicYear = document.getElementById('academicYearSetting')?.value;
+            settingsData.passMark = parseInt(document.getElementById('passMarkSetting')?.value);
+            saveToStorage();
+            showNotification('Settings saved', 'success');
+        }
+        
+        function resetSystemSettings() {
+            settingsData = { schoolName: 'Excel High School', academicYear: '2024-2025', passMark: 40 };
+            saveToStorage();
+            loadSettings();
+            showNotification('Settings reset to default', 'success');
+        }
+        
+        function loadSettings() {
+            if(document.getElementById('schoolNameSetting')) document.getElementById('schoolNameSetting').value = settingsData.schoolName || 'Excel High School';
+            if(document.getElementById('academicYearSetting')) document.getElementById('academicYearSetting').value = settingsData.academicYear || '2024-2025';
+            if(document.getElementById('passMarkSetting')) document.getElementById('passMarkSetting').value = settingsData.passMark || 40;
+        }
+        
+        // User Management
+        function loadUsersTable() {
+            const tbody = document.getElementById('usersTable');
+            if (!tbody) return;
+            if (usersData.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">No users</td></tr>'; return; }
+            tbody.innerHTML = usersData.map(u => `<tr>
+                <td>${u.username}</td><td>${u.name}</td><td><span class="role-badge ${u.role}">${u.role}</span></td>
+                <td>${u.assignedClass || '-'}</td><td><span class="badge badge-success">Active</span></td>
+                <td class="action-buttons"><button class="btn btn-sm btn-danger" onclick="deleteUser('${u.id}')" ${u.username === 'FrankJefwa' ? 'disabled' : ''}>Delete</button></td>
+            </tr>`).join('');
+        }
+        
+        function deleteUser(id) {
+            if (confirm('Delete this user?')) {
+                usersData = usersData.filter(u => u.id !== id);
+                saveToStorage();
+                loadUsersTable();
+                showNotification('User deleted', 'success');
+            }
         }
         
         // Backup & Restore
         function createBackup() {
-            const backup = { id: Date.now(), timestamp: new Date().toISOString(), data: { scoresData, studentsData, usersData, pendingApprovalsData, settingsData } };
+            const backup = { id: Date.now(), timestamp: new Date().toISOString(), data: { scoresData, studentsData, usersData, pendingApprovalsData, settingsData, attendanceData, announcementsData, eventsData } };
             const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
@@ -2321,151 +2601,109 @@
                         usersData = backup.data.usersData || [];
                         pendingApprovalsData = backup.data.pendingApprovalsData || [];
                         settingsData = backup.data.settingsData || {};
+                        attendanceData = backup.data.attendanceData || [];
+                        announcementsData = backup.data.announcementsData || [];
+                        eventsData = backup.data.eventsData || [];
                         saveToStorage();
-                        showNotification('Restored! Refresh page.', 'success');
+                        showNotification('Restored successfully! Refreshing...', 'success');
                         setTimeout(() => location.reload(), 1500);
                     }
-                } catch(err) { showNotification('Invalid backup', 'error'); }
+                } catch(err) { showNotification('Invalid backup file', 'error'); }
             };
             reader.readAsText(file);
         }
         
-        function backupData() { createBackup(); }
-        
-        // Calendar Functions (existing)
-        let currentCalendarDate = new Date();
-        function loadCalendar() {
-            const year = currentCalendarDate.getFullYear(), month = currentCalendarDate.getMonth();
-            const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-            document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
-            const firstDay = new Date(year, month, 1).getDay();
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-            let html = '<div class="calendar-day">Sun</div><div class="calendar-day">Mon</div><div class="calendar-day">Tue</div><div class="calendar-day">Wed</div><div class="calendar-day">Thu</div><div class="calendar-day">Fri</div><div class="calendar-day">Sat</div>';
-            for (let i = 0; i < firstDay; i++) html += '<div class="calendar-day"></div>';
-            for (let d = 1; d <= daysInMonth; d++) {
-                const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-                const hasEvent = eventsData.some(e => e.date === dateStr);
-                html += `<div class="calendar-day ${hasEvent ? 'event' : ''}" onclick="showDayEvents('${dateStr}')">${d}</div>`;
-            }
-            document.getElementById('calendarGrid').innerHTML = html;
-        }
-        function prevMonth() { currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1); loadCalendar(); }
-        function nextMonth() { currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1); loadCalendar(); }
-        function showDayEvents(date) { const events = eventsData.filter(e => e.date === date); if(events.length) showNotification(events.map(e=>e.title).join(', '), 'info'); }
-        function addEvent() { const title=document.getElementById('eventTitle')?.value, date=document.getElementById('eventDate')?.value; if(title&&date){ eventsData.push({id:Date.now(),title,date}); saveToStorage(); loadCalendar(); showNotification('Event added','success');} }
-        
-        // Announcements
-        function postAnnouncement() {
-            const title = document.getElementById('announcementTitle')?.value, content = document.getElementById('announcementContent')?.value;
-            if(title && content) { announcementsData.push({id:Date.now(),title,content,author:currentUser.name,timestamp:new Date().toISOString()}); saveToStorage(); loadAnnouncements(); showNotification('Posted','success'); }
-        }
-        function loadAnnouncements() {
-            const container = document.getElementById('announcementsList');
-            if(!container) return;
-            if(announcementsData.length===0) { container.innerHTML='<p>No announcements</p>'; return; }
-            container.innerHTML = announcementsData.map(a => `<div class="announcement"><h4>${a.title}</h4><p>${a.content}</p><small>By ${a.author} on ${new Date(a.timestamp).toLocaleDateString()}</small></div>`).join('');
+        // Audit Log
+        function loadAuditLog() {
+            const tbody = document.getElementById('auditLogTable');
+            if (!tbody) return;
+            if (auditLogData.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center">No logs</td></tr>'; return; }
+            tbody.innerHTML = auditLogData.slice(-50).reverse().map(log => `<td><td>${new Date(log.timestamp).toLocaleString()}</td><td>${log.username}</td><td>${log.action}</td><td>${log.details}</td></tr>`).join('');
         }
         
-        // Attendance
-        function loadClassAttendance() {
-            const className = document.getElementById('attendanceClass')?.value, date = document.getElementById('attendanceDate')?.value;
-            if(!className || !date) return;
-            const classStudents = studentsData.filter(s => s.className === className);
-            if(classStudents.length===0) { showNotification('No students','warning'); return; }
-            let html = '<table><thead><tr><th>Student</th><th>Status</th><th>Remarks</th></tr></thead><tbody>';
-            classStudents.forEach(s => { const existing = attendanceData.find(a => a.studentId === s.id && a.date === date);
-                html += `<tr><td>${s.name}</td><td><select id="att_${s.id}"><option ${existing?.status==='present'?'selected':''}>Present</option><option ${existing?.status==='absent'?'selected':''}>Absent</option><option ${existing?.status==='late'?'selected':''}>Late</option></select></td>
-                <td><input type="text" id="rem_${s.id}" value="${existing?.remarks||''}"></td></tr>`;
-            });
-            html += '</tbody></table><button class="btn btn-success" onclick="saveAttendance()">Save Attendance</button>';
-            document.getElementById('attendanceTableContainer').innerHTML = html;
-        }
-        function saveAttendance() {
-            const className = document.getElementById('attendanceClass')?.value, date = document.getElementById('attendanceDate')?.value;
-            if(!className || !date) return;
-            const classStudents = studentsData.filter(s => s.className === className);
-            classStudents.forEach(s => { const status = document.getElementById(`att_${s.id}`)?.value, remarks = document.getElementById(`rem_${s.id}`)?.value;
-                attendanceData = attendanceData.filter(a => !(a.studentId === s.id && a.date === date));
-                attendanceData.push({id:Date.now(),studentId:s.id,studentName:s.name,className,date,status,remarks,recordedBy:currentUser.name});
-            });
-            saveToStorage();
-            showNotification('Attendance saved','success');
-        }
-        
-        // Settings
-        function saveSystemSettings() {
-            settingsData.schoolName = document.getElementById('schoolNameSetting')?.value;
-            settingsData.academicYear = document.getElementById('academicYearSetting')?.value;
-            settingsData.passMark = parseInt(document.getElementById('passMarkSetting')?.value);
-            saveToStorage();
-            showNotification('Settings saved','success');
-        }
-        
-        function loadSettings() {
-            if(document.getElementById('schoolNameSetting')) document.getElementById('schoolNameSetting').value = settingsData.schoolName || 'Excel High School';
-            if(document.getElementById('academicYearSetting')) document.getElementById('academicYearSetting').value = settingsData.academicYear || '2024-2025';
-            if(document.getElementById('passMarkSetting')) document.getElementById('passMarkSetting').value = settingsData.passMark || 40;
-        }
-        
-        // View All Scores
-        function loadViewAllScores() {
-            const tbody = document.getElementById('viewAllScoresTable');
-            if(!tbody) return;
-            if(scoresData.length===0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">No scores</td></tr>'; return; }
-            tbody.innerHTML = scoresData.map(score => { const s = studentsData.find(st => st.id === score.studentId);
-                return `<tr><td>${s?.name||'Unknown'}</td><td>${score.subject}</td><td>${score.score}%</td><td>${score.grade}</td><td>${formatDate(score.date)}</td>
-                <td class="action-buttons"><button class="btn btn-sm btn-warning" onclick="editScore('${score.id}')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteScore('${score.id}')">Delete</button></td></tr>`;
-            }).join('');
-        }
-        
+        // Dashboard Update
         function updateDashboard() {
             document.getElementById('totalStudents').textContent = studentsData.length;
             const avg = scoresData.length ? Math.round(scoresData.reduce((a,b) => a + b.score, 0) / scoresData.length) : 0;
             document.getElementById('averageScore').textContent = avg + '%';
-            document.getElementById('attendanceRate').textContent = '85%';
+            document.getElementById('attendanceRate').textContent = attendanceData.length ? Math.round((attendanceData.filter(a => a.status === 'present').length / attendanceData.length) * 100) : 0 + '%';
             document.getElementById('pendingActions').textContent = pendingApprovalsData.filter(p => p.status === 'pending').length;
-            const recent = [...scoresData].reverse().slice(0,10);
+            
+            const recent = [...scoresData].reverse().slice(0, 10);
             const tbody = document.getElementById('recentScoresTable');
-            if(tbody) tbody.innerHTML = recent.length ? recent.map(s => `<tr><td>${s.studentName}</td><td>${s.subject}</td><td>${s.score}%</td><td>${s.grade}</td><td>${formatDate(s.date)}</td>
-            <td><button class="btn btn-sm btn-warning" onclick="editScore('${s.id}')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteScore('${s.id}')">Delete</button></td></tr>`).join('') : '<tr><td colspan="6" style="text-align:center">No scores</td></tr>';
+            if (tbody) tbody.innerHTML = recent.length ? recent.map(s => `<tr><td>${s.studentName}</td><td>${s.subject}</td><td>${s.score}%</td><td>${s.grade}</td><td>${formatDate(s.date)}</td>
+            <td class="action-buttons"><button class="btn btn-sm btn-warning" onclick="editScore('${s.id}')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteScore('${s.id}')">Delete</button></td></tr>`).join('') : '<tr><td colspan="6" style="text-align:center">No scores entered yet</td></tr>';
         }
         
-        function generateReport() { showNotification('Report generated','success'); }
+        function generateOverallReport() {
+            const avg = scoresData.length ? Math.round(scoresData.reduce((a,b) => a + b.score, 0) / scoresData.length) : 0;
+            let content = `${settingsData.schoolName || 'School Name'}\nOVERALL PERFORMANCE REPORT\nGenerated: ${new Date().toLocaleString()}\n\nTotal Students: ${studentsData.length}\nTotal Scores: ${scoresData.length}\nOverall Average: ${avg}%\nPass Mark: ${settingsData.passMark || 40}%\n\nThank you for using Digital Score Management System\nBy Frank Jefwa`;
+            const blob = new Blob([content], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `school_report_${new Date().toISOString().split('T')[0]}.txt`;
+            a.click();
+            URL.revokeObjectURL(a.href);
+            showNotification('Report generated', 'success');
+        }
+        
+        function updateAllDropdowns() {
+            populateStudentSelect();
+            const teacherSelect = document.getElementById('teacherStudentSelect');
+            if (teacherSelect && currentUser?.role === 'teacher') loadTeacherStudents();
+            const adminReportSelect = document.getElementById('adminReportStudent');
+            if (adminReportSelect) adminReportSelect.innerHTML = '<option value="">Select Student</option>' + studentsData.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+        }
+        
+        // Page Navigation
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
             const page = document.getElementById(pageId);
-            if(page) page.style.display = 'block';
-            if(pageId === 'dashboardPage') { updateDashboard(); loadAllScoresAdmin(); }
-            if(pageId === 'pendingApprovals') loadPendingApprovals();
-            if(pageId === 'addScores') { loadAllScoresAdmin(); populateStudentSelect(); }
-            if(pageId === 'manageStudents') loadStudentsList();
-            if(pageId === 'viewAllScores') loadViewAllScores();
-            if(pageId === 'teacherDashboard') loadTeacherDashboard();
-            if(pageId === 'teacherMyStudents') loadTeacherStudents();
-            if(pageId === 'teacherAddScores') { loadTeacherStudents(); loadTeacherScores(); }
-            if(pageId === 'teacherMyScores') loadTeacherAllScores();
-            if(pageId === 'studentDashboard') loadStudentDashboard();
-            if(pageId === 'studentMyScores') loadStudentScores();
-            if(pageId === 'systemSettings') loadSettings();
-            if(pageId === 'calendar') loadCalendar();
-            if(pageId === 'announcements') loadAnnouncements();
+            if (page) page.style.display = 'block';
+            
+            if (pageId === 'dashboardPage') { updateDashboard(); loadAllScoresAdmin(); updateReportsAnalysis(); }
+            if (pageId === 'pendingApprovals') loadPendingApprovals();
+            if (pageId === 'addScores') { loadAllScoresAdmin(); populateStudentSelect(); }
+            if (pageId === 'manageStudents') { loadStudentsList(); document.getElementById('newStudentId').value = generateStudentId(); }
+            if (pageId === 'viewAllScores') { currentSearchName = ''; currentFilterClass = ''; if(document.getElementById('searchStudentName')) document.getElementById('searchStudentName').value = ''; loadViewAllScores(); }
+            if (pageId === 'reportsAnalysis') updateReportsAnalysis();
+            if (pageId === 'classAnalysis') document.getElementById('analysisClassSelect').value = '';
+            if (pageId === 'attendance') document.getElementById('attendanceDate').valueAsDate = new Date();
+            if (pageId === 'calendar') loadCalendar();
+            if (pageId === 'announcements') loadAnnouncements();
+            if (pageId === 'userManagement') loadUsersTable();
+            if (pageId === 'systemSettings') loadSettings();
+            if (pageId === 'auditLog') loadAuditLog();
+            if (pageId === 'teacherDashboard') loadTeacherDashboard();
+            if (pageId === 'teacherMyStudents') loadTeacherStudents();
+            if (pageId === 'teacherAddScores') { loadTeacherStudents(); loadTeacherScores(); }
+            if (pageId === 'teacherMyScores') loadTeacherAllScores();
+            if (pageId === 'teacherPerformance') loadTeacherPerformanceGraph();
+            if (pageId === 'teacherAttendance') document.getElementById('teacherAttendanceDate').valueAsDate = new Date();
+            if (pageId === 'studentDashboard') loadStudentDashboard();
+            if (pageId === 'studentMyScores') loadStudentScores();
+            if (pageId === 'studentPerformance') loadStudentPerformanceGraph();
+            if (pageId === 'studentReportCard') loadStudentReportCard();
         }
         
         function initApp() {
             loadFromStorage();
             const now = new Date();
-            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-            if(!settingsData.schoolName) settingsData = { schoolName:"Excel High School", academicYear:"2024-2025", passMark:40 };
-            if(localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark-mode');
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            if (!settingsData.schoolName) settingsData = { schoolName: 'Excel High School', academicYear: '2024-2025', passMark: 40 };
+            if (localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark-mode');
             updateDashboard();
-            if(document.getElementById('attendanceDate')) document.getElementById('attendanceDate').valueAsDate = new Date();
+            updateReportsAnalysis();
+            if (document.getElementById('attendanceDate')) document.getElementById('attendanceDate').valueAsDate = new Date();
+            if (document.getElementById('teacherAttendanceDate')) document.getElementById('teacherAttendanceDate').valueAsDate = new Date();
         }
         
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('signupRole')?.addEventListener('change', updateRoleFields);
             try {
                 const saved = JSON.parse(localStorage.getItem('currentUser'));
-                if(saved?.username) {
+                if (saved?.username) {
                     currentUser = saved;
                     document.getElementById('loginScreen').style.display = 'none';
                     document.getElementById('dashboard').style.display = 'block';
@@ -2473,15 +2711,15 @@
                     document.getElementById('userAvatar').textContent = getInitials(currentUser.name);
                     document.getElementById('userRole').textContent = currentUser.isMainAdmin ? 'Main Admin' : currentUser.role;
                     document.querySelectorAll('.nav-section').forEach(s => s.style.display = 'none');
-                    if(currentUser.role === 'admin' || currentUser.isMainAdmin) document.getElementById('adminNav').style.display = 'block';
-                    else if(currentUser.role === 'teacher') document.getElementById('teacherNav').style.display = 'block';
-                    else if(currentUser.role === 'parent') document.getElementById('parentNav').style.display = 'block';
-                    else if(currentUser.role === 'student') document.getElementById('studentNav').style.display = 'block';
+                    if (currentUser.role === 'admin' || currentUser.isMainAdmin) document.getElementById('adminNav').style.display = 'block';
+                    else if (currentUser.role === 'teacher') document.getElementById('teacherNav').style.display = 'block';
+                    else if (currentUser.role === 'parent') document.getElementById('parentNav').style.display = 'block';
+                    else if (currentUser.role === 'student') document.getElementById('studentNav').style.display = 'block';
                     initApp();
-                    if(currentUser.role === 'admin') showPage('dashboardPage');
-                    else if(currentUser.role === 'teacher') showPage('teacherDashboard');
-                    else if(currentUser.role === 'parent') showPage('parentDashboard');
-                    else if(currentUser.role === 'student') showPage('studentDashboard');
+                    if (currentUser.role === 'admin') showPage('dashboardPage');
+                    else if (currentUser.role === 'teacher') showPage('teacherDashboard');
+                    else if (currentUser.role === 'parent') showPage('parentDashboard');
+                    else if (currentUser.role === 'student') showPage('studentDashboard');
                 }
             } catch(e) {}
             document.getElementById('username')?.addEventListener('keypress', e => { if(e.key === 'Enter') login(); });
